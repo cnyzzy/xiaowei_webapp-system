@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>抽奖管理-小薇平台管理后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="{$arrInfo[url]}/system/admin/model/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="{$arrInfo[url]}/system/admin/model/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="XIAOWEI Admin" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/admin.css">
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/app.css">
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/echarts.min.js"></script>
+</head>
+
+<body data-type="generalComponents">
+{template header}
+<script>
+
+
+function deletet(id){
+	 if(confirm("确定要删除么？")){
+$.ajax({
+		type:"POST",
+		url:"{$arrInfo[url]}/admin/sxzs/do",
+		data:"&do=deletet&id="+id,
+		beforeSend:function(){},
+		success:function(result){
+			if(result == '1'){
+				window.location.reload(true); 
+			}
+		}
+	})
+	}	
+}
+
+function isokok(id,isok){
+ if(confirm("确定要修改审核状态么？")){
+    $.post('{$arrInfo[url]}/admin/sxzs/do',{'do':'isopen','id':id,'isok':isok},function(rs){
+        if(rs==1){
+            window.location.reload(true);
+        }
+    })}
+}
+</script>
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+               抽奖管理
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="{$arrInfo[url]}/admin" class="am-icon-home">首页</a></li>
+                <li><a>APP管理</a></li>
+                <li class="am-active">抽奖管理</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 中奖管理-抽奖
+                    </div>
+
+
+                </div>
+                              <div class="tpl-block">
+           
+                    <div class="am-g">
+						   <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+   <a href="{$arrInfo[url]}/admin/sxzs/excelzj/{$bbb}"><button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存表格</button></a>                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                              <div class="am-cf">
+
+                              <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                        <tr>
+                                            <th class="table-id">ID</th>
+                                            <th class="table-title">姓名</th>
+											  <th class="table-title">编号</th>
+											   <th class="table-title">昵称</th>
+						   <th class="table-title">姓名</th>
+											    <th class="table-title">奖品</th>
+                                            <th class="table-set">操作</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+									<!--{loop $Array $key $loopChild}-->
+                                        <tr>                                          
+                                            <td>$loopChild['id']</td>
+                                            <td>$loopChild['name']</td>
+										 <td><a href="{$arrInfo[url]}/admin/minfodd/$loopChild['number']">$loopChild['number']</a></td>
+											<td>$loopChild['nickname']</td>
+											<td>$loopChild['name']</td>
+											   <td>$loopChild['cj']</td>
+										   <td>
+                                                <div class="am-btn-toolbar">
+                                                    <div class="am-btn-group am-btn-group-xs">
+                                                           <button onclick="isokok('{$loopChild['id']}','{if $loopChild['isok']=='0'}1{/if}{if $loopChild['isok']=='1'}0{/if}');"  class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> {if $loopChild['isok']=='0'}通过{/if}{if $loopChild['isok']=='1'}不过{/if}</button>
+                                                       
+                                                        <button onclick="deletet('{$loopChild['id']}');" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                         	<!--{/loop}-->
+                                    </tbody>
+                                </table>
+								                                <div class="am-cf">
+
+                                       <div class="am-fr">
+                                        <ul class="am-pagination tpl-pagination">
+										共 $TotalNum 条记录
+										  {if $prePageNum}
+                  <li {if $NOW==1}class="am-disabled"{/if}><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/1">«</a></li>
+				          {if $NOWLLLL>0} <li><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$NOWLLLL">$NOWLLLL</a></li>{/if}
+      {if $NOWLLL>0}<li><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$NOWLLL">$NOWLLL</a></li>{/if}
+        {if $NOWLL>0} <li><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$NOWLL">$NOWLL</a></li>{/if}
+      {if $NOWL>0}<li><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$NOWL">$NOWL</a></li>{/if}
+      <li class="am-active"><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$NOW" >$NOW</a></li>
+          {if $NOWR<=$prePageNum}<li><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$NOWR">$NOWR</a></li>{/if}
+        {if $NOWRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$NOWRR">$NOWRR</a></li>{/if}
+		{if $NOWRRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$NOWRRR">$NOWRRR</a></li>{/if}
+        {if $NOWRRRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$NOWRRRR">$NOWRRRR</a></li>{/if}
+      <li {if $NOW==$prePageNum}class="am-disabled"{/if}><a href="$arrInfo[url]/admin/xjxg/tk/$bbb/$prePageNum">»</a></li>
+											{/if}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <hr>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                 
+          
+                <div class="tpl-alert"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+ <script src="{$arrInfo[url]}/system/admin/model/assets/js/jquery-2.1.1.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/amazeui.min.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/app.js"></script>
+	
+</body>
+</html>

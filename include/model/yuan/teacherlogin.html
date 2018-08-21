@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1 maximum-scale=2, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-title" content="Add to Home">
+		<meta name="format-detection" content="telephone=no">
+		<meta http-equiv="x-rim-auto-match" content="none">
+		<title>统一身份认证授权-小薇平台</title>		
+
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/jquery-weui.min.css"/>
+			  
+	</head>
+
+	<body>
+		
+<script src="{$arrInfo[url]}/app/home/model/lib/jquery-2.1.4.js"></script>
+        <script src="{$arrInfo[url]}/app/home/model/js/jquery-weui.js"></script>
+<script>
+	$(document).ready(function() {
+{if $type==0}
+$.modal({
+  title: "提示",
+  text: "认证系统反馈的授权数据不符合小薇平台数据格式<br>(Uid:{$username} Username:{$xm})",
+  buttons: [
+    { text: "撤回授权", onClick: function(){   $.showLoading("即将跳转...");
+			 setTimeout(function() {
+            window.location.href="{$arrInfo[url]}/teacherlogin?logout";
+        }, 800)	}}} },
+    { text: "返回", className: "default", onClick: function(){ javascript:history.go(-1);} },
+  ]
+});
+{/if}
+{if $type==1&&empty($isbd)}
+$.modal({
+  title: "提示",
+  text: "您正在绑定学生身份<br>(学号{$username} 姓名:{$xm})<br>当前小薇平台必须绑定教务系统<br>请使用学生入口绑定",
+  buttons: [
+    { text: "撤回授权", onClick: function(){   $.showLoading("即将跳转...");
+			 setTimeout(function() {
+            window.location.href="{$arrInfo[url]}/teacherlogin?logout";
+        }, 800)	}},
+    { text: "返回", className: "default", onClick: function(){          
+	window.location.href="{$arrInfo[url]}/home/login";
+} },
+  ]
+});
+
+{/if}
+{if $type==1&&@$isbd==1}
+$.modal({
+  title: "提示",
+  text: "您已经绑定过身份 请解绑后再绑定<br>[试图绑定身份 (学号{$username} 姓名:{$xm})]",
+  buttons: [
+    { text: "撤回授权", onClick: function(){   $.showLoading("即将跳转...");
+			 setTimeout(function() {
+            window.location.href="{$arrInfo[url]}/teacherlogin?logout";
+        }, 800)	}},
+    { text: "返回", className: "default", onClick: function(){          
+	window.location.href="{$arrInfo[url]}/home";
+} },
+  ]
+});
+
+{/if}
+{if $type==2&&empty($isbd)}
+$.modal({
+  title: "提示",
+  text: "您已成功绑定教职工身份<br>(工号{$username} 姓名:{$xm}){if @$noghzl==1}<br>当前小薇平台没有您所属部门的资料<br>请联系宣传部 暂时不影响使用{/if}",
+  buttons: [
+    { text: "撤回授权", className: "default",onClick: function(){   $.showLoading("即将跳转...");
+			 setTimeout(function() {
+            window.location.href="{$arrInfo[url]}/teacherlogin?logout=zc";
+        }, 800)	} },
+    { text: "好的",  onClick: function(){          
+	window.location.href="{$xurl}";
+} },
+  ]
+});
+
+{/if}
+{if $type==2&&@$isbd==1}
+$.modal({
+  title: "提示",
+  text: "您已经绑定过身份 请解绑后再绑定<br>[试图绑定身份 (工号{$username} 姓名:{$xm})]",
+  buttons: [
+    { text: "撤回授权", onClick: function(){   $.showLoading("即将跳转...");
+			 setTimeout(function() {
+            window.location.href="{$arrInfo[url]}/teacherlogin?logout";
+        }, 800)	}},
+    { text: "返回", className: "default", onClick: function(){          
+	window.location.href="{$arrInfo[url]}/home";
+} },
+  ]
+});
+
+{/if}
+  });</script>
+{if isset($arrInfo[tjcode])}<div style="display:none">{$arrInfo[tjcode]}</div>{/if} 
+	</body>
+
+</html>

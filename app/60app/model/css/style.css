@@ -1,0 +1,338 @@
+html, body {
+	/*position:relative;
+	height:100%;*/
+	color:#222;
+	font-family:Microsoft YaHei,Helvitica,Verdana,Tohoma,Arial,san-serif;
+	/*background-color:#f0f0f0;*/
+	margin:0;
+	padding: 0;
+	text-decoration: none;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+	margin:0;
+	padding:0;
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1;
+  padding: 20px;
+}
+.weui-footer {
+    color: #999;
+
+}
+.weui-footer {
+    line-height: 0.5;
+    left: 0;
+    right: 0;
+    width: 100%;
+    bottom: 0;
+}
+.weui-footer, .weui-grid__label {
+    text-align: center;
+    font-size: 14px;
+}
+.weui-footer_fixed-bottom {
+    position: fixed;
+    bottom: .52em;
+    left: 0;
+    right: 0;
+}
+
+.weui-footer__links {
+    font-size: 0;
+}
+.weui-footer__text {
+    padding: 0 .34em;
+    font-size: 12px;
+}
+.weui-footer a {
+    color: #586c94;
+}
+
+.weui-footer__link {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 .62em;
+    position: relative;
+    font-size: 14px;
+}
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+fieldset, img {
+	border:0;
+}
+address, caption, cite, code, dfn,  th, var {
+	font-style:normal;
+	font-weight:normal;
+}
+ol, ul {
+	list-style: none outside none;
+	margin:0;
+	padding: 0;
+}
+caption, th {
+	text-align:left;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size:100%;
+	font-weight:normal;
+}
+a {
+	color:#000000;
+	text-decoration: none;
+}
+.left{ float:left}
+.right{ float:right}
+q:before, q:after {
+	content:'';
+}
+abbr, acronym {
+	border:0;
+	font-variant:normal;
+}
+sup {
+	vertical-align:text-top;
+}
+sub {
+	vertical-align:text-bottom;
+}
+input, textarea, select {
+	font-family:inherit;
+	font-size:inherit;
+	font-weight:inherit;
+}
+input, textarea, select {
+*font-size:100%;
+}
+legend {
+	color:#000;
+}
+
+/*iscroll*/
+
+.banner {
+	width:100%;
+	margin:0 auto;
+	padding:0;
+	background-color: #333333;
+}
+#wrapper {
+	margin:0;
+	width:100%;
+	height:auto;
+	float:left;
+	position:relative;	/* On older OS versions "position" and "z-index" must be defined, */
+	z-index:1;			/* it seems that recent webkit is less picky and works anyway. */
+	overflow:hidden;
+	
+}
+
+#scroller {
+	height:auto;
+	float:left;
+	padding:0;
+}
+
+#scroller ul {
+	list-style:none;
+	display:block;
+	float:left;
+	width:100%;
+	height:auto;
+	padding:0;
+	margin:0;
+	text-align:left;
+}
+
+#scroller li {
+	
+	display:block; float:left;
+	width:auto; height:auto;
+	text-align:center;
+	font-size:0px;
+	padding:0;
+	position:relative;
+}
+#scroller li a{
+	
+	display:block;
+	padding:0;
+	margin:0;
+}
+#scroller li p{
+	position:absolute;
+	z-index:2;
+	display:block;
+	width:100%;
+	bottom:0;
+	background-color:rgba(0, 0, 0, 0.5);
+	color:#F4F4F4;
+	font-size:14px;
+	text-indent: 55px;
+	line-height:24px;
+	text-align: left;
+    text-indent: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+	padding:0;
+	margin:0;
+}
+#nav {
+	float: right;
+    margin-top: -15px;
+    padding: 0;
+    position: relative;
+    width: auto;
+    z-index: 3;
+}
+
+#prev, #next {
+	float:left;
+	font-weight:bold;
+	font-size:14px;
+	padding:5px 0;
+	width:80px;
+	display: none;
+}
+
+#next {
+	float:right;
+	text-align:right;
+}
+
+#indicator > li {
+	display:block; float:left;
+	list-style:none;
+	padding:0; margin:0;
+}
+
+#indicator {
+	display: block;
+    margin: 0 8px;
+    padding: 0;
+    width: auto;
+}
+
+#indicator > li {
+	text-indent:-9999em;
+	width:8px; height:8px;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	-o-border-radius:4px;
+	border-radius:4px;
+	background:#888;
+	overflow:hidden;
+	margin-right:4px;
+}
+
+#indicator > li.active {
+	background:#DDDDDD;
+}
+
+#indicator > li:last-child {
+	margin:0;
+}
+/*cate5*/
+#cate5{ background-color:#F0EFEF;margin: 0 auto;overflow-x: hidden;}
+#cate5 .mainmenu {
+	display: block;
+    margin:0px auto 0px;
+    width: 100%;
+}
+#cate5 .mainmenu li {
+	width:50%;
+	float:left;
+	display: block;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+}
+#cate5 .menubtn {
+	display: block;
+	text-decoration:none;
+	color:#000;
+	background-color: #ffffff;
+	padding:8px 10px;
+	box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	-webkit-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.15);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+#cate5 .mainmenu li:nth-child(odd) .menubtn{
+	margin: 2px 2px 1px 10px;
+}
+#cate5 .mainmenu li:nth-child(even) .menubtn{
+	margin: 2px 10px 1px 2px;
+}
+
+#cate5 .menubtn .menumesg {
+	padding:0px;
+}
+#cate5 .menubtn .menuimg {
+	margin:0 auto;
+	height:116px;
+	padding: 6px;
+    width: 116px;
+	display:block;
+	overflow:hidden;
+	background-color: #F5F5F5;
+	-webkit-border-radius:116px;
+	-moz-border-radius:116px;
+	border-radius:116px;
+	box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.11) inset;
+	-moz-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.11) inset;
+	-webkit-box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.11) inset;
+	
+}
+#cate5 .menubtn .menuimg2 {
+	height:116px;
+	width:116px;
+	display:block;
+	overflow:hidden;
+	-webkit-border-radius:116px;
+	-moz-border-radius:116px;
+	border-radius:116px;
+}
+
+#cate5 .mainmenu li div img {
+	border:0;
+	height:120px;
+}
+#cate5 .mainmenu li .menutitle {
+	padding: 5px 0;
+	text-decoration: none;
+	color:#000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align:center;
+}
+#cate5 .mainmenu li .menutext {
+	color: #bbbbbb;
+    display: block;
+    font-size: 12px;
+	line-height: 16px;
+    height: 32px;
+    overflow: hidden;
+	text-align:center;
+}

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>课程表-{$arrInfo[name]}</title>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/fonts/iconfont.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/font.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/jquery-weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/mui.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/animate.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/pages/xunjia_detail.css"/>
+		<link rel="stylesheet" type="text/css" href="{$arrInfo[url]}/app/{$AppName}/model/css/style.css">
+		    <script src="{$arrInfo[url]}/app/home/model/lib/jquery-2.1.4.js"></script>
+									<script src="{$arrInfo[url]}/app/home/model/lib/fastclick.js"></script>
+<script>
+  $(function() {
+    FastClick.attach(document.body);
+  });
+</script>
+        <script src="{$arrInfo[url]}/app/home/model/js/jquery-weui.js"></script>	
+		<script type="text/javascript" src="{$arrInfo[url]}/app/kcb/model/js/mui.min.js"></script>
+        <script>(function (doc, win) {
+          var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+              var clientWidth = docEl.clientWidth;
+              if (!clientWidth) return;
+              docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+            };
+
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+	
+         </script>
+		 <script type="text/javascript">
+function _w_table_rowspan(_w_table_id,_w_table_colnum){
+    _w_table_firsttd = "";
+    _w_table_currenttd = "";
+    _w_table_SpanNum = 0;
+    _w_table_Obj = $(_w_table_id + " tr td:nth-child(" + _w_table_colnum + ")");
+    _w_table_Obj.each(function(i){
+        if(i==0){
+            _w_table_firsttd = $(this);
+            _w_table_SpanNum = 1;
+        }else{
+            _w_table_currenttd = $(this);
+            if(_w_table_firsttd.text()==_w_table_currenttd.text()){
+                _w_table_SpanNum++;
+                _w_table_currenttd.hide(); //remove();
+                _w_table_firsttd.attr("rowSpan",_w_table_SpanNum);
+            }else{
+                _w_table_firsttd = $(this);
+                _w_table_SpanNum = 1;
+            }
+        }
+    }); 
+}
+
+function _w_table_colspan(_w_table_id,_w_table_rownum,_w_table_maxcolnum){
+    if(_w_table_maxcolnum == void 0){_w_table_maxcolnum=0;}
+    _w_table_firsttd = "";
+    _w_table_currenttd = "";
+    _w_table_SpanNum = 0;
+    $(_w_table_id + " tr:nth-child(" + _w_table_rownum + ")").each(function(i){
+        _w_table_Obj = $(this).children();
+        _w_table_Obj.each(function(i){
+            if(i==0){
+                _w_table_firsttd = $(this);
+                _w_table_SpanNum = 1;
+            }else if((_w_table_maxcolnum>0)&&(i>_w_table_maxcolnum)){
+                return "";
+            }else{
+                _w_table_currenttd = $(this);
+                if(_w_table_firsttd.text()==_w_table_currenttd.text()){
+                    _w_table_SpanNum++;
+                    _w_table_currenttd.hide(); //remove();
+                    _w_table_firsttd.attr("colSpan",_w_table_SpanNum);
+                }else{
+                    _w_table_firsttd = $(this);
+                    _w_table_SpanNum = 1;
+                }
+            }
+        });
+    });
+}
+$(document).ready(function(){  
+	{if $isneed==1}login();{/if}
+ var h=0;
+   var hh=0;
+  for (var y=1;y<11;y++)
+{
+  for (var x=1;x<8;x++)
+{
+
+    hh=$("#"+x+y).height();
+	
+    if(h<hh)h=hh;
+}
+}
+  for (var y=1;y<11;y++)
+{
+  for (var x=1;x<8;x++)
+{
+
+   $("#"+x+y).height(h);  
+}
+}
+  _w_table_rowspan("#timeTable",2);
+  _w_table_rowspan("#timeTable",3);
+    _w_table_rowspan("#timeTable",4);
+  _w_table_rowspan("#timeTable",5);
+  _w_table_rowspan("#timeTable",6);
+   _w_table_rowspan("#timeTable",7);
+  _w_table_rowspan("#timeTable",8);
+ 
+
+  if({$_SESSION['zid']['type']}!=1){
+  $.toast("非学生<br>不可使用","cancel");
+			 setTimeout(function() {
+          window.location.reload(true);
+        }, 3000)}
+ });
+    </script>
+    </head>
+    <body>
+        <header>
+		
+         <div class="titlebar reverse">
+             <a href="javascript:history.go(-1);">
+                    <i class="iconfont">&#xe668;</i>
+                </a>
+                <h1>$number的课程表</h1>
+            </div>
+        </header>
+        <article style="bottom: 0;">
+		                  <div class="weui_search_bar" id="search_bar" style="position:relative; z-index:0;">
+  <form action="{$arrInfo[url]}/kcb/s" method="post" class="weui_search_outer">
+    <div class="weui_search_inner">
+      <i class="weui_icon_search"></i>
+      <input type="search" class="weui_search_input" id="search_input" name="searchpost" placeholder="搜索教室或教师的课表" required/>
+      <a href="javascript:" class="weui_icon_clear" id="search_clear"></a>
+    </div>
+    <label for="search_input" class="weui_search_text" id="search_text">
+      <i class="weui_icon_search"></i>
+      <span>搜索</span>
+    </label>
+  </form>
+  <a href="javascript:" class="weui_search_cancel" id="search_cancel">取消</a>
+</div>
+            <ul class="xunjia-tab clearfix">
+
+				
+            </ul>           <ul class="xunjia-box">
+			
+           
+			<table id="timeTable" class="content" style="table-layout:fixed;">
+				<tr>
+					<th style="width:5%;"></th>
+					<th style="height:3%;">周一</th>
+					<th style="height:3%;">周二️</th>
+					<th style="height:3%;">周三</th>
+					<th style="height:3%;">周四</th>
+					<th style="height:3%;">周五</th>
+					<th style="height:3%;">周六</th>
+					<th style="height:3%;">周日</th>
+				</tr>{for $y=1; $y<11; $y++}
+				<tr>
+					<td>$y</td>{for $x=1; $x<8; $x++}
+					<td class="timetable-course"{if !EMPTY($arr[$x][$y])} id="{$x}{$y}"{/if}>{if !EMPTY($arr[$x][$y][0])}@$arr[$x][$y][0]['coursename']{if !EMPTY($arr[$x][$y][0]['coursesingle'])}{if $arr[$x][$y][0]['coursesingle']=='1'}(单周){else}(双周){/if}{/if}<br>{IF @$arr[$x][$y][0]['courseplace']}@@$arr[$x][$y][0]['courseplace']{/IF}{/IF}{if !EMPTY($arr[$x][$y][1])}@$arr[$x][$y][1]['coursename']{if !EMPTY($arr[$x][$y][1]['coursesingle'])}{if $arr[$x][$y][1]['coursesingle']=='1'}(单周){else}(双周){/if}{/if}<br>{IF @$arr[$x][$y][1]['courseplace']}@@$arr[$x][$y][1]['courseplace']{/IF}{/IF}{if !EMPTY($arr[$x][$y])}@$arr[$x][$y]['coursename']<br>{IF @$arr[$x][$y]['courseplace']}@@$arr[$x][$y]['courseplace']{/IF}{/if}</td>
+					{/if}
+				</tr>{/for}
+				
+			</table>
+	
+	
+	 <p align="right">{$arrT['year']}学年 第{$arrT['team']}学期</p>
+   </ul>
+</article>
+		{for $y=1; $y<11; $y++}
+	{for $x=1; $x<8; $x++}{if !EMPTY($arr[$x][$y])||!EMPTY($arr[$x][$y][1])||!EMPTY($arr[$x][$y][0])}
+			  <div class="cover_table" id="D{$x}{$y}"style="table-layout:fixed;">
+		<div class="exit">
+			<img src="{$arrInfo[url]}/app/kcb/model/img/exit.png" height="50" width="50">
+		</div>
+		<table>	
+		<tr>
+				<th>科目</th>
+				<th>地点</th>
+				<th>教师</th>
+				<th>类型</th>
+				<th>课周</th>
+			</tr>
+{if !EMPTY($arr[$x][$y][0])}
+			<tr>
+				<td>{if !EMPTY($arr[$x][$y][0]['coursename'])}<a href="{$arrInfo[url]}/kcb/c/{php echo(urlencode($arr[$x][$y][0]['coursename']))}">$arr[$x][$y][0]['coursename']</a>{else}[无数据]{/if}</td>
+					<td>{if !EMPTY($arr[$x][$y][0]['courseplace'])}<a href="{$arrInfo[url]}/kcb/room/{php echo(urlencode($arr[$x][$y][0]['courseplace']))}">$arr[$x][$y][0]['courseplace']</a>{else}[无数据]{/if}</td>
+						<td>{if !EMPTY($arr[$x][$y][0]['courseteacher'])}<a href="{$arrInfo[url]}/kcb/teacher/{php echo(urlencode($arr[$x][$y][0]['courseteacher']))}">$arr[$x][$y][0]['courseteacher']</a>{else}[无数据]{/if}</td>
+					<td>{if !EMPTY($arr[$x][$y][0]['coursetype'])}$arr[$x][$y][0]['coursetype']{else}[无数据]{/if}</td>
+						<td>{if !EMPTY($arr[$x][$y][0]['courseweek'])}$arr[$x][$y][0]['courseweek']
+						{if !EMPTY($arr[$x][$y][0]['coursesingle'])}{if $arr[$x][$y][0]['coursesingle']=='1'}(单周){else}(双周){/if}{/if}
+						{else}[无数据]{/if}</td>
+			</tr>
+
+{/IF}
+
+{if !EMPTY($arr[$x][$y][1])}
+<tr>
+				<td>{if !EMPTY($arr[$x][$y][1]['coursename'])}<a href="{$arrInfo[url]}/kcb/c/{php echo(urlencode($arr[$x][$y][1]['coursename']))}">$arr[$x][$y][1]['coursename']</a>{else}[无数据]{/if}</td>
+					<td>{if !EMPTY($arr[$x][$y][1]['courseplace'])}<a href="{$arrInfo[url]}/kcb/room/{php echo(urlencode($arr[$x][$y][1]['courseplace']))}">$arr[$x][$y][1]['courseplace']</a>{else}[无数据]{/if}</td>
+						<td>{if !EMPTY($arr[$x][$y][1]['courseteacher'])}<a href="{$arrInfo[url]}/kcb/teacher/{php echo(urlencode($arr[$x][$y][1]['courseteacher']))}">$arr[$x][$y][1]['courseteacher']</a>{else}[无数据]{/if}</td>
+					<td>{if !EMPTY($arr[$x][$y][1]['coursetype'])}$arr[$x][$y][1]['coursetype']{else}[无数据]{/if}</td>
+						<td>{if !EMPTY($arr[$x][$y][1]['courseweek'])}$arr[$x][$y][1]['courseweek']
+						{if !EMPTY($arr[$x][$y][1]['coursesingle'])}{if $arr[$x][$y][1]['coursesingle']=='1'}(单周){else}(双周){/if}{/if}
+						{else}[无数据]{/if}</td>
+			</tr>
+{/IF}
+
+{if !EMPTY($arr[$x][$y])&&(EMPTY($arr[$x][$y][1])&&EMPTY($arr[$x][$y][0]))}
+<tr>
+				<td>{if !EMPTY($arr[$x][$y]['coursename'])}<a href="{$arrInfo[url]}/kcb/c/{php echo(urlencode($arr[$x][$y]['coursename']))}">$arr[$x][$y]['coursename']</a>{else}[无数据]{/if}</td>
+					<td>{if !EMPTY($arr[$x][$y]['courseplace'])}<a href="{$arrInfo[url]}/kcb/room/{php echo(urlencode($arr[$x][$y]['courseplace']))}">$arr[$x][$y]['courseplace']</a>{else}[无数据]{/if}</td>
+						<td>{if !EMPTY($arr[$x][$y]['courseteacher'])}<a href="{$arrInfo[url]}/kcb/teacher/{php echo(urlencode($arr[$x][$y]['courseteacher']))}">$arr[$x][$y]['courseteacher']</a>{else}[无数据]{/if}</td>
+					<td>{if !EMPTY($arr[$x][$y]['coursetype'])}$arr[$x][$y]['coursetype']{else}[无数据]{/if}</td>
+						<td>{if !EMPTY($arr[$x][$y]['courseweek'])}$arr[$x][$y]['courseweek']
+						{if !EMPTY($arr[$x][$y]['coursesingle'])}{if $arr[$x][$y]['coursesingle']=='1'}(单周){else}(双周){/if}{/if}
+						{else}[无数据]{/if}</td>
+			</tr>
+{/if}
+					{/if}
+					</table>
+	</div>
+				{/for}
+      {/for}
+ 
+
+
+<script type="text/javascript">
+		window.onload = function(){
+			$('.timetable-course').each(function() {
+				if ($(this).text() != '') {
+					$(this).css({"background-color":"#3c6080", "color":"#ffffff"});
+					$(this).on('click', function(event){
+						var id = $(this).attr("id");
+						$('#search_bar').hide();
+						$('#D'+id).show();
+ 
+					});
+				}
+			});
+			$('.exit').on('click', function(event) {
+				$('.cover_table').hide();
+				$('#search_bar').show();
+			});
+		}
+	</script>
+	{if isset($arrInfo[tjcode])}<div style="display:none">{$arrInfo[tjcode]}</div>{/if} 	
+    </body>        <footer>
+           
+        </footer>
+		
+</html>

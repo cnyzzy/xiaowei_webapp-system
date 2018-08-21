@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>失物招领管理-小薇平台管理后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="{$arrInfo[url]}/system/admin/model/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="{$arrInfo[url]}/system/admin/model/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="XIAOWEI Admin" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/admin.css">
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/app.css">
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/echarts.min.js"></script>
+</head>
+
+<body data-type="generalComponents">
+{template header}
+<script>
+function deletem(id){
+	 if(confirm("确定要删除么？")){
+$.ajax({
+		type:"POST",
+		url:"{$arrInfo[url]}/admin/swzl/do",
+		data:"&do=delete&id="+id,
+		beforeSend:function(){},
+		success:function(result){
+			if(result == '1'){
+				window.location.reload(true); 
+			}
+		}
+	})
+	}	
+}
+function isokok(id,isok){
+ if(confirm("确定要修改审核状态么？")){
+    $.post('{$arrInfo[url]}/admin/swzl/do',{'do':'isopen','id':id,'isok':isok},function(rs){
+        if(rs==1){
+     
+        }
+		return false;
+    })}
+}
+
+function edit(id){
+ if(confirm("请谨慎操作")){
+           window.open('{$arrInfo[url]}/admin/swzl/edit/'+id);
+        }
+    }
+
+</script>
+
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                失物招领管理
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="{$arrInfo[url]}/admin" class="am-icon-home">首页</a></li>
+                <li><a>APP管理</a></li>
+                <li class="am-active">失物招领管理</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 失物招领管理
+                    </div>
+
+
+                </div>
+                              <div class="tpl-block">
+           
+                    <div class="am-g">
+					   <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                  {if $bbb!='index'} <a href="{$arrInfo[url]}/admin/walking"> <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 全部数据</button></a>{/if}
+                                    <a href="{$arrInfo[url]}/admin/walking/excel/$bbb/$ccc"><button type="button" class="am-btn am-btn-default am-btn-secondary"><span class="am-icon-save"></span> 保存表格</button></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                        <tr>
+                                            <th class="table-id">ID</th>
+                                            <th class="table-title">姓名</th>
+                                            <th class="table-type">标题</th>
+                                            <th class="table-author am-hide-sm-only">物品</th>
+											<th class="table-type">图片</th>
+											 <th class="table-type">审核</th>
+											  <th class="table-type">手机</th>
+                                            <th class="table-date am-hide-sm-only">提交时间</th>
+											 <th class="table-type">关心</th>
+											 <th class="table-type">评论</th>
+											 <th class="table-type">浏览</th>
+                                            <th class="table-set">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+									<!--{loop $Array $key $loopChild}-->
+                                        <tr>                                          
+                                            <td>$loopChild['id']</td>
+                                            <td><a href="{$arrInfo[url]}/admin/swzl/$aaa/name/$loopChild['name']">$loopChild['name']</a>(<a href="{$arrInfo[url]}/admin/mwxiddd/$loopChild['number']">实名</a>)</td>
+                                            <td><a href="{$arrInfo[url]}/admin/swzl/$aaa/title/$loopChild['title']">$loopChild['title']</a></td>
+                                            <td class="am-hide-sm-only"> <a href="{$arrInfo[url]}/admin/swzl/$aaa/tname/$loopChild['tname']">$loopChild['tname']</a></td>
+											  <td> <a href="$loopChild['img']">[图片]</a></td>
+											<td>{if $loopChild['isok']=='1'}<a href="{$arrInfo[url]}/admin/swzl/$aaa/isok/1">通过</a>{/if}{if $loopChild['isok']=='0'}<a href="{$arrInfo[url]}/admin/swzl/$aaa/isok/0">未审</a>{/if}</td>
+                                            <td><a href="{$arrInfo[url]}/admin/swzl/$aaa/mobile/$loopChild['data']">$loopChild['mobile']</a></td>
+											<td class="am-hide-sm-only">{php ECHO(date('m-j G:i:s',$loopChild['addtime']))}</td>
+											 <td>$loopChild['gx']</td>
+											  <td><a href="{$arrInfo[url]}/admin/swzl/pl/sid/$loopChild['id']">$loopChild['pl']</a></td>
+											   <td>$loopChild['ll']</td>
+                                            <td>
+                                                <div class="am-btn-toolbar">
+                                                    <div class="am-btn-group am-btn-group-xs">
+                                                        <button onclick="edit('{$loopChild['id']}');" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                                        <button onclick="isokok('{$loopChild['id']}','{if $loopChild['isok']=='0'}1{/if}{if $loopChild['isok']=='1'}2{/if}{if $loopChild['isok']=='9'}0{/if}{if $loopChild['isok']=='2'}9{/if}');"  class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> {if $loopChild['isok']=='0'}通过{/if}{if $loopChild['isok']=='1'}未审{/if}</button>
+                                                        <button onclick="deletem('{$loopChild['id']}');" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                         	<!--{/loop}-->
+                                    </tbody>
+                                </table>
+                                <div class="am-cf">
+
+                                       <div class="am-fr">
+                                        <ul class="am-pagination tpl-pagination">
+										共 $TotalNum 条记录
+										  {if $prePageNum}
+                  <li {if $NOW==1}class="am-disabled"{/if}><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/1">«</a></li>
+				          {if $NOWLLLL>0} <li><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$NOWLLLL">$NOWLLLL</a></li>{/if}
+      {if $NOWLLL>0}<li><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$NOWLLL">$NOWLLL</a></li>{/if}
+        {if $NOWLL>0} <li><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$NOWLL">$NOWLL</a></li>{/if}
+      {if $NOWL>0}<li><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$NOWL">$NOWL</a></li>{/if}
+      <li class="am-active"><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$NOW" >$NOW</a></li>
+          {if $NOWR<=$prePageNum}<li><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$NOWR">$NOWR</a></li>{/if}
+        {if $NOWRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$NOWRR">$NOWRR</a></li>{/if}
+		{if $NOWRRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$NOWRRR">$NOWRRR</a></li>{/if}
+        {if $NOWRRRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$NOWRRRR">$NOWRRRR</a></li>{/if}
+      <li {if $NOW==$prePageNum}class="am-disabled"{/if}><a href="$arrInfo[url]/admin/swzl/$aaa/$bbb/$ccc/$prePageNum">»</a></li>
+											{/if}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <hr>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                 
+          
+                <div class="tpl-alert"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+ <script src="{$arrInfo[url]}/system/admin/model/assets/js/jquery-2.1.1.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/amazeui.min.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/app.js"></script>
+	
+</body>
+</html>

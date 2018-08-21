@@ -1,0 +1,175 @@
+<?php
+defined('ZRoot') or die('Access Denied.');
+
+class Wx {
+
+function zGetAtoken(){ 
+$x=1; 
+do {
+  $atoken=$this->GetAtoken();
+  $x++;
+} while ((!$atoken||EMPTY($atoken))&&$x<4);
+return  $atoken;
+}
+
+function GetAtoken(){ 
+$arrWxapi = SetRead('/system/config/Public/Wxapi.php');
+$atoken = SetRead('/system/config/Public/atoken.php');
+IF(!$atoken['time']||!$atoken['pertime']){
+	unset($atoken);
+	$atoken=array (
+  'atoken' => 0,
+  'time' => 0,
+  'pertime' => 0,
+);}
+    if ($atoken['time']+$atoken['pertime'] < time()||EMPTY($atoken['time'])||EMPTY( $atoken['atoken'])) {
+    $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".$arrWxapi['APPID']."&secret=".$arrWxapi['SECRET'];
+    $res = $this->getJson($url);
+    $access_token = $res['access_token'];
+	$expires_in = $res['expires_in'];
+      if($access_token&&$expires_in) {
+        $atoken['time'] = time();
+        $atoken['atoken'] = $access_token;
+		if($expires_in<$atoken['pertime']||$atoken['pertime']<846||!$atoken['pertime'])$atoken['pertime']=$expires_in;
+		
+		SetWrite( $atoken,'/system/config/Public/atoken.php');
+      }ELSE{ $access_token = FALSE;}
+    } else {
+      $access_token = $atoken['atoken'];
+    }
+     return $access_token;
+  }
+   function GetReplyRule(){ 
+$Atoken = $this->zGetAtoken();
+    if ($Atoken) {
+    $url = "https://api.weixin.qq.com/cgi-bin/get_current_autoreply_info?access_token=".$Atoken;
+    $res = $this->getJson($url);
+     return  $res;
+   }
+   }
+      function GetArticleTotal($date){ 
+$Atoken = $this->zGetAtoken();
+    if ($Atoken) {
+    $url = "https://api.weixin.qq.com/datacube/getarticletotal?access_token=".$Atoken;
+	
+
+		 $post["begin_date"] = strval($date);
+		 $post["end_date"] = strval($date);
+		$p= json_encode($post);
+    $res = $this->getJson($url,'',$p);
+     return  $res;
+   }
+   }
+         function UpdateRemark($openid,$name){ 
+$Atoken = $this->zGetAtoken();
+    if ($Atoken) {
+    $url = "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=".$Atoken;
+	
+
+		 $post["openid"] = $openid;
+		 $post["remark"] = $name;
+		 	 
+		$p= json_encode_ex($post);
+    $res = $this->getJson($url,'',$p);
+     return  $res;
+   }
+   }
+   
+            function UpdateTagging($openid,$name){ 
+$Atoken = $this->zGetAtoken();
+    if ($Atoken) {
+    $url = "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=".$Atoken;
+	
+
+		 $post["openid"] = $openid;
+		 $post["remark"] = $name;
+	
+		$p= json_encode($post);
+    $res = $this->getJson($url,'',$p);
+     return  $res;
+   }
+   }
+         function GetUserInfo($date){ 
+$Atoken = $this->zGetAtoken();
+    if ($Atoken) {
+    $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$Atoken."&openid=".$date."&lang=zh_CN";
+	
+
+    $res = $this->getJson($url);
+     return  $res;
+   }
+   }
+      function GetMaterialCount(){ 
+$Atoken = $this->zGetAtoken();
+    if ($Atoken) {
+    $url = "https://api.weixin.qq.com/cgi-bin/material/get_materialcount?access_token=".$Atoken;
+	
+    $res = $this->getJson($url);
+     return  $res;
+   }
+   }
+         function GetMaterialList($type,$offset=0,$count=1){ 
+$Atoken = $this->zGetAtoken();
+    if ($Atoken) {
+		 $post['type'] = $type;
+		 $post['offset'] = $offset;
+		 $post['count'] = $count;
+    $url = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=".$Atoken;
+    $res = $this->getJson($url,$post);
+     return  $res;
+   }
+   }
+            function GetMaterial($media_id){ 
+$Atoken = $this->zGetAtoken();
+    if ($Atoken) {
+		 $post['media_id'] = $media_id;
+    $url = "https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=".$Atoken;
+    $res = $this->getJson($url,$post);
+     return  $res;
+   }
+   }
+function getJson($url,$post='',$json=''){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	 if($post) {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+			
+        }
+		 if($json) {
+           curl_setopt($ch, CURLOPT_POSTFIELDS,$json);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/json',
+    'Content-Length: ' . strlen($json))
+);
+        }
+    $output = curl_exec($ch);
+    curl_close($ch);
+    return json_decode($output, true);
+}
+	}
+	function json_encode_ex($array) {
+    if (version_compare(PHP_VERSION,'5.4.0','<')) {
+        $str = json_encode($array);
+        $str = preg_replace_callback (
+                "#\\\u([0-9a-f]{4})#i", 
+                function($matchs) {
+                    return iconv('UCS-2BE', 'UTF-8',  pack('H4',  $matchs[1])); 
+                },
+                $str
+            );
+        return $str;
+    } else {
+        return json_encode($array, JSON_UNESCAPED_UNICODE);
+    }
+}
+//数组
+$array = array (
+        'name' => '张三',
+        'age'  => '18'
+    );
+$json = json_encode_ex($array);
+echo $json;

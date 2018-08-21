@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="filetype" content="1"> 
+    <meta name="publishedtype" content="1">
+    <meta name="pagetype" content="2"> 
+    <meta name="catalogs" content="dugongchandang"> 	
+    <title>书记领读  品味真理的味道</title>
+    <script>
+    var deviceWidth = parseInt(window.screen.width); //获取当前设备的屏幕宽度
+    var deviceScale = deviceWidth / 640;
+    //得到当前设备屏幕与640之间的比例，之后我们就可以将网页宽度固定为640px
+    // alert(deviceScale)
+    var ua = navigator.userAgent;
+    //获取当前设备类型（安卓或苹果）
+    if (/Android (\d+\.\d+)/.test(ua)) {
+        var version = parseFloat(RegExp.$1);
+        if (version > 2.3) {
+            document.write('<meta name="viewport" content="width=640,initial-scale=' + deviceScale + ', minimum-scale = ' + deviceScale + ', maximum-scale = ' + deviceScale + ', target-densitydpi=device-dpi">');
+        } else {
+            document.write('<meta name="viewport" content="width=640,initial-scale=0.75,maximum-scale=0.75,minimum-scale=0.75,target-densitydpi=device-dpi" />');
+        }
+    } else {
+        document.write('<meta name="viewport" content="width=640, user-scalable=no,minimum-scale = ' + deviceScale + '">');
+    }
+    </script>
+    <link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/animate.css">
+    <link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/style.css">
+    <link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/index.css?v=2">
+    <script src="{$arrInfo[url]}/app/{$AppName}/model/js/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <div style="display: none"><img src="{$arrInfo[url]}/app/{$AppName}/model/img/icon.jpg" alt="" /></div>
+    <div id="loader" ontouchmove="return !1" class="loader">
+    <!--     <div class="loader-graph">
+        </div> -->
+        <div id="progress" class="loader-progress">
+            4%</div>
+            <div class="loader-text"></div>
+        </div>
+        <div class="page page9" id="wrap">
+
+        <img src="" alt="" class="headimg">
+        <p class="lname"></p>
+        <p class="score"></p>
+          
+        <div class="wave-box">
+            <img src="{$arrInfo[url]}/app/{$AppName}/model/img/6-22-1.png" alt="" class="wave">
+        </div>
+<img src="{$arrInfo[url]}/app/{$AppName}/model/img/6-22.png" alt="" class="pos img1">
+   
+     <div class="btn-box91">
+
+         <img src="{$arrInfo[url]}/app/{$AppName}/model/img/circle.png" alt="" class="btn circle1">
+            <img src="{$arrInfo[url]}/app/{$AppName}/model/img/btn-18.png" alt="" class="btn  btn-listen1">
+            <img src="{$arrInfo[url]}/app/{$AppName}/model/img/btn-8.png" alt="" class="btn  btn-stop1 hide">
+</div>
+<div class="btn-box92">
+            <img src="{$arrInfo[url]}/app/{$AppName}/model/img/circle.png" alt="" class="btn circle2">
+            <img src="{$arrInfo[url]}/app/{$AppName}/model/img/btn-16.png" alt="" class="btn  btn-join1">
+        </div>
+          
+      </div>
+   
+      
+    <script src="{$arrInfo[url]}/app/{$AppName}/model/js/audio.js"></script>
+    <script src="{$arrInfo[url]}/app/{$AppName}/model/js/common.js"></script>
+    <script src="{$arrInfo[url]}/app/{$AppName}/model/js/resLoader.js"></script>
+		<script>
+    $(function() {
+
+  wx.config({
+    appId: "$signPackage['appId']",
+    timestamp: "{$signPackage['timestamp']}",
+    nonceStr: "{$signPackage['nonceStr']}",
+    signature: "$signPackage['signature']",
+            jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage", "hideMenuItems", "startRecord", "stopRecord","uploadVoice","playVoice","downloadVoice","translateVoice","onVoicePlayEnd","onVoiceRecordEnd","stopVoice"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+
+  });
+});
+
+
+</script>
+    <script src="{$arrInfo[url]}/app/{$AppName}/model/js/page.js?v=2"></script>
+    <script>
+    $(window).on("resize", function (e) {
+        var wWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        var size = (wWidth < 1600 ? wWidth : 1600) / 320 * 20;
+        document.getElementsByTagName("html")[0].style.fontSize = size + "px";
+    }).trigger("resize");
+</script>
+{if isset($arrInfo[tjcode])}<div style="display:none">{$arrInfo[tjcode]}</div>{/if} 
+
+</body>
+</html>

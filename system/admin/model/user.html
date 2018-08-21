@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>权限管理-小薇平台管理后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="{$arrInfo[url]}/system/admin/model/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="{$arrInfo[url]}/system/admin/model/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="XIAOWEI Admin" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/admin.css">
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/app.css">
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/echarts.min.js"></script>
+</head>
+
+<body data-type="generalComponents">
+{template header}
+<script>
+function add(){
+
+if(confirm("请注意权限设置")){
+ window.open('{$arrInfo[url]}/admin/usera/');}
+}
+function isdelete(id){
+ if(confirm("确定要删除此用户么？")){
+    $.post('{$arrInfo[url]}/admin/douser',{'do':'isdelete','id':id},function(rs){
+        if(rs==1){
+            window.location.reload(true);
+        }
+    })}
+}
+
+function edit(id){
+ if(confirm("请谨慎操作")){
+           window.open('{$arrInfo[url]}/admin/userd/'+id);
+        }
+    }
+
+
+</script>
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                权限管理
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="/admin" class="am-icon-home">首页</a></li>
+                <li><a>系统管理</a></li>
+                <li class="am-active">权限管理</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 权限管理
+                    </div>
+
+
+                </div>
+                <div class="tpl-block">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button type="button"  onclick="add();" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 添加</button>                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-g">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                        <tr>
+                                     
+                                            <th class="table-id">ID</th>
+                                            <th class="table-title">账号名/姓名</th>
+                                            <th class="table-type">权限</th>
+                                            <th class="table-author am-hide-sm-only">分管</th>
+                                            <th class="table-date am-hide-sm-only">最近登录时间</th>
+                                            <th class="table-set">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                       <!--{loop $Array $key $loopChild}-->
+                                            <td>$loopChild['id']</td>
+                                            <td><a onclick="edit('{$loopChild['id']}');" >$loopChild['username']/$loopChild['name']</a></td>
+                                            <td>{if $loopChild['rightint']==9}超级管理员{/if}{if $loopChild['rightint']==8}平台管理员{/if}{if $loopChild['rightint']==7}管理员{/if}{if $loopChild['rightint']==6}应用管理员{/if}{if $loopChild['rightint']==5}应用维护员{/if}{if $loopChild['rightint']==4}审查账号{/if}($loopChild['rightint']级)</td>
+                                            <td class="am-hide-sm-only">{if $loopChild['rightint']==9}完全管理{/if}
+											{if $loopChild['rightint']==8}完全管理{/if}
+											{if $loopChild['rightint']==7}不可新建账号{/if}
+											{if $loopChild['rightint']==6}【$loopChild['rightapp']】管理{/if}
+											{if $loopChild['rightint']==5}【$loopChild['rightapp']】维护{/if}
+											{if $loopChild['rightint']==4}不可操作账号{/if}</td>
+                                            <td class="am-hide-sm-only">{php ECHO(date('Y-m-j G:i:s',$loopChild['nowtime']))}</td>
+                                            <td>
+                                                <div class="am-btn-toolbar">
+                                                    <div class="am-btn-group am-btn-group-xs">
+                                                        <button  onclick="edit('{$loopChild['id']}');" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button>
+                                                
+                                                        <button  onclick="isdelete('{$loopChild['id']}');" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!--{/loop}-->
+                                    </tbody>
+                                </table>
+                                <div class="am-cf">
+
+                                     <div class="am-fr">
+                                        <ul class="am-pagination tpl-pagination">
+										共 $TotalNum 条记录
+										  {if $prePageNum}
+                  <li {if $NOW==1}class="am-disabled"{/if}><a href="$arrInfo[url]/admin/$Operate/1">«</a></li>
+				          {if $NOWLLLL>0} <li><a href="$arrInfo[url]/admin/$Operate/$NOWLLLL">$NOWLLLL</a></li>{/if}
+      {if $NOWLLL>0}<li><a href="$arrInfo[url]/admin/$Operate/$NOWLLL">$NOWLLL</a></li>{/if}
+        {if $NOWLL>0} <li><a href="$arrInfo[url]/admin/$Operate/$NOWLL">$NOWLL</a></li>{/if}
+      {if $NOWL>0}<li><a href="$arrInfo[url]/admin/$Operate/$NOWL">$NOWL</a></li>{/if}
+      <li class="am-active"><a href="$arrInfo[url]/admin/$Operate/$NOW" >$NOW</a></li>
+          {if $NOWR<=$prePageNum}<li><a href="$arrInfo[url]/admin/$Operate/$NOWR">$NOWR</a></li>{/if}
+        {if $NOWRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/$Operate/$NOWRR">$NOWRR</a></li>{/if}
+		{if $NOWRRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/$Operate/$NOWRRR">$NOWRRR</a></li>{/if}
+        {if $NOWRRRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/$Operate/$NOWRRRR">$NOWRRRR</a></li>{/if}
+      <li {if $NOW==$prePageNum}class="am-disabled"{/if}><a href="$arrInfo[url]/admin/$Operate/$prePageNum">»</a></li>
+											{/if}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <hr>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tpl-alert"></div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+ <script src="{$arrInfo[url]}/system/admin/model/assets/js/jquery-2.1.1.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/amazeui.min.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/app.js"></script>
+	
+</body>
+</html>

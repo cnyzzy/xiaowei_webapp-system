@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>失物招领编辑-小薇平台管理后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="{$arrInfo[url]}/system/admin/model/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="{$arrInfo[url]}/system/admin/model/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="XIAOWEI Admin" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/admin.css">
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/app.css">
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/echarts.min.js"></script>
+</head>
+
+<body data-type="generalComponents">
+{template header}
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                编辑-失物招领管理
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="{$arrInfo[url]}/admin" class="am-icon-home">首页</a></li>
+                <li><a>APP</a></li>
+                <li class="am-active">编辑-失物招领管理</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 编辑失物招领
+                    </div>
+
+
+
+                </div>
+                <div class="tpl-block ">
+
+                    <div class="am-g tpl-amazeui-form">
+
+
+                        <div class="am-u-sm-12 am-u-md-9">
+                            <form id="formid"  name= "myform" method = 'post'  action = '{$arrInfo[url]}/admin/swzl/do' class="am-form am-form-horizontal">
+							<input type="hidden" name="do"  value="edit">
+								<input type="hidden" name="id"  value="$Array['id']">
+								<div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">标题 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" name="title" placeholder="题目" value="$Array['title']">
+                                    </div>
+                                </div>
+								<div class="am-form-group">
+                                    <label for="user-phone" class="am-u-sm-3 am-form-label">类别 </label>
+                                    <div class="am-u-sm-9">
+									<select name="stype" data-am-selected="{searchBox: 1}">
+  <option value="1"{if $Array['stype']=='sw'}selected="selected"{/if}>失物</option>
+    <option value="2"{if $Array['stype']=='zl'}selected="selected"{/if}>招领</option>
+</select>
+                                    </div>
+                                </div>   
+								<div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">物品名称 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" name="tname" placeholder="名称" value="$Array['tname']">
+                                    </div>
+                                </div>
+																<div class="am-form-group">
+                                    <label for="user-phone" class="am-u-sm-3 am-form-label">地点范围 </label>
+                                    <div class="am-u-sm-9">
+									<select name="swhere" data-am-selected="{searchBox: 1}">
+<option value="2"{if $Array['swhere']=='2'} selected="selected" {/if}>==新长校区==</option>
+<option value="21"{if $Array['swhere']=='21'} selected="selected" {/if}>公共教学楼</option>
+<option value="22"{if $Array['swhere']=='22'} selected="selected" {/if}>操场/体育馆</option>
+<option value="23"{if $Array['swhere']=='23'} selected="selected" {/if}>食堂</option>
+<option value="24"{if $Array['swhere']=='24'} selected="selected" {/if}>其他教学楼</option>
+<option value="25"{if $Array['swhere']=='25'} selected="selected" {/if}>实验楼</option>
+<option value="26"{if $Array['swhere']=='26'} selected="selected" {/if}>图书馆</option>
+<option value="27"{if $Array['swhere']=='27'} selected="selected" {/if}>道路</option>
+<option value="28"{if $Array['swhere']=='28'} selected="selected" {/if}>商业街/创业园</option>
+<option value="29"{if $Array['swhere']=='29'} selected="selected" {/if}>其他</option>
+<option value="3"{if $Array['swhere']=='3'} selected="selected" {/if}>==通榆校区==</option>
+<option value="31"{if $Array['swhere']=='31'} selected="selected" {/if}>主楼</option>
+<option value="32"{if $Array['swhere']=='32'} selected="selected" {/if}>图书馆</option>
+<option value="33"{if $Array['swhere']=='33'} selected="selected" {/if}>操场/体育馆</option>
+<option value="34"{if $Array['swhere']=='34'} selected="selected" {/if}>食堂</option>
+<option value="35"{if $Array['swhere']=='35'} selected="selected" {/if}>其他教学楼</option>
+<option value="36"{if $Array['swhere']=='36'} selected="selected" {/if}>道路</option>
+<option value="37"{if $Array['swhere']=='37'} selected="selected" {/if}>其他</option>
+<option value="4"{if $Array['swhere']=='4'} selected="selected" {/if}>==附近==</option>
+<option value="41"{if $Array['swhere']=='41'} selected="selected" {/if}>育才路</option>
+<option value="42"{if $Array['swhere']=='42'} selected="selected" {/if}>宝龙</option>
+<option value="43"{if $Array['swhere']=='43'} selected="selected" {/if}>金鹰</option>
+<option value="44"{if $Array['swhere']=='44'} selected="selected" {/if}>盐城工学院</option>
+<option value="45"{if $Array['swhere']=='45'} selected="selected" {/if}>中南城</option>
+<option value="46"{if $Array['swhere']=='46'} selected="selected" {/if}>其他</option>
+<option value="5"{if $Array['swhere']=='5'} selected="selected" {/if}>==交通工具==</option>
+<option value="51"{if $Array['swhere']=='51'} selected="selected" {/if}>公交</option>
+<option value="52"{if $Array['swhere']=='52'} selected="selected" {/if}>出租车</option>
+<option value="53"{if $Array['swhere']=='53'} selected="selected" {/if}>长途客车/火车</option>
+<option value="54"{if $Array['swhere']=='54'} selected="selected" {/if}>公共自行车</option>
+<option value="55"{if $Array['swhere']=='55'} selected="selected" {/if}>其他</option>
+<option value="6"{if $Array['swhere']=='6'} selected="selected" {/if}>==其他==</option>
+</select>
+                                    </div>
+                                </div> 
+																<div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">详细地址</label>
+                                    <div class="am-u-sm-9">
+                                       <input type="text" placeholder="" name="mwhere" value="$Array['mwhere']">
+                                    </div>
+                                </div>
+									<div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">图片 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" name="img" placeholder="" value="$Array['img']">
+                                    </div>
+                                </div>
+									                
+
+
+									<div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">详细描述</label>
+                                    <div class="am-u-sm-9">
+                                        <textarea class="" rows="2" id="user-intro" placeholder="详细描述" name="content">$Array['content']</textarea>
+                                    </div>
+                                </div>
+								
+																<div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">QQ</label>
+                                    <div class="am-u-sm-9">
+                                       <input type="number" placeholder="qq" name="data" value="$Array['qq']">
+                                    </div>
+                                </div>
+ <div class="am-form-group">
+                                    <label for="user-phone" class="am-u-sm-3 am-form-label">手机 </label>
+                                    <div class="am-u-sm-9">
+									<input type="number" name="mobile" placeholder="链接" value="$Array['mobile']">
+                                      
+                                    </div>
+                                </div>
+																	<div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">浏览量 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="number" name="ll" placeholder="" value="$Array['ll']">
+                                    </div>
+                                </div>
+									<div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">评论量 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="number" name="pl" placeholder="" value="$Array['pl']">
+                                    </div>
+                                </div>
+									<div class="am-form-group">
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">关心量 </label>
+                                    <div class="am-u-sm-9">
+                                        <input type="number" name="gx" placeholder="" value="$Array['gx']">
+                                    </div>
+                                </div>
+								
+								{if $Array['addtime']}
+								<div class="am-form-group">
+                                    <label for="user-QQ" class="am-u-sm-3 am-form-label">添加时间</label>
+                                    <div class="am-u-sm-9">
+                                         <input type="text" class="tpl-form-input" id="time2" placeholder="{php ECHO(date('Y-m-j G:i:s',$Array['addtime']))}" disabled="true">
+                                    </div>
+                                </div>{/if}
+									{if $Array['ip']}
+								<div class="am-form-group">
+                                    <label for="user-QQ" class="am-u-sm-3 am-form-label">IP</label>
+                                    <div class="am-u-sm-9">
+                                         <input type="text" class="tpl-form-input" id="time2" placeholder="$Array['ip']" disabled="true">
+                                    </div>
+                                </div>{/if}
+								
+
+                                   <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">通过(未过)</label>
+                                    <div class="am-u-sm-9">
+                                        <div class="tpl-switch">
+                                            <input type="checkbox" name="isok" class="ios-switch bigswitch tpl-switch-btn"{if $Array['isok']==1} checked {/if}/>
+                                            <div class="tpl-switch-btn-view">
+                                                <div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                   
+                                 
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                         {if $ok==0} <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+										{/if}  {if $ok==1}<small>数据已更新</small>{/if}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/jquery-2.1.1.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/amazeui.min.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/app.js"></script>
+</body>
+
+</html>

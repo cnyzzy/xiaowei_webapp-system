@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>更多-盐师60周年校庆</title>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/fonts/iconfont.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/font.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/60app/model/lib/weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/60app/model/css/jquery-weui.css"/>
+ 
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/Z60ys/model/css/pages/notice.css"/>
+		<link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/mui.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/animate.css"/>
+
+        <script>(function (doc, win) {
+          var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+              var clientWidth = docEl.clientWidth;
+              if (!clientWidth) return;
+              docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+            };
+
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);</script>
+		<style>
+	.titlebar.reverse {
+    background-color: #df4d26;
+    border-color: #000;
+} 
+.weui-msg {
+    padding-top: 70px;
+    text-align: center;
+}
+
+</style>
+    </head>
+    <body ontouchstart>
+        <header>
+            <div class="titlebar reverse">
+			 <a href="javascript:history.go(-1);">
+                    <i class="iconfont">&#xe668;</i>
+                </a>
+                <h1>更多</h1>
+            </div>
+
+         
+        </header>
+	 	 
+		    <div class="weui-panel">
+        <div class="weui-panel__hd">内容</div>
+		  		        <div class="weui-panel__bd"> 
+				 
+		<a href="{$arrInfo[url]}/Z60news/wx" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+              <img class="weui-media-box__thumb" src="{$arrInfo[url]}/xw.jpg" alt="">
+            </div>
+            <div class="weui-media-box__bd">
+              <h4 class="weui-media-box__title">新媒体联盟</h4>
+              <p class="weui-media-box__desc">二级学院微信号都在这里</p>
+            </div>
+          </a>
+	<a href="{$arrInfo[url]}/Z60img" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-media-box__hd">
+              <img class="weui-media-box__thumb" src="{$arrInfo[url]}/xw.jpg" alt="">
+            </div>
+            <div class="weui-media-box__bd">
+              <h4 class="weui-media-box__title">专属头像生成</h4>
+              <p class="weui-media-box__desc">盐师大军集结啦</p>
+            </div>
+          </a>
+        </div>
+
+              </div>
+           		  		        <script src="{$arrInfo[url]}/app/60app/model/lib/jquery-2.1.4.js"></script>
+        <script src="{$arrInfo[url]}/app/60app/model/js/jquery-weui.js"></script>
+		  <script src="{$arrInfo[url]}/app/60app/model/lib/fastclick.js"></script>
+               <footer>
+
+        </footer>
+{if isset($arrInfo[tjcode60])}<div style="display:none">{$arrInfo[tjcode60]}</div>{/if} 
+
+    </body>
+</html>

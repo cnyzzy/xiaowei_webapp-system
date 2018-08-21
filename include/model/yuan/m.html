@@ -1,0 +1,153 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<title>手机验证——勤管中心</title>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		
+		<link rel="stylesheet" href="{$arrInfo[url]}/include/model/yuan/css/demo.css">
+		<link rel="stylesheet" href="{$arrInfo[url]}/include/model/yuan/css/sky-forms.css">
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" href="{$arrInfo[url]}/include/model/yuan/css/sky-forms-ie8.css">
+		<![endif]-->
+		
+		<script src="{$arrInfo[url]}/include/model/yuan/js/jquery-1.9.1.min.js"></script>
+		<script src="{$arrInfo[url]}/include/model/yuan/js/jquery.validate.min.js"></script>
+		<!--[if lt IE 10]>
+			<script src="{$arrInfo[url]}/include/model/yuan/js/jquery.placeholder.min.js"></script>
+		<![endif]-->		
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="{$arrInfo[url]}/include/model/yuan/js/sky-forms-ie8.js"></script>
+		<![endif]-->
+	</head>
+	<style type="text/css">
+
+.msgs{display:inline-block;width:104px;color:#fff;font-size:12px;border:1px solid #0697DA;float:right;text-align:center;height:30px;line-height:30px;background:#0697DA;cursor:pointer;}
+
+</style>
+	<body class="bg-cyan">
+		<div class="body body-s">		
+			<form action="" id="sky-form" class="sky-form" method="post"> 
+				<header>手机号码验证</header>
+								<fieldset>
+								亲爱的的{$row['name']}{if $row['gender']==1}学弟{/if}{if $row['gender']==2}学妹{/if}:<br>为了保证能够第一时间送达通知信息，接下来我们将会进行手机号码的验证
+					<div class="row">
+					
+						<section class="col col-8">
+					
+							<br>
+							<b class="tooltip-bottom-right tip">手机号码:{$row['mobile']}</b>
+						</section>
+						<section>
+						<label class="input">
+							<i class="icon-append icon-user col-5"></i>
+							<input type="text" name="zcode" placeholder="验证码">	<span class="msgs">获取短信验证码</span>
+							<b class="tooltip tooltip-bottom-right">我们将会发送短信验证码到您的手机上</b>
+						</label>
+						{if $tip}<b class="error">{$tip}</b>{/if}
+					</section>
+					
+					</div>
+
+					
+				</fieldset>
+				
+				<footer>
+					<button type="submit" class="button">提交</button>
+				</footer>
+			</form>			
+		</div><script src="{$arrInfo[url]}/include/model/yuan/js/jquery-1.9.1.min.js"></script>
+<script src="{$arrInfo[url]}/include/model/yuan/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+$(function  () {
+	//获取短信验证码
+	var validCode=true;
+	$(".msgs").click (function  () {
+		var time=30;
+
+		$.ajax({
+                    type: "Get",   //请求的方法
+                    url: "$arrInfo[url]/y/$row['mobile']", 
+					datatype:"json",
+                    success: function (data) {
+					if(data == 0){alert("时间间隔太短!"); time=1;} 
+					
+                    }, 
+                    error: function () {
+                        alert("请求验证码失败!");
+                    }
+             });
+		var code=$(this);
+		if (validCode) {
+			validCode=false;
+			code.addClass("msgs1");
+		var t=setInterval(function  () {
+			time--;
+			code.html(time+"秒");
+			if (time==0) {
+				clearInterval(t);
+			code.html("重新获取");
+				validCode=true;
+			code.removeClass("msgs1");
+
+			}
+		},1000)
+		}
+	})
+})
+</script>
+<script type="text/javascript">
+$(function()
+{
+    // Validation     
+    $("#sky-form").validate(
+    {                  
+        // Rules for form validation
+        rules:
+        {
+
+          mobile:
+            {
+                required: true,
+                minlength: 11,
+                maxlength: 11
+            },
+          zcode:
+            {
+                required: true,
+                minlength: 4,
+                maxlength: 4
+            },
+           
+           
+        },
+        // Messages for form validation
+        messages:
+        {
+           
+            mobile:
+            {
+                required: '请填写您的手机号码',
+				minlength: '请填写正确的手机号码',
+                maxlength: '请填写正确的手机号码'
+            },
+			zcode:
+            {
+                required: '请填写验证码',
+				minlength: '请填写正确的验证码',
+                maxlength: '请填写正确的验证码'
+            }
+        },                 
+        // Do not change code below
+        errorPlacement: function(error, element)
+        {
+            error.insertAfter(element.parent());
+        }
+    });
+});        
+</script>
+
+	</body>
+</html>

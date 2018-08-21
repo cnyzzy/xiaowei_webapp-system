@@ -1,0 +1,1 @@
+<?php defined('ZRoot') or die('Access Denied.'); ?>jsonFlickrFeed({"signature":"<?php echo $signPackage['signature'];?>"})

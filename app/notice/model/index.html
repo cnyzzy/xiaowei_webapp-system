@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>公告-{$arrInfo[name]}</title>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/fonts/iconfont.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/font.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/jquery-weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/mui.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/animate.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/pages/notice.css"/>
+        <script>(function (doc, win) {
+          var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+              var clientWidth = docEl.clientWidth;
+              if (!clientWidth) return;
+              docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+            };
+
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);</script>
+    </head>
+    <body>
+        <header>
+            <div class="titlebar reverse">
+                <h1>公告</h1>
+            </div>
+
+            <ul class="tabbar animate-slide width-full" data-col="7" id="tabbar">
+               <a class="cell" href="/{$AppName}/index/1"> <li class="tab{if $NoticeW=='1'} active{/if}">
+                    <label class="tab-label">平台公告</label>
+                </li></a>
+                 <a class="cell" href="/{$AppName}/index/2">  <li class="tab{if $NoticeW=='2'} active{/if}">
+                    <label class="tab-label">学术讲坛</label></hr>
+                </li></a>
+                 <a class="cell" href="/{$AppName}/index/3">  <li class="tab{if $NoticeW=='3'} active{/if}">
+                    <label class="tab-label">学校通知</label>
+                </li></a>
+                  <a class="cell" href="/{$AppName}/index/4"> <li class="tab{if $NoticeW=='4'} active{/if}">
+                    <label class="tab-label">活动公示</label>
+                </li></a>
+        
+            </ul>
+        </header>
+        <div class="weui_tab">
+  
+  <div class="weui_tab_bd">
+    
+        <article style="padding-bottom: 54px;padding-top:70px;">
+		  {if isset($NoticeArray )}	  	<!--{loop $NoticeArray $key $loopChild}-->
+            <div class="weui_cells weui_cells_access animated fadeInRight">
+              <a class="weui_cell" href="/{$AppName}/noticeD/$loopChild['id']">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p class="title{if $key==0||time()-$loopChild['addtime']<48*3600} new{/if}">$loopChild['title']{if $loopChild['istop']==1}<font color="red">[置顶]</font>{/if}</p>
+                    <p class="date">$loopChild['editor'] {php ECHO(date('Y-m-j',$loopChild['addtime']))}</p>
+                    <p class="info">{if $loopChild['dcontent']!='URL'}$loopChild['dcontent']{/if}</p>
+                </div>
+              </a>
+              <!--{/loop}-->
+             {/if}
+            </div>
+        </article>
+  </div>
+</div>
+		        <script src="{$arrInfo[url]}/app/home/model/lib/jquery-2.1.4.js"></script>
+        <script src="{$arrInfo[url]}/app/home/model/js/jquery-weui.js"></script>
+		  <script src="{$arrInfo[url]}/app/home/model/js/jquery-weui.js"></script>
+       {template footer}

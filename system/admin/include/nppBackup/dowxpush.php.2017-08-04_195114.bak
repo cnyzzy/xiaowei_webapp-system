@@ -1,0 +1,19 @@
+<?php
+if($_SESSION['admin']['rightint']<4){$Errormsg=array (
+  'error_type' => '提示',
+  'msg' => '权限不足',
+); 
+ErrorMsg($Errormsg);	}
+empty($_POST['do']) ? $ch = '0' : $ch = $_POST['do']; 
+switch($ch){
+	case "update":
+	
+$Wx = new Wx();
+	$arrWx = $Wx->  GetArticleTotal($data);
+	
+break;
+
+default:
+print_R($_POST);
+}
+?>

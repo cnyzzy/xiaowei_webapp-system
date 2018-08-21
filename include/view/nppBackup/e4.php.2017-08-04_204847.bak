@@ -1,0 +1,322 @@
+<?PHP
+$content=<<<EOT
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML lang="gb2312">
+	<HEAD>
+		<title>现代教学管理信息系统</title><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+		<meta http-equiv="Content-Language" content="gb2312">
+		<meta content="all" name="robots">
+		<meta content="作者信息" name="author">
+		<meta content="版权信息" name="Copyright">
+		<meta content="站点介绍" name="description">
+		<meta content="站点关键词" name="keywords">
+		<LINK href="style/base/favicon.ico" type="image/x-icon" rel="icon">
+			<LINK media="all" href="style/base/jw.css" type="text/css" rel="stylesheet">
+				<LINK media="all" href="style/standard/jw.css" type="text/css" rel="stylesheet">
+					<!--<script defer>   
+		function  PutSettings()   
+			{     
+			factory.printing.header="";   
+			factory.printing.footer="";   
+		    factory.printing.leftMargin="5";   
+			factory.printing.topMargin="5";   
+			factory.printing.rightMargin="5";   
+			factory.printing.bottomMargin="5";
+		 }
+
+					</script>-->
+					<style> @media Print { .bgnoprint { }
+	.noprint { DISPLAY: none }}
+	</style>
+	</HEAD>
+	<BODY>
+		<!--<OBJECT id="factory" style="DISPLAY: none" codeBase="ScriptX.cab#Version=5,60,0,360" classid="clsid:1663ed61-23eb-11d2-b92f-008048fdd814"
+			VIEWASTEXT>
+		</OBJECT>-->
+		<form name="xskb_form" method="post" action="xskbcx.aspx?xh=15223232&amp;xm=%D6%D9%D4%AD&amp;gnmkdm=N121603" id="xskb_form">
+<input type="hidden" name="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" value="dDwzOTI4ODU2MjU7dDw7bDxpPDE+Oz47bDx0PDtsPGk8MT47aTwyPjtpPDQ+O2k8Nz47aTw5PjtpPDExPjtpPDEzPjtpPDE1PjtpPDI0PjtpPDI2PjtpPDI4PjtpPDMwPjtpPDMyPjtpPDM0Pjs+O2w8dDxwPHA8bDxUZXh0Oz47bDxcZTs+Pjs+Ozs+O3Q8dDxwPHA8bDxEYXRhVGV4dEZpZWxkO0RhdGFWYWx1ZUZpZWxkOz47bDx4bjt4bjs+Pjs+O3Q8aTwzPjtAPDIwMTctMjAxODsyMDE2LTIwMTc7MjAxNS0yMDE2Oz47QDwyMDE3LTIwMTg7MjAxNi0yMDE3OzIwMTUtMjAxNjs+PjtsPGk8MT47Pj47Oz47dDx0PDs7bDxpPDA+Oz4+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w85a2m5Y+377yaMTUyMjMyMzI7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOWnk+WQje+8muS7suWOnzs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w85a2m6Zmi77ya5paw6IO95rqQ5LiO55S15a2Q5bel56iL5a2m6ZmiOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDzkuJPkuJrvvJrnlLXlrZDkv6Hmga/lt6XnqIs7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOihjOaUv+ePre+8mueJqTE1KDIp55S15a2QOz4+Oz47Oz47dDw7bDxpPDE+Oz47bDx0PEAwPDs7Ozs7Ozs7Ozs+Ozs+Oz4+O3Q8cDxsPFZpc2libGU7PjtsPG88Zj47Pj47bDxpPDE+Oz47bDx0PEAwPDs7Ozs7Ozs7Ozs+Ozs+Oz4+O3Q8QDA8cDxwPGw8UGFnZUNvdW50O18hSXRlbUNvdW50O18hRGF0YVNvdXJjZUl0ZW1Db3VudDtEYXRhS2V5czs+O2w8aTwxPjtpPDA+O2k8MD47bDw+Oz4+Oz47Ozs7Ozs7Ozs7Pjs7Pjt0PEAwPHA8cDxsPFBhZ2VDb3VudDtfIUl0ZW1Db3VudDtfIURhdGFTb3VyY2VJdGVtQ291bnQ7RGF0YUtleXM7PjtsPGk8MT47aTwwPjtpPDA+O2w8Pjs+Pjs+Ozs7Ozs7Ozs7Oz47Oz47dDxAMDxwPHA8bDxQYWdlQ291bnQ7XyFJdGVtQ291bnQ7XyFEYXRhU291cmNlSXRlbUNvdW50O0RhdGFLZXlzOz47bDxpPDE+O2k8MD47aTwwPjtsPD47Pj47Pjs7Ozs7Ozs7Ozs+Ozs+O3Q8QDA8cDxwPGw8UGFnZUNvdW50O18hSXRlbUNvdW50O18hRGF0YVNvdXJjZUl0ZW1Db3VudDtEYXRhS2V5czs+O2w8aTwxPjtpPDI+O2k8Mj47bDw+Oz4+Oz47Ozs7Ozs7Ozs7PjtsPGk8MD47PjtsPHQ8O2w8aTwxPjtpPDI+Oz47bDx0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0Pjs+O2w8dDxwPHA8bDxUZXh0Oz47bDwyMDE2LTIwMTc7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOmHkeW3peWunuS5oDs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w85a2Z5Lic5Y2HOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDwyLjA7Pj47Pjs7Pjs+Pjt0PDtsPGk8MD47aTwxPjtpPDI+O2k8Mz47aTw0Pjs+O2w8dDxwPHA8bDxUZXh0Oz47bDwyMDE2LTIwMTc7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPDE7Pj47Pjs7Pjt0PHA8cDxsPFRleHQ7PjtsPOS4k+S4muingeS5oCgyKTs+Pjs+Ozs+O3Q8cDxwPGw8VGV4dDs+O2w85bq357Sg5oiQOz4+Oz47Oz47dDxwPHA8bDxUZXh0Oz47bDwwLjU7Pj47Pjs7Pjs+Pjs+Pjs+Pjs+Pjs+Pjs+k/hQaf2b/C4NNPZu+kaLB1sKI+Q=" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" value="55530A43" />
+
+<script language="javascript" type="text/javascript">
+<!--
+	function __doPostBack(eventTarget, eventArgument) {
+		var theform;
+		if (window.navigator.appName.toLowerCase().indexOf("microsoft") > -1) {
+			theform = document.xskb_form;
+		}
+		else {
+			theform = document.forms["xskb_form"];
+		}
+		theform.__EVENTTARGET.value = eventTarget.split("$").join(":");
+		theform.__EVENTARGUMENT.value = eventArgument;
+		theform.submit();
+	}
+// -->
+</script>
+
+			<!-- 多功能操作区 -->
+			<!-- 内容显示区开始 -->
+			<div class="main_box ">
+				<div class="mid_box">
+					<div class="title noprint">
+						<p>
+							<!-- 查询得到的数据量显示区域 --></p>
+					</div>
+					<!-- From内容 --><span class="formbox">
+						<TABLE class="formlist noprint" id="Table2" width="100%">
+							<TR>
+								<TD align="center"><select name="xnd" onchange="__doPostBack('xnd','')" language="javascript" id="xnd">
+	<option value="2017-2018">2017-2018</option>
+	<option selected="selected" value="2016-2017">2016-2017</option>
+	<option value="2015-2016">2015-2016</option>
+
+</select><span id="Label2"><font size="4">学年第</font></span><select name="xqd" onchange="__doPostBack('xqd','')" language="javascript" id="xqd">
+	<option selected="selected" value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+
+</select><span id="Label1"><font size="4">学期学生个人课程表</font></span></TD>
+							</TR>
+							<TR class="trbg1">
+								<TD><span id="Label5">学号：15223232</span>|
+									<span id="Label6">姓名：仲原</span>|
+									<span id="Label7">学院：新能源与电子工程学院</span>|
+									<span id="Label8">专业：电子信息工程</span>|
+									<span id="Label9">行政班：物15(2)电子</span>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span id="labTS"><font color="Red"></font></span><span id="labTip"><font color="Red"></font></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="btnPrint" id="btnPrint" type="button" class="button" style="DISPLAY:none" onclick="window.print();" value="打印课表" />
+								</TD>
+							</TR>
+						</TABLE>
+						<br>
+						<table id="Table1" class="blacktab" bordercolor="Black" border="0" width="100%">
+	<tr>
+		<td colspan="2" rowspan="1" width="2%">时间</td><td align="Center" width="14%">星期一</td><td align="Center" width="14%">星期二</td><td align="Center" width="14%">星期三</td><td align="Center" width="14%">星期四</td><td align="Center" width="14%">星期五</td><td class="noprint" align="Center" width="14%">星期六</td><td class="noprint" align="Center" width="14%">星期日</td>
+	</tr><tr>
+		<td colspan="2">早晨</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td>
+	</tr><tr>
+		<td rowspan="4" width="1%">上午</td><td width="1%">第1节</td><td align="Center" rowspan="2" width="7%">大学物理A(2)<br>必修<br>周一第1,2节{第1-16周}<br>王益宽<br>新B109<br>2017年01月09日(14:30-16:30)<br>新D303</td><td align="Center" rowspan="2" width="7%">模拟电子技术<br>必修<br>周二第1,2节{第1-16周}<br>蒯剑<br>新B109<br>2017年01月14日(14:30-16:30)<br>新D401</td><td align="Center" rowspan="2" width="7%">模拟电子技术<br>必修<br>周三第1,2节{第1-16周}<br>蒯剑<br>新B109<br>2017年01月14日(14:30-16:30)<br>新D401</td><td align="Center" rowspan="2" width="7%">模拟电子技术<br>必修<br>周四第1,2节{第1-16周|单周}<br>蒯剑<br>新B109<br>2017年01月14日(14:30-16:30)<br>新D401<br><br>电子测量技术<br>选修<br>周四第1,2节{第1-16周|双周}<br>周加超<br>新B213</td><td align="Center" width="7%">&nbsp;</td><td class="noprint" align="Center" rowspan="2" width="7%">数字电子技术专项训练<br>选修<br>周六第1,2节{第2-9周}<br>周加超<br>逸夫东529</td><td class="noprint" align="Center" rowspan="2" width="7%">国学素养(慧科高校邦网络课程)<br>校选<br>周日第1,2节{第1-16周}<br>兰彦岭<br></td>
+	</tr><tr>
+		<td>第2节</td><td align="Center">&nbsp;</td>
+	</tr><tr>
+		<td>第3节</td><td align="Center" rowspan="2">阅读与写作<br>必修<br>周一第3,4节{第1-16周|单周}<br>夏正娟(夏正娟)<br>新D401<br><br>阅读与写作<br>必修<br>周一第3,4节{第1-16周|双周}<br>夏正娟(夏正娟)<br>新D401</td><td align="Center" rowspan="2">电磁场与电磁波<br>必修<br>周二第3,4节{第1-16周}<br>王晓华<br>新B108<br>2017年01月11日(14:30-16:30)<br>新D401</td><td align="Center">&nbsp;</td><td align="Center" rowspan="2">大学物理A(2)<br>必修<br>周四第3,4节{第1-16周|单周}<br>王益宽<br>新B109<br>2017年01月09日(14:30-16:30)<br>新D303</td><td align="Center" rowspan="2">电子测量技术<br>选修<br>周五第3,4节{第1-16周}<br>周加超<br>新B213</td><td class="noprint" align="Center" rowspan="2">数字电子技术专项训练<br>选修<br>周六第3,4节{第2-9周}<br>周加超<br>逸夫东529</td><td class="noprint" align="Center" rowspan="2">职业素养(慧科高校邦网络课程)<br>校选<br>周日第3,4节{第1-8周}<br>李强<br></td>
+	</tr><tr>
+		<td>第4节</td><td align="Center">&nbsp;</td>
+	</tr><tr>
+		<td rowspan="4" width="1%">下午</td><td>第5节</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center" rowspan="2">线性代数A<br>选修<br>周四第5,6节{第1-16周}<br>胡忠锋<br>新B109<br>2017年01月13日(14:30-16:30)<br>新D404</td><td align="Center" rowspan="2">电磁场与电磁波<br>必修<br>周五第5,6节{第1-16周}<br>王晓华<br>新B108<br>2017年01月11日(14:30-16:30)<br>新D401</td><td class="noprint" align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td>
+	</tr><tr>
+		<td>第6节</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td>
+	</tr><tr>
+		<td>第7节</td><td align="Center" rowspan="2">羽毛球(中级)<br>校选<br>周一第7,8节{第1-18周}<br>潘勤<br>体育馆</td><td align="Center" rowspan="2">马克思主义基本原理<br>必修<br>周二第7,8节{第1-12周}<br>刘玉高<br>新C201</td><td align="Center">&nbsp;</td><td align="Center">线性代数A<br>选修<br>周四第7节{第1-16周}<br>胡忠锋<br>新B109<br>2017年01月13日(14:30-16:30)<br>新D404</td><td align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td><td class="noprint" align="Center" rowspan="2">应用文写作(尔雅网络课程)<br>校选<br>周日第7,8节{第1-8周}<br>李大敏<br></td>
+	</tr><tr>
+		<td>第8节</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td>
+	</tr><tr>
+		<td rowspan="3" width="1%">晚上</td><td>第9节</td><td align="Center" rowspan="2">毛泽东思想和中国特色社会主义理论体系概论(1)<br>必修<br>周一第9,10节{第1-12周}<br>张廷干<br>新C102</td><td align="Center" rowspan="2">形势与政策(3)<br>必修<br>周二第9,10节{第1-4周}<br>王萍<br>新D401</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td>
+	</tr><tr>
+		<td>第10节</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td>
+	</tr><tr>
+		<td>第11节</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td><td class="noprint" align="Center">&nbsp;</td>
+	</tr>
+</table>
+						<br>
+						
+						
+						<div class="noprint" align="left">调、停（补）课信息：</div>
+						<table class="datelist noprint" cellspacing="0" cellpadding="3" border="0" id="DBGrid" width="100%">
+	<tr class="datelisthead">
+		<td>编号</td><td>课程名称</td><td>原上课时间地点教师</td><td>现上课时间地点教师</td><td>申请时间</td>
+	</tr>
+</table>
+						<TABLE class="noprint" id="Table3" width="100%">
+							<TR>
+								<TD align="left">实践课(或无上课时间)信息：</TD>
+							</TR>
+							<TR>
+								<TD valign="top"><table class="datelist" cellspacing="0" cellpadding="3" border="0" id="DataGrid1" width="100%">
+	<tr class="datelisthead">
+		<td>课程名称</td><td>教师</td><td>学分</td><td>起止周</td><td>上课时间</td><td>上课地点</td>
+	</tr>
+</table></TD>
+							</TR>
+							<TR>
+								<TD align="left">实习课信息：</TD>
+							</TR>
+							<TR>
+								<TD><table class="datelist" cellspacing="0" cellpadding="3" border="0" id="DBGridYxkc" width="100%">
+	<tr class="datelisthead">
+		<td>学年</td><td>学期</td><td>课程名称</td><td>实习时间</td><td>模块代号</td><td>先修模块</td><td>实习编号</td>
+	</tr>
+</table></TD>
+							</TR>
+							<TR>
+								<TD align="left">未安排上课时间的课程：</TD>
+							</TR>
+							<TR>
+								<TD><table class="datelist" cellspacing="0" cellpadding="3" border="0" id="Datagrid2" width="100%">
+	<tr class="datelisthead">
+		<td>学年</td><td>学期</td><td>课程名称</td><td>教师姓名</td><td>学分</td>
+	</tr><tr>
+		<td>2016-2017</td><td>1</td><td>金工实习</td><td>孙东升</td><td>2.0</td>
+	</tr><tr class="alt">
+		<td>2016-2017</td><td>1</td><td>专业见习(2)</td><td>康素成</td><td>0.5</td>
+	</tr>
+</table></TD>
+							</TR>
+						</TABLE>
+					</span>
+					<div class="footbox noprint"><em class="footbox_con"><span class="pagination"></span>
+							<span class="footbutton"></span>
+							<!-- 底部按钮位置 --></em></div>
+				</div>
+			</div>
+		</form>
+	</BODY>
+</HTML>
+
+EOT;
+
+		if(preg_match('/<table id=\"Table1\" class=\"blacktab\"(.*?)>(.*?)<\/table>/ims', $content, $block)){
+			$kebiao = $block[2];
+		
+			if(preg_match_all('/<tr(?:.*?)?>(.*?)<\/tr>/ims',$kebiao,$_block)){
+				$kb_course = array();
+				$i = 1;
+				foreach($_block[0] as $c=>$v){
+					preg_match_all('/<td(.*?)>(.*?)<\/td>/ims',$v,$str_block);
+					$flag = 0;
+					
+					foreach($str_block[2] as $x=>$y1){
+						$ys=preg_split("#<br><br><font.+?<\/font><br><br>#ims",$y1);
+						//print_r($ys);
+						foreach($ys as $y){
+							$course = explode("<br>",$y);
+							//print_r($course);
+							$data = array();
+							
+							$data['coursename'] = mytrim($course[0]);
+							if(!empty($data['coursename'])){
+								
+								
+								
+							$_temp = @preg_replace( '/周(.*)第(.*)节/', '' ,$course[2]);
+							$_temp = str_replace("}","",$_temp);
+							$_temp = str_replace("{","",$_temp);
+							$_temp2 =  @preg_replace('{'.$_temp .'}', '', $course[2]);;
+							$_temp2 =  @preg_replace('/\D/s', '',$_temp2);;
+							
+							$data['courseweek'] = $_temp;
+							if(strpos($data['courseweek'],"单")>0){
+								$data['coursesingle']=1;
+							}elseif(strpos($data['courseweek'],"双")>0){
+								$data['coursesingle']=0;
+							}
+						
+							$data['courseweek'] = @preg_replace('#\|.*?周#ims',"",$data['courseweek']);
+							$data['coursetype'] = @$course[1];
+							$data['courseplace'] = @$course[4];
+							$data['courseteacher'] = @$course[3];
+							$data['courseduring']=@str_replace('周','',str_replace('第','',$data['courseweek']));}else{
+								$data['courseweek'] = '';
+							$data['coursetype'] = '';
+							$data['courseplace'] = '';
+							$data['courseteacher'] = '';
+							$data['courseduring']='';
+							}
+							if(($c == 2 || $c == 6 || $c == 10) && $x > 1){
+								$flag = 1;
+								
+							if(isset($data['coursesingle'])){
+									
+									$kb_course[$x-1][2*$i-1][] = $data;
+									
+									if(strlen($_temp2)!=1)$kb_course[$x-1][2*$i][] = $data;
+								}else{
+									$kb_course[$x-1][2*$i-1] = $data;
+									if(strlen($_temp2)!=1)$kb_course[$x-1][2*$i] = $data;
+								}
+							}
+							else if(($c == 4 || $c == 8) && $x){
+								$flag = 1;
+								
+							if(isset($data['coursesingle'])){
+									$kb_course[$x][2*$i-1][] = $data;
+									if(strlen($_temp2)!=1)$kb_course[$x][2*$i][] = $data;
+								}else{
+									$kb_course[$x][2*$i-1] = $data;
+									if(strlen($_temp2)!=1)$kb_course[$x][2*$i] = $data;
+								}
+								
+							}
+						}
+
+					}
+					if($flag){
+						$i++;
+					}
+				}
+			}
+		$sokok='';
+		$username='15223232';
+arr_foreach ($kb_course);
+if(empty($sokok))$kb_course=2;
+print_r($kb_course);
+
+	$arrayk=$kb_course;
+		define("KCBDATE",'11111');
+	IF($arrayk==2){
+		echo '2';EXIT;
+	}
+	$SQ="";
+	foreach ($arrayk as $key=>$arr) { 
+		foreach ($arr as $key2=>$arr2) {
+  if (count($arr2) == count($arr2, 1)) {
+	  IF(!empty($arr2['coursename']))$SQ.="('".$username."','".$key."','".$key2."','".implode("','",$arr2)."','3','".KCBDATE."'),";
+} else {
+   //单双周情况
+   if(!empty($arr2[1])&&!empty($arr2[1]['coursename'])){
+	   IF(ISSET($arr2[1]['coursesingle']))UNSET($arr2[1]['coursesingle']);
+	   $SQ.="('".$username."','".$key."','".$key2."','".implode("','",$arr2[1])."','2','".KCBDATE."'),";}
+	   
+   if(!empty($arr2[0])&&!empty($arr2[0]['coursename'])){ 
+   IF(ISSET($arr2[0]['coursesingle']))UNSET($arr2[0]['coursesingle']);
+   $SQ.="('".$username."','".$key."','".$key2."','".implode("','",$arr2[0])."','1','".KCBDATE."'),";
+   }
+	
+	}}}
+	$SQ="INSERT INTO `kcb` ( `number`, `cday`, `cnum`, `cname`, `cweek`, `ctype`, `cplace`, `cteacher`, `cduring`, `cdsz`, `cteam`) VALUES ".rtrim($SQ,",").";";
+	echo $SQ;
+	$sql2 = "SELECT id FROM kcb WHERE number ='{$username}' AND cteam='".KCBDATE."'";
+echo($sql2);
+
+		}
+
+	
+function arr_foreach ($arr)   
+{  
+global $sokok;
+    if (!is_array ($arr))   
+    {  
+        return false;  
+    }  
+      
+    foreach ($arr as $key => $val )   
+    {  
+        if (is_array ($val))   
+        {  
+            arr_foreach ($val);  
+        }   
+        else   
+        {  
+            $sokok.=$val;  
+        }  
+    }  
+}  
+		function mytrim($string) { 
+			$qian=array(" ","　","\t","\n","\r","&nbsp;");
+			$hou=array("","","","","","");
+			return str_replace($qian,$hou,$string);
+		}

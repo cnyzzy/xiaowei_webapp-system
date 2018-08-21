@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>校庆新闻——盐师六十周年</title>
+	<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+	<script type="text/javascript" src="{$arrInfo[url]}/app/{$AppName}/model/js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/home.css"/>
+	<link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="{$arrInfo[url]}/app/{$AppName}/model/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="{$arrInfo[url]}/app/{$AppName}/model/css/default.css">
+	<link rel="stylesheet" type="text/css" href="{$arrInfo[url]}/app/{$AppName}/model/css/style.css"/>
+<style>
+.article {
+    /* padding-top: 15px; */
+    position: relative;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+.aui-share-line h2 {
+    font-size: 12px;
+    position: absolute;
+    left: 28%;
+    top: -10px;
+    background: #fff;
+     padding: 0 0px; 
+    color: #999;
+}
+h1 {
+    font-size: 2em;
+    margin: 0.07em 0;
+}
+.aui-main {
+    padding-top: 45px;
+    padding-bottom: 5px;
+}
+</style>
+</head>
+<body>
+
+	<header class="aui-bar aui-bar-nav aui-bar-light">
+		<a href="javascript:" onclick="history.back(); " class="aui-pull-left aui-btn" >
+			<span class="aui-iconfont aui-icon-left">  </span>
+		</a>
+		<div class="aui-title">详情</div>
+		<a class="aui-pull-right aui-btn ">
+			<span class="aui-iconfont aui-icon-more">  </span>
+		</a>
+	</header>
+	<div class="aui-main">
+		<article class="article padding-side">
+			<div>
+				<h1 class="article-title">{if empty($Array['title'])}空标题{else}$Array['title']{/if}</h1>
+			</div>
+			<div class="article-content">
+				{if empty($Array['content'])}空标题{else}$Array['content']{/if}
+			</div>
+		</article>
+	</div>
+	<div class="aui-card-list-content">
+		<div class="aui-bg-like"> <div class="heart {IF $LikeNum>0}heartAnimation{/if}" id="like1" rel="{IF $LikeNum>0}unlike{else}like{/if}"></div><div class="likeCount" id="likeCount1">$Array['liku']</div>  喜欢</div>
+		<div class="aui-share-icon clearfix">
+			<div class="aui-share-line b-line clearfix">
+				<h2>欢迎分享至</h2>
+			</div>
+			<ul class="clearfix" style="padding-top:15px; padding-bottom:10px;">
+				<li><i  onclick="getWX();" class="aui-iconfont aui-icon-wechat"></i></li>
+				<li><i onclick="getWXQ();" class="aui-iconfont aui-icon-wechat-circle"></i></li>
+				<li><i onclick="getWB();" class="aui-iconfont aui-icon-weibo" style="color:#ff6178"></i></li>
+			</ul>
+		</div>
+
+		
+		<ul class="aui-list aui-media-list">
+			<li class="aui-list-item aui-list-item-middle">
+				<div class="aui-media-list-item-inner">
+					<div class="aui-list-item-media">
+						<img src="{$arrInfo[url]}/app/{$AppName}/model/img/yctu.png" class="aui-img-round aui-list-img-sm">
+					</div>
+					<div class="aui-list-item-inner ">
+						<div class="aui-list-item-text">
+							<div class="aui-list-item-title">{if empty($Array['editor'])}匿名作者{else}$Array['editor']{/if}</div>
+																<div class="aui-card-list-user-info text-light">{php echo(smartDate($Array['addtime'], 'Y-m-d H:i'))}</div>
+
+						</div>
+						<div class="aui-list-item-text">
+							$Array['dcontent']
+
+					</div></div>	
+				</div>
+			</li>
+	
+			</li>
+
+		</ul>
+	</div>
+	<div class="aui-card-list-footer aui-text-center aui-list-item-arrow">
+		Copyright © 2018 盐城师范学院小薇工作室
+	</div>
+	</div>
+ <script src="{$arrInfo[url]}/app/60app/model/lib/jquery-2.1.4.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+	$(document).ready(function()
+	{
+    
+	$('body').on("click",'.heart',function()
+    {
+    	
+    	var A=$(this).attr("id");
+    	var B=A.split("like");
+        var messageID=B[1];
+        var C=parseInt($("#likeCount"+messageID).html());
+    	$(this).css("background-position","")
+        var D=$(this).attr("rel");
+       
+        if(D === 'like') 
+        {      
+      
+      $("#likeCount"+messageID).html(C+1);
+ $(this).addClass("heartAnimation").attr("rel","unlike");
+        	$.ajax({
+		type:"POST",
+		url:"{$arrInfo[url]}/z60news/do/like",
+		data:"&id="+$Array[id],
+		beforeSend:function(){ 	},
+		success:function(result){
+
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+   $("#likeCount"+messageID).html(C-1);
+        $(this).removeClass("heartAnimation").attr("rel","like");
+        $(this).css("background-position","left");
+        }
+	})
+        }
+        else
+        {
+		 $("#likeCount"+messageID).html(C-1);
+        $(this).removeClass("heartAnimation").attr("rel","like");
+        $(this).css("background-position","left");
+		  	$.ajax({
+		type:"POST",async:true,
+		url:"{$arrInfo[url]}/z60news/do/unlike",
+		data:"&id="+$Array[id],
+		beforeSend:function(){  },
+		success:function(result){
+
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+  $("#likeCount"+messageID).html(C+1);
+ $(this).addClass("heartAnimation").attr("rel","unlike");
+        }
+	})
+     
+        }
+
+
+    });
+
+
+	});
+	</script>
+<script>
+
+  var share = {
+            imgUrl: '{$arrInfo[url]}/app/{$AppName}/model/top2.png',
+            link: '{$arrInfo[url]}/{$AppName}/details/$Array[id]',
+            title: '$Array[title]',
+            desc: '$Array[dcontent]'
+        };
+
+  wx.config({
+    appId: "$signPackage['appId']",
+    timestamp: "{$signPackage['timestamp']}",
+    nonceStr: "{$signPackage['nonceStr']}",
+    signature: "$signPackage['signature']",
+    jsApiList: [
+      'onMenuShareTimeline',
+	  'onMenuShareAppMessage',
+'onMenuShareQQ',
+'onMenuShareWeibo',
+'onMenuShareQZone'
+    ]
+  });
+
+            wx.ready(function() {
+                wx.onMenuShareAppMessage(share);
+                wx.onMenuShareTimeline(share);
+                wx.onMenuShareQQ(share);
+                wx.onMenuShareWeibo(share);
+                wx.onMenuShareQZone(share);
+            });
+
+function  getWX() {
+WeixinJSBridge.invoke('sendAppMessage',{
+"appid": "$signPackage['appId']",
+"img_url": '{$arrInfo[url]}/app/{$AppName}/model/top2.png',
+"img_width": "200",
+"img_height": "200",
+"link":'{$arrInfo[url]}/{$AppName}/details/$Array[id]',
+"desc": '$Array[dcontent]',
+"title": '$Array[title]'
+}, function(res) {
+//_report('send_msg', res.err_msg);
+})
+}
+function  getWXQ() {
+WeixinJSBridge.invoke('shareTimeline',{
+"img_url": '{$arrInfo[url]}/app/{$AppName}/model/top2.png',
+"img_width": "200",
+"img_height": "200",
+"link": '{$arrInfo[url]}/{$AppName}/details/$Array[id]',
+"desc": '$Array[dcontent]',
+"title": '$Array[title]'
+}, function(res) {
+//_report('timeline', res.err_msg);
+});
+}
+function getWB() {
+WeixinJSBridge.invoke('shareWeibo',{
+"content": '$Array[dcontent]',
+"url":'{$arrInfo[url]}/{$AppName}/details/$Array[id]',
+}, function(res) {
+//_report('weibo', res.err_msg);
+});
+}
+
+</script>
+{if isset($arrInfo[tjcode60])}<div style="display:none">{$arrInfo[tjcode60]}</div>{/if} 
+
+</body>
+</html>

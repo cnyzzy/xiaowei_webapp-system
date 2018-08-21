@@ -1,0 +1,23 @@
+             <script>
+			         function check(form) {
+
+	 $.showLoading();
+         document.F.submit();
+		 return true; 
+         }
+</script>  
+			  <h2>教职工身份绑定<br></h2>
+        </div>
+	   <div class="login-wrap">
+	      <div class="btns">               
+			<a href="/home/tlogin/1">学生</a>
+            <a class="current">教职工</a>
+            <a href="/home/tlogin/3">访客</a>
+            </div>
+            <div class="login-box">
+                 <form name="F" action="/teacherlogin" method="post">
+                               <img style="max-width:100%;" src="{$arrInfo[url]}/app/{$AppName}/model/images/login_logo_2.png">
+
+           
+                </form>
+            </div> 提示：教职工部门数据更新至2017年4月

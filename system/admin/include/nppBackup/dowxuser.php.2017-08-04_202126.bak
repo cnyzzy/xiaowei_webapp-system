@@ -1,0 +1,82 @@
+<?php
+if($_SESSION['admin']['rightint']<4){$Errormsg=array (
+  'error_type' => '提示',
+  'msg' => '权限不足',
+); 
+ErrorMsg($Errormsg);	}
+empty($_POST['do']) ? $ch = '0' : $ch = $_POST['do']; 
+switch($ch){
+	case "update":
+	empty($_POST['id']) ? $id = '0' : $id = $_POST['id']; 
+	if($id=='0')break;
+	 $sql = "SELECT * FROM wxid WHERE id ='{$id}'";
+		$result = $DB->query($sql);
+		$row = $DB->fetch_array($result);
+			if(empty($row))break;
+$Wx = new Wx();
+$openid=$row['openid'];
+if(!empty($openid)){$arrWx = $Wx->GetUserInfo($openid);
+if($arrWx['subscribe']=='1'){
+$number=$row['number'];
+
+	$type=$row['type'];
+	switch ($type)
+{
+case 1:
+$sql2 = "SELECT * FROM jwinfo WHERE number ='{$number}' and isok=1";
+		$result2 = $DB->query($sql2);
+		$info = $DB->fetch_array($result2);
+		
+
+break;
+case 2://无数据
+$sql2 = "SELECT * FROM ghzl WHERE  number ='{$number}'";
+		$result2 = $DB->query($sql2);
+		$info = $DB->fetch_array($result2);
+break;
+}
+//检查备注
+if($type==1){
+if(empty($arrWx['remark'])||$arrWx['remark']!=$info['xzb'].$info['xm'].$number)
+{
+$Wx->UpdateRemark($openid, $info['xzb'].$info['xm'].$number);
+}}
+//检查备注
+if($type==2){
+if(empty($arrWx['remark'])||$arrWx['remark']!=$info['bm'].$info['name'].$number)
+{
+$Wx->UpdateRemark($openid,$info['bm'].$info['name'].$number);	
+}}
+//检查备注
+if($type==3){
+if(empty($arrWx['remark'])||$arrWx['remark']!=$_SESSION['zid']['name'].$number)
+{
+$Wx->UpdateRemark($openid,$_SESSION['zid']['name'].$number);	
+}}
+
+
+//检查标签
+if($type==1){
+if(empty($arrWx['tagid_list'])||!(in_array('102',$arrWx['tagid_list'])))
+{
+	print_r($Wx->UpdateTagging($openid,'101'));
+}}
+
+if($type==2){
+if(empty($arrWx['tagid_list'])||!(in_array('101',$arrWx['tagid_list'])))
+{
+	$Wx->UpdateTagging($openid,'102');
+}}
+
+if($type==3){
+if(empty($arrWx['tagid_list'])||!(in_array('102',$arrWx['tagid_list'])))
+{
+$Wx->UpdateTagging($openid,'100');	
+}}
+}}
+break;
+
+default:
+print_R($_POST);
+}
+?>

@@ -1,0 +1,1 @@
+<?php defined('ZRoot') or die('Access Denied.'); ?>

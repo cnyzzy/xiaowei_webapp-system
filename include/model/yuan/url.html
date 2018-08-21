@@ -1,0 +1,11 @@
+{template header}
+{if $Operate == "index"}
+<form action="{$arrInfo['url']}/index.php/url/add" method="post">
+请输入文字：<input type="text" name="url" value="" />  
+<input type="submit" value="提交" />
+</form>
+{/if}
+{if $Operate == "add"}
+短地址:{$surl}
+{/if}
+{template footer}

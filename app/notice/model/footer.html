@@ -1,0 +1,28 @@
+        <footer>
+            <ul class="menubar animated fadeInUp delay3">
+                <li class="tab{if $AppName=='notice'} active{/if}" onclick="window.location='/notice'">
+                    <i class="iconfont">&#xe690;</i>
+                    <label class="tab-label">公告</label>
+                    {if $NoticeNum!=0}<span class="point"></span>{/if}
+                 
+                </li>
+                <li class="tab{if $AppName=='msg'} active{/if}" onclick="window.location='/msg'">
+                    <i class="iconfont">&#xe69b;</i>
+                    <label class="tab-label">消息</label>
+                    {if $MsgNum!=0}<span class="point"></span>{/if}
+                </li>
+                <li class="tab{if $AppAction=='index'&&$AppName=='home'} active{/if}" onclick="window.location='/home/index'">
+                    <i class="iconfont">&#xe66f;</i>
+                    <label class="tab-label">应用</label>
+                    {if $AppNum!=0}<span class="point"></span>{/if}
+                </li>
+                <li class="tab{if $AppAction=='self'&&$AppName=='home'} active{/if}" onclick="window.location='/home/self'">
+                    <i class="iconfont">&#xe623;</i>
+                    <label class="tab-label">我</label>
+					 {if $SelfNum!=0}<span class="point"></span>{/if}
+                </li>
+            </ul>
+        </footer>
+		{if isset($arrInfo[tjcode])}<div style="display:none">{$arrInfo[tjcode]}</div>{/if} 
+    </body>
+</html>

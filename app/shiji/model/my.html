@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>我的点赞-拾集</title>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/fonts/iconfont.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/font.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/60app/model/lib/weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/60app/model/css/jquery-weui.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/mui.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/animate.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/pages/notice.css"/>
+
+        <script>(function (doc, win) {
+          var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+              var clientWidth = docEl.clientWidth;
+              if (!clientWidth) return;
+              docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+            };
+
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);</script>
+		<style>
+	.titlebar.reverse {
+   /* background-color: #df4d26;*/
+    border-color: #000;
+}
+.weui-media-box__title {
+    white-space: normal;
+}
+
+.weui-media-box__title {
+    line-height: 1.8;
+    font-size: 16px;
+}
+.weui-tab__bd .weui-tab__bd-item.weui-tab__bd-item--active {
+    display: block;
+    background-color: #f5f4f4;
+}
+.weui_cell {
+    padding: 15px 5px;
+}
+.weui-media-box {
+    padding: 20px;
+    position: relative;
+    background-color: white;
+    /* background: cadetblue; */
+    border: 0.05px solid #7b7b7b;
+    box-shadow: #cac6c6 1px 1px 1px 1px;
+    border-top: 4.5px solid #f12b2b;
+    border-radius: 0.32em;
+}
+a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    display: block;
+}
+.weui-media-box__info__meta {
+    
+    color: #ada9a9
+	}
+.weui-media-box__info__meta2 {
+        float: right;
+    color: #636161;
+    padding-right: 0.1em;
+}
+.weui-navbar__item.weui-bar__item--on {
+    color: #2f2f2f;
+    background-color: #e9e8ec;
+}
+.weui-tab__bd-item.weui-pull-to-refresh {
+    position: inherit;
+    top: 50px;
+}
+.weui-tab__bd .weui-tab__bd-item {
+    /*height: auto;*/
+}
+
+header, footer {
+
+    z-index: 999;
+}
+
+.weui-navbar + .weui-tab__bd {
+    padding-top: 40px;
+}
+.weui-tab__bd .weui-tab__bd-item.weui-tab__bd-item--active {
+    padding-top: 55px;
+}
+.weui-navbar {
+
+    top: 43px;
+}
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url({$arrInfo[url]}/app/{$AppName}/model/css/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+.weui-actionsheet__title .weui-actionsheet__title-text {
+    color: #888;
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+</style>
+    </head>
+    <body ontouchstart>
+        <header>
+            <div class="titlebar reverse">
+			 <a href="javascript:history.go(-1);">
+                    <i class="iconfont">&#xe668;</i>
+                </a>
+                <h1>我的提交</h1>
+            </div>
+
+         
+        </header>
+
+         <div class="weui-tab" style=" top: 44px;"><div class="weui-tab__bd">
+          <div id="tab2" class="content-padded">
+		      <div class="weui-panel" id="list2">
+      {if isset($arrtop)}	 
+		
+    
+		  <!--{loop $arrtop $key $loopChild}-->
+		
+        <div class="weui-panel__bd"> 
+		<a style="color:#000" class="weui_cell">
+          <div id="no{$loopChild['id']}" oid="{$loopChild['id']}" {if !empty($loopChild['sid'])}sid="{$loopChild['sid']}"{/if} {if !empty($loopChild['isok'])}top="1"{/if} class="weui-media-box weui-media-box_text" style="border-top: 4.5px solid {php echo($colorarray[array_rand ($colorarray, 1)]);};">
+            <h4 class="weui-media-box__title">$loopChild['content']</h4>
+            <p class="weui-media-box__desc">提交时间 {php ECHO(date('Y-m-j H:i:s',$loopChild['ctime']))}</p>
+            <ul class="weui-media-box__info">
+              <li class="weui-media-box__info__meta">来自</li>
+              <li class="weui-media-box__info__meta">$loopChild['from']</li>
+	  <li class="weui-media-box__info__meta2 weui-media-box__info__meta_extra">{if !empty($loopChild['isok'])}{if $loopChild['isok']=='1'}已通过{/if}{if $loopChild['isok']=='2'}不予通过{/if}{else}待审核{/if}{if !empty($loopChild['sid'])} #{$loopChild['sid']}{else} {/if}</li>            </ul>
+          </div></a>
+		
+        </div>
+
+		  
+	
+              <!--{/loop}-->
+           		  {else}
+				  
+			   <div class="weui-panel__bd"> 
+			    <a style="color:#000" class="weui_cell">
+          <div class="weui-media-box weui-media-box_text"  style="border-top: 4.5px solid {php echo($colorarray[array_rand ($colorarray, 1)]);};">
+            <h4 class="weui-media-box__title">没有数据</font></h4>
+            <p class="weui-media-box__desc"></p>
+            <ul class="weui-media-box__info">
+              <li class="weui-media-box__info__meta">来自</li>
+              <li class="weui-media-box__info__meta">小薇</li>
+            
+			  <li class="weui-media-box__info__meta2 weui-media-box__info__meta_extra"></li>
+
+            </ul>
+          </div></a>   
+		  
+		  
+          </div>
+       
+             {/if}</div>
+ <div id="loadmore2" class="weui-loadmore">
+     <i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span>
+    </div>
+			  </div>
+      
+  </div>
+ 
+  </div>
+		        <script src="{$arrInfo[url]}/app/60app/model/lib/jquery-2.1.4.js"></script>
+        <script src="{$arrInfo[url]}/app/60app/model/js/jquery-weui.js"></script>
+		  <script src="{$arrInfo[url]}/app/60app/model/lib/fastclick.js"></script>
+		  <script>
+	
+  $(function() {
+    FastClick.attach(document.body);
+  });
+     $(document).on("click", ".weui-media-box", function() {
+	
+	 var sid=$(this).attr("sid");
+	  var oid=$(this).attr("oid");
+	 var that=$(this);
+
+	 	 if( typeof(oid)=="undefined")return false;
+
+        $.actions({
+          title: "#"+oid+" 选择操作",
+          onClose: function() {
+            console.log("close");
+          },
+          actions: [
+          
+            {
+              text: "查看",
+              className: "color-warning",
+              onClick: function() {
+			   if( typeof(sid)=="undefined"){
+$.toast("未通过审核","cancel");			  
+			  }else{
+ $.showLoading();
+ window.location.href="{$arrInfo[url]}/{$AppName}/more/"+sid;}
+              }
+            },
+            {
+              text: "删除",
+              className: 'color-danger',
+              onClick: function() {
+	
+               $.confirm("确认删除?", function() {
+			    if( typeof(sid)=="undefined"){
+ 	  $.ajax({
+		type:"POST",async:true,
+		url:"{$arrInfo[url]}/shiji/do/unmyid",timeout : 5000,
+		data:"&id="+oid,
+		beforeSend:function(){  
+$.showLoading("删除中");
+
+      
+ 
+},
+		success:function(result){
+
+  setTimeout(function() {
+  that.parents('.weui-panel__bd').remove()
+          $.hideLoading();
+        }, 800);
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+		$.hideLoading();
+$.toast("失败","cancel");
+        }
+	})
+	}else{
+	$.toast("已通过的不可删除","cancel");
+	}
+  }, function() {
+  //点击取消后的回调函数
+  });
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+		}
+              
+            }
+          ]
+        });
+      });
+
+</script>
+<script>
+  /*document.body.addEventListener('touchmove', function (e) {
+  e.preventDefault(); //阻止默认的处理方式(阻止下拉滑动的效果)
+}, {passive: false});
+document.body.addEventListener('touchmove', function(e) {
+    if (!document.querySelector('.scroll').contains(e.target)) {
+        e.preventDefault();
+    }
+}, {passive: false});
+*/
+
+</script>
+  <script>
+     
+  
+
+	  var topnum=20;
+	  var loading2 = false;
+	  $(document.body).infinite(200);
+     $(document.body).infinite().on("infinite", function() {
+	
+        if(loading2) return;
+		$("#loadmore2").html('<i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span>');
+        loading2 = true;
+		
+	  $.ajax({
+                url: '{$arrInfo[url]}/{$AppName}/do/my',
+                dataType: 'json',
+                type: 'POST',
+				data:"&id="+topnum,
+				timeout : 5000,
+                success: function (data) {
+					
+    if(data.type=='ok'){
+if( data.data&& data.data[0].length!=0 ){
+					for (var i = 0; i < data.data.length; i++) {
+				var id=data.data[i]['id'];
+					var content=data.data[i]['content'];
+					var from2=data.data[i]['from'];
+					var liked=data.data[i]['liked'];
+							var iszanz='已通过';
+					
+					var timetext=data.data[i]['ctime2'];
+					if (typeof(data.data[i]['isok'])=="undefined"||data.data[i]['isok']=='0'){iszanz='待审核';} 
+					if (typeof(data.data[i]['sid'])!="undefined"&&data.data[i]['isok']=='1'&&data.data[i]['sid']){iszanz+=' #'+data.data[i]['sid'];}  
+					if (typeof(data.data[i]['sid'])!="undefined"&&data.data[i]['isok']=='2'){iszanz='不予通过';}  
+
+if (!data.data[i]['iszan']){iszancode='0';} 					
+		var colorarray = ["#e0eee8","#f9906f","#a4e2c6","#1685a9","#88ada6","#ef7a82","#808080"];
+
+
+var color = colorarray[Math.floor(Math.random()*colorarray.length)];
+	
+            
+        $('#list2').append('<div class="weui-panel__bd"><a style="color:#000" class="weui_cell"> <div id="no'+id+'" sid="'+id+'" iszan="'+iszancode+'" top="1" class="weui-media-box weui-media-box_text" style="border-top: 4.5px solid '+color+';"><h4 class="weui-media-box__title">'+content+'</h4><p class="weui-media-box__desc">提交时间 '+timetext+'</p><ul class="weui-media-box__info"><li class="weui-media-box__info__meta">来自</li><li class="weui-media-box__info__meta">'+from2+'</li><li class="weui-media-box__info__meta2 weui-media-box__info__meta_extra">'+iszanz+'</li> </ul></div></a> </div>');
+					  
+ }
+topnum=topnum+10;
+    }else{
+	 $.toast("无数据","cancel");
+	}}else{
+  if( data.type&& data.type=='over' ){
+   
+				$("#loadmore2").html('<span class="weui-loadmore__tips">加载完毕</span>');
+$("#loadmore2").addClass("weui-loadmore_line");
+$(document.body).destroyInfinite();
+  }else if( data.type&& data.type=='error' ){
+   
+				$("#loadmore2").html('');
+ $.toast(data.msg,"cancel");
+$(document.body).destroyInfinite();
+  }else{
+      $.toast("服务器未反馈","forbidden");
+	  		$("#loadmore2").html('');
+
+    }	}		
+
+					   loading2 = false;
+                   console.log(data[0]);
+                },
+                error : function(e) {
+			   loading2 = false;
+                    $.toast("网络故障","forbidden");
+							$("#loadmore2").html('');
+
+                }
+            });
+
+      });
+
+    </script>
+       {template footer}

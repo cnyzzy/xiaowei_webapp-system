@@ -1,0 +1,153 @@
+@charset "UTF-8";
+html,body{ 
+margin:0px; 
+height:100%; 
+} 
+/* 主体内容 */
+.content {
+  text-align: center;
+  height:100%; 
+  }
+ .clear {
+clear: both;
+font-size: 0;
+line-height: 0;
+height: 0;
+visibility: visible;
+}
+  .content .xueqi {
+    margin-top: 13%;
+    height: 50px;
+    position: relative; }
+    .content .xueqi .class {
+      background-color: #5cb85c; }
+      .content .xueqi .class label {
+        display: inline-block;
+        line-height: 50px;
+        color: #ffffff;
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis; }
+      .content .xueqi .class .select {
+        /*width: 20%;
+        height: 40px;*/
+        display: inline-block;
+        float: right;
+        border-radius: 5px;
+        position: absolute;
+        right: 5px;
+        top: 11px; }
+  .content .query {
+    margin-top: 2%;
+    /* 查询的内容 */ }
+    .content .query table {
+      width: 100%; }
+      .content .query table tr td {
+        /*border: 1px solid black;*/
+        border-bottom: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        /* 查询页面的icon */ }
+        .content .query table tr td img {
+          margin-top: 10%;
+          width: 50px;
+          height: 50px; }
+
+.content {
+  text-align: center; }
+  .content table {
+    margin-top: 5%;table-layout:fixed;
+    width: 100%; }
+    .content table tr {
+      border: 1px solid #ddd; }
+      .content table tr td, .content table tr th {
+        border: 1px solid #ddd;
+        width: 16%;
+        padding: 5px; }
+
+.content .result_table {
+  background-color: #ffffff;
+  margin-top: 10%; }
+  .content .result_table table {
+    margin-bottom: 10%; }
+
+.content .xueqi_new {
+  background-color: #5cb85c;
+  color: #ffffff;
+  height: 50px;
+  line-height: 50px;
+  position: relative; }
+  .content .xueqi_new .class {
+    width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    margin-left: 15%; }
+  .content .xueqi_new .select {
+    position: absolute;
+    right: 10px;
+    bottom: 8px; }
+
+.mui-btn-blue, .mui-btn-primary, input[type=submit] {
+  background-color: #d9534f;
+  border-color: #d43f3a; }
+
+.mui-pagination > li.mui-active > a, .mui-pagination > li.mui-active > a:active, .mui-pagination > li.mui-active > span, .mui-pagination > li.mui-active > span:active, .mui-pagination > li:active > a, .mui-pagination > li:active > a:active, .mui-pagination > li:active > span, .mui-pagination > li:active > span:active {
+  background-color: #5cb85c;
+  border-color: #4cae4c; }
+
+.mui-pagination > li > a, .mui-pagination > li > span {
+  color: #5cb85c; }
+
+#topPopover {
+  position: absolute;
+  top: 16px;
+  right: 6px;
+  z-index: 10000; }
+
+#topPopover .mui-popover-arrow {
+  left: auto;
+  right: 6px; }
+
+.mui-popover {
+  height: 270px; }
+
+.mui-content {
+  padding: 10px; }
+
+table {
+  table-layout: fixed;
+  width: 100%; }
+
+td {
+  /*width:100px;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis; }
+
+.cover_table {
+  position: fixed;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0px;
+  text-align: center;
+  width: 100%;
+  display: none; }
+  .cover_table .exit {
+    position: absolute;
+    right: 0%;
+    top: 40%; }
+  .cover_table table {
+    width: 100%;
+    height: 50px;
+    background-color: #ffffff;
+    position: absolute;
+    top: 50%; }
+    .cover_table table tr {
+      border: 1px solid #ddd; }
+      .cover_table table tr th, .cover_table table tr td {
+        border: 1px solid #ddd; }
+
+/*# sourceMappingURL=style.css.map */

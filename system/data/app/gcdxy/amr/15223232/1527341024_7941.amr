@@ -1,0 +1,4 @@
+<br />
+<b>Notice</b>:  readfile() [<a href='function.readfile'>function.readfile</a>]: Unable to find the wrapper &quot;https&quot; - did you forget to enable it when you configured PHP? in <b>G:\software\php\PHPnow-1.5.6\htdocs\app\gcdxy\action\getmp3.php</b> on line <b>76</b><br />
+<br />
+<b>Warning</b>:  readfile(https://api.weixin.qq.com/cgi-bin/media/get?access_token=&amp;media_id=LT8cU95K3V6JdUSlngv0D17ReDSsj1nCe1fDKXoyKzujEEnDxvJ8F7f7Uz4IGlfL) [<a href='function.readfile'>function.readfile</a>]: failed to open stream: No error in <b>G:\software\php\PHPnow-1.5.6\htdocs\app\gcdxy\action\getmp3.php</b> on line <b>76</b><br />

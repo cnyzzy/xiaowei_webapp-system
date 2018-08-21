@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+        <title>参与抽奖活动-{$arrInfo[name]}</title>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/fonts/iconfont.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/font.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/jquery-weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/mui.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/animate.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/pages/xunjia_detail.css"/>
+		    <script src="{$arrInfo[url]}/app/home/model/lib/jquery-2.1.4.js"></script>
+        <script src="{$arrInfo[url]}/app/home/model/js/jquery-weui.js"></script>	
+			<script src='https://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>
+        <script>(function (doc, win) {
+          var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+              var clientWidth = docEl.clientWidth;
+              if (!clientWidth) return;
+              docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+            };
+
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+		 wx.config({
+    appId: "$signPackage['appId']",
+    timestamp: "{$signPackage['timestamp']}",
+    nonceStr: "{$signPackage['nonceStr']}",
+    signature: "$signPackage['signature']",
+    jsApiList: [
+      'onMenuShareTimeline',
+	  'onMenuShareAppMessage',
+'onMenuShareQQ',
+'onMenuShareWeibo',
+'onMenuShareQZone'
+    ]
+  });
+			 function wait2(form) {
+	$.showLoading("正在提交数据...");
+				            $.ajax({
+                url: '{$arrInfo[url]}/{$AppName}/do/addon/{$id}',
+                dataType: 'json',
+                type: 'POST',
+				data:"",
+				async:false,
+				timeout : 5000,
+                success: function (data) {
+				$.hideLoading();
+    if(data.ok==2){
+                        console.log(data);
+ $.toast("已经确认","cancel");
+ 
+				setTimeout(function() {
+        $.hideLoading();
+		window.location.href="{$arrInfo[url]}/{$AppName}/join/{$id}";
+        }, 1000);
+                        }else if(data.ok==5){
+
+
+ $.toast("不在开放的时间段","cancel");
+
+	}else if(data.ok==1){
+
+
+ $.toast("确认成功");
+ 				setTimeout(function() {
+        $.hideLoading();
+
+		window.location.href="{$arrInfo[url]}/{$AppName}/join/{$id}/{php echo(time())}";
+       
+        }, 1000);
+	}
+                 
+                },
+                error : function(e) {
+				$.hideLoading();
+                   $.toast("网络故障","forbidden"); 
+					//window.location.href=location.href;
+                }
+            });
+			 }
+	function wait(form) {
+				$.showLoading("正在进入...");
+				setTimeout(function() {
+        $.hideLoading();
+			return true;
+        }, 1000);
+	
+}
+		 				{if $isstop==1}		
+							$(document).ready(function() {
+ 			 setTimeout(function() {
+         $.modal({
+  title: "提示",
+  text: "当前绑定的用户身份未实名<br>您可以选择重新绑定或参加活动",
+  buttons: [
+    { text: "取消", className: "default",
+	onClick: function(){ 
+
+	} },
+    { text: "重新绑定", 
+	onClick: function(){
+		  $.showLoading("即将跳转...","cancel");
+			 setTimeout(function() {
+            window.location.href="{$arrInfo[url]}/home/modify";
+        }, 800)	
+	} },
+  ]
+});
+        }, 2600)	
+
+		});
+		{/if}					 
+     
+         </script>
+		
+    </head>
+    <body>
+        <header>
+		
+         <div class="titlebar reverse">
+             <a href="{$arrInfo[url]}/{$AppName}">
+                    <i class="iconfont">&#xe668;</i>
+                </a>
+                <h1>参与抽奖活动</h1>
+            </div>
+        </header>
+        <article style="bottom: 0;">
+            <ul class="xunjia-tab clearfix">
+ <li class="green"> 参与确认</li> 
+               		
+            </ul>           <ul class="xunjia-box">
+			
+ <div class="weui_msg">
+  <div class="weui_icon_area"> {if $ok=='0'}<i id="icon" class="weui_icon_msg weui_icon_download"></i>{else}
+   <i id="icon" class="weui_icon_msg weui_icon_success"></i>{/if}</i></div>
+  <div class="weui_text_area">
+    <h2 class="weui_msg_title">欢迎参与抽奖</h2>
+    <p class="weui_msg_desc">您正在参与抽奖活动:<br>$Array['title']</p><br>
+  {if $ok=='0'}<p class="weui_msg_desc">请及时确认参与!!!</p>{else}
+     请等待现场抽奖{/if}
+  </div>
+  <div class="weui_opr_area">
+    <p class="weui_btn_area">
+ {if $ok=='0'}	<a class="weui_btn weui_btn_warn" onClick='return wait2();'>确认参与</a>{else}
+      <a href="{$arrInfo[url]}/{$AppName}/read" class="weui_btn weui_btn_primary" onClick='return wait();'>查看结果</a>{/if}
+    </p>
+  </div>
+  	  {if $type=='3'}<p class="weui_msg_desc">您是访客身份，获奖请及时联系现场工作人员</p>
+  </div>
+  <div class="weui_btn_area">
+	 <a href="{$arrInfo[url]}/home/modify" class="weui_btn weui_btn_plain_default">查看绑定信息</a>
+  </div>{/if}
+  <div class="weui_btn_area">
+    <a href="{$arrInfo[url]}/home/person_info" class="weui_btn weui_btn_plain_primary">查看个人资料</a></br>
+  </div>
+</div>
+	 <div class="weui_msg">
+	  <p class="weui_msg_desc">
+   小薇工作室提供技术支持
+  </p>  </div>
+   </ul>
+        </article>
+		{if isset($arrInfo[tjcode])}<div style="display:none">{$arrInfo[tjcode]}</div>{/if} 
+		
+    </body>        <footer>
+           
+        </footer>
+		
+</html>

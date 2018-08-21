@@ -1,0 +1,20 @@
+<?php
+$sql = "SELECT id FROM wxid order by id desc limit 1";
+		$row = $DB->once_fetch_array($sql);
+		$max=$row['id'];
+$Array = array();
+for ($x=0; $x<=($max/30); $x++) {
+
+
+$Array[$x]=
+array (
+  'id' => $x,
+  'sid' => $ym,
+  'y' => $y,
+  'm' => $m,
+  'number' => $num,
+  'type' => $type,
+  'time' => $row['time'],
+);
+} 
+

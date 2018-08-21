@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>实训助手</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/mui.min.css">
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			p {
+				text-indent: 22px;
+			}
+			span.mui-icon {
+				font-size: 14px;
+				color: #007aff;
+				margin-left: -15px;
+				padding-right: 10px;
+			}
+			.mui-off-canvas-left {
+				color: #fff;
+			}
+			.title {
+				margin: 35px 15px 10px;
+			}
+			.azy {
+				
+			}
+			.title+.content {
+				margin: 10px 15px 5px;
+				color: #fff;
+				text-indent: 1em;
+				font-size: 14px;
+				line-height: 24px;
+			}
+			input {
+				color: #000;
+			}
+					.mui-card .mui-control-content {
+				padding: 10px;
+			}
+			
+			.mui-control-content {
+				height: 350px;
+			}
+			.mui-table-view {
+
+background-color: #333;
+}
+ .mui-table-view-cell.mui-collapse .mui-collapse-content {
+background: #333; 
+}
+.mui-table-view-cell.mui-active {
+background-color: #332;
+}
+.mui-table-view-cell.mui-collapse .mui-table-view {
+margin-top: -11px;
+
+}
+		.mui-card2 {
+font-size: 14px;
+position: relative;
+overflow: hidden;
+margin: 10px;
+border-radius: 2px;
+background-color: #fff;
+background-clip: padding-box;
+box-shadow: 0 1px 2px rgba(0,0,0,.3);
+text-align: center;
+}
+.mui-row{margin-left: auto; margin-right: auto;}
+			.mui-btn-block {
+    font-size: 18px;
+    width: 90%;
+    position: RELATIVE;
+    margin-bottom: 10px;
+    padding: 20px 0;
+	left:5%;
+}
+		</style>
+
+	</head>
+
+	<body>
+	
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-scalable">
+			<!--侧滑菜单部分-->
+			<aside id="offCanvasSide" class="mui-off-canvas-left">
+				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="title">导航</div>
+						<div class="content">
+
+							<p style="margin: 10px 15px;">
+								<button id="offCanvasHide" type="button" class="mui-btn mui-btn-danger mui-btn-block" style="padding: 5px 20px;">关闭</button>
+							</p>
+<div style="padding: 10px 10px;">{if !empty($A)}
+	<div id="segmentedControl" class="mui-segmented-control">
+			<!--{loop $A $key $loopChild}-->
+					<a class="mui-control-item{if $xq==$loopChild['text']} mui-active{/if}" href="#item{$loopChild['value']}">$loopChild['text']</a>
+				<!--{/loop}--></div>
+
+					{/if}
+				
+			</div>
+			<div>{if !empty($A)}
+			<!--{loop $A $key $loopChild}-->
+			
+				<div id="item{$loopChild['value']}" class="mui-control-content{if $xq==$loopChild['text']} mui-active{/if}">
+					<div id="scroll" class="mui-scroll-wrapper">
+						<div class="mui-scroll">
+	<ul class="mui-table-view"> 
+	{if !empty($loopChild['children'])}
+	<!--{loop $loopChild[children] $key $loopChild2}-->
+        <li class="mui-table-view-cell mui-collapse{if $dept==$loopChild2['text']} mui-active{/if}">
+            <a class="mui-navigate-right" href="#">$loopChild2['text']</a>
+            <div class="mui-collapse-content">
+               <ul class="mui-table-view">
+			   	{if !empty($loopChild2['children'])}
+	<!--{loop $loopChild2[children] $key $loopChild3}-->
+    <li class="mui-table-view-cell">
+        <a id="$loopChild3['value']" class="mui-navigate-right azy">$loopChild3['text']</a>
+    </li>
+	<!--{/loop}-->
+        {/if}
+</ul>
+            </div>
+        </li>
+		<!--{/loop}-->
+        {/if}
+	
+
+    </ul>
+						</div>
+					</div>
+				</div>
+					<!--{/loop}-->
+				{/if}
+
+
+			</div>
+
+
+						</div>
+</div>
+				</div>
+			</aside>
+			
+			<!--主界面部分-->
+			<div id='yy' class="mui-inner-wrap">
+				<header class="mui-bar mui-bar-nav">
+					<a href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-left"></a>
+					
+					<h1 class="mui-title">预约搜索</h1>
+					<a class="mui-action-back mui-btn mui-btn-link mui-pull-right">返回</a>
+				</header>
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="mui-content-padded">
+
+					
+						<div class="mui-content">
+			<div ID='show' class="mui-card mui-card2">
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						{if !empty($postn)}$postn{else}未知{/if}
+					</div>
+				</div>
+			</div>		
+			{if !empty($WArrsy)}
+			<!--{loop $WArrsy $key $loopChild}--><div id="$loopChild['id']" class="mui-card">
+				<div class="mui-card-header"><h3>$loopChild['room']</h3>{$loopChild['xq']}-{$loopChild['name']}</div>
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						$loopChild['description']
+					</div>
+				</div>
+				<div class="mui-card-content">
+     <div class="mui-row"> 
+           <button type="button" style="float:right;right: 6px;bottom: 5px;" class="mui-btn mui-btn-primary mui-btn-outlined">{if !empty($loopChild['yytype'])}{if $loopChild['yytype']=='1'}个人预约{/if}{if $loopChild['yytype']=='2'}小组预约{/if}{if $loopChild['yytype']=='3'}班级预约{/if}{else}-{/if}</button>
+       </div>
+    </div>
+				<div class="mui-card-footer"> 
+ <div class="mui-row">        <div class="mui-col-sm-14" style="padding-right: 50px;">
+当前 <span class="mui-badge mui-badge-primary">{if !empty($loopChild['now']['nownumber'])}$loopChild['now']['nownumber']{else}0{/if}</span>
+ </li>
+        </div>
+        <div class="mui-col-sm-14" style="padding-right: 50px;">
+ 占用 <span class="mui-badge mui-badge-danger">{if !empty($loopChild['now']['zynumber'])}$loopChild['now']['zynumber']{else}0{/if}</span>
+</li>
+        </div>
+        <div class="mui-col-sm-14">
+    总数 <span class="mui-badge mui-badge-success">$loopChild['number']</span> </div>
+    </div>			
+				
+				</div>
+			</div><!--{/loop}-->
+					{else}
+											<div style="text-align:center;margin: auto;
+    position: absolute;
+    top: 180%;
+    left: 0;
+    right: 0;
+    bottom: 0;">
+					<span  class="mui-icon mui-icon-paperplane" style="font-size: 120px;"></span>
+	<h5>空空如也</h5>
+	<h5>这个楼层没有教室</h5>
+	  <button  id='yuyue2' type="button" class="mui-btn mui-btn-block mui-btn-outlined">返回</button>
+	  </div>
+					{/if}
+
+						</div>
+						</div>
+					</div>
+				</div>
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>	
+		</div>
+		<script src="{$arrInfo[url]}/app/{$AppName}/model/js/mui.min.js"></script>
+		<script>
+			mui.init();
+		
+			 //侧滑容器父节点
+			var offCanvasWrapper = mui('#offCanvasWrapper');
+			 //主界面容器
+			
+
+			 //菜单界面，‘关闭侧滑菜单’按钮的点击事件
+			document.getElementById('offCanvasHide').addEventListener('tap', function() {
+				offCanvasWrapper.offCanvas('close');
+			});
+			 //主界面和侧滑菜单界面均支持区域滚动；
+			mui('#offCanvasSideScroll').scroll();
+			mui('#offCanvasContentScroll').scroll();
+
+
+			 //实现ios平台原生侧滑关闭页面；
+			if (mui.os.plus && mui.os.ios) {
+				mui.plusReady(function() { //5+ iOS暂时无法屏蔽popGesture时传递touch事件，故该demo直接屏蔽popGesture功能
+					plus.webview.currentWebview().setStyle({
+						'popGesture': 'none'
+					});
+				});
+			}
+			  (function($) {
+				$('#scroll').scroll({
+					indicators: true //是否显示滚动条
+				});
+				var segmentedControl = document.getElementById('segmentedControl');
+				$('.mui-input-group').on('change', 'input', function() {
+					if (this.checked) {
+						var styleEl = document.querySelector('input[name="style"]:checked');
+						var colorEl = document.querySelector('input[name="color"]:checked');
+						if (styleEl && colorEl) {
+							var style = styleEl.value;
+							var color = colorEl.value;
+							segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
+						}
+					}
+				});
+			})(mui);  
+			mui(".mui-content").on('tap','.mui-card',function(){
+  //获取id
+  var id = this.getAttribute("id");
+  if(id=="show")
+  {offCanvasWrapper.offCanvas('show');}else
+  {
+  //传值给详情页面，通知加载新数据
+  //mui.fire(detail,'getDetail',{id:id});
+  //打开新闻详情
+  mui.openWindow({
+    id:'detail',
+    url:'{$arrInfo[url]}/{$AppName}/detail/'+id
+  });
+  }
+}); 
+			mui(".mui-table-view").on('tap','.azy',function(){
+  //获取id
+  var id = this.getAttribute("id");
+
+  //传值给详情页面，通知加载新数据
+  //mui.fire(detail,'getDetail',{id:id});
+  //打开新闻详情
+  mui.openWindow({
+    id:'detail',
+    url:'{$arrInfo[url]}/{$AppName}/yd/'+id
+  });
+ 
+});		{if empty($WArrsy)}
+	document.getElementById('yuyue2').addEventListener('tap', function() {
+  mui.openWindow({
+    url: '{$arrInfo[url]}/sxzs/yuyue', 
+    id:'yy'
+  });
+});
+{/if}
+			mui.ready(function (){
+
+  				document.getElementById("item1").style.height=document.body.clientHeight *0.55+ "px"; 
+					{if !empty($WArrsy)}
+			<!--{loop $WArrsy $key $loopChild}-->
+			{if empty($loopChild['now'])}
+	mui.ajax('{$arrInfo[url]}/{$AppName}/upnumber/{$loopChild[rid]}',{
+	data:{
+		ZY:'970127',
+	},
+	async:true,
+	dataType:'text',
+	type:'post',//HTTP请求类型
+	timeout:10000,//超时时间设置为10秒；              
+	success:function(data){
+
+	},
+	error:function(xhr,type,errorThrown){
+		//异常处理；
+		console.log(type);
+	}
+});
+					{/if}
+		<!--{/loop}-->
+					{/if}
+
+
+});
+		</script>
+	</body>
+
+</html>

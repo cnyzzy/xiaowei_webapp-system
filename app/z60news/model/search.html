@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>校庆新闻 - 盐师六十周年</title>
+	<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+	<script type="text/javascript" src="{$arrInfo[url]}/app/{$AppName}/model/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{$arrInfo[url]}/app/{$AppName}/model/js/swiper-3.4.0.jquery.min.js"></script>
+	<link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/swiper-3.2.7.min.css"/>
+	<link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/home.css"/>
+	<link rel="stylesheet" href="{$arrInfo[url]}/app/{$AppName}/model/css/aui.css"/>
+
+</head>
+<body>
+<style>
+.aui-search-box ul li {
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-height: 38px;
+    /* width: 95%; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
+<div class="aui-searchbar" id="search" style="border-bottom:1px solid #ddd">
+	<a href="javascript:" onclick="history.back(); " class="aui-pull-left aui-btn" style="background:none; padding-right:0">
+		<span class="aui-iconfont aui-icon-left" style="font-weight:600;">  </span>
+	</a>
+	<div class="aui-searchbar-input aui-border-radius" tapmode onclick="doSearch()">
+
+		<i class="aui-iconfont aui-icon-search"></i>
+		<form  id ="SSS" method="post"  action="{$arrInfo[url]}/{$AppName}/search">
+			<input type="search" placeholder="请输入关键字..." name="searchpost" id="search-input"{if !empty($postn)} value="$postn"{/if}>
+		</form>
+	</div>
+	<div class="aui-searchbar-cancel" onclick="document.getElementById('SSS').submit()" tapmod style="color:#FF5E53; font-size:14px; padding-right:10px;">搜索</div>
+</div>
+		<div style="padding-top:45px; padding-bottom:49px;">
+		 	  {if isset($Array2)&&!empty($postn)}	
+				  <!--{loop $Array2 $key $loopChild}-->	  
+				  {php UNSET($Acimg);}
+
+			 {if !empty($loopChild['img'])}
+										{php $cimg=json_decode($loopChild['img'],true);}<!--{loop $cimg $key $loopChild2}-->{php $Acimg[]=$loopChild2;}
+<!--{/loop}-->{/if}
+ {if count($Acimg)==1}
+			<section class="aui-middle-dome">
+				<a href="details/$loopChild['id']" data-action-label="click-a" data-tag="news" class="aui-middle-dome-a">
+					<div class="aui-middle-dome-title">
+						<h3>{if empty($loopChild['title'])}空标题{else}$loopChild['title']{/if}</h3>
+						<div class="aui-middle-dome-text">
+							<div class="clearfix">
+								{if $loopChild['istop']=='1'}<span class="aui-top box-line">置顶</span>{/if}
+{if $loopChild['istop']=='2'}<span class="aui-top box-line">广告</span>{/if}
+
+								<span class="aui-title">{if $loopChild['groupid']=='1'}庆典新闻{/if}
+						{if $loopChild['groupid']=='2'}学院活动{/if}
+						{if $loopChild['groupid']=='3'}传媒报道{/if}
+						{if $loopChild['groupid']=='4'}校友新闻{/if}
+						{if $loopChild['groupid']=='5'}专栏文章{/if}
+						{if $loopChild['groupid']=='6'}其他新闻{/if}</span>
+								<span class="aui-comment">浏览 {if empty($loopChild['view'])}0{else}$loopChild['view']{/if}</span>
+							</div>
+						</div>
+					</div>
+					<div class="aui-middle-dome-img">
+					{if !empty($Acimg[0])}<img src="$Acimg[0]">{else}<img src="{$arrInfo[url]}/app/{$AppName}/model/img/top2.jpg">{/if}
+					</div>
+				</a>
+			</section>
+{else}
+
+			<section class="aui-middle-dome">
+				<a href="details/$loopChild['id']" data-action-label="click-a" data-tag="news" class="aui-middle-dome-a">
+					<div class="aui-middle-dome-list-box">
+						<h3>{if empty($loopChild['title'])}空标题{else}$loopChild['title']{/if}</h3>
+						<div class="aui-middle-dome-list">
+							<ul class="clearfix">
+							 {for $i=1;$i<4;$i++}
+							 <li>
+									<img src="{if !empty($Acimg[$i-1])}$Acimg[$i-1]{/if}" alt="">
+								</li>
+{/for}
+
+							</ul>
+						</div>
+						<div class="aui-middle-dome-text">
+							<div class="clearfix">
+								<span class="aui-title">{if $loopChild['groupid']=='1'}庆典新闻{/if}
+						{if $loopChild['groupid']=='2'}学院活动{/if}
+						{if $loopChild['groupid']=='3'}传媒报道{/if}
+						{if $loopChild['groupid']=='4'}校友新闻{/if}
+						{if $loopChild['groupid']=='5'}专栏文章{/if}
+						{if $loopChild['groupid']=='6'}其他新闻{/if}</span>
+								<span class="aui-title">浏览 {if empty($loopChild['view'])}0{else}$loopChild['view']{/if}</span>
+							</div>
+						</div>
+					</div>
+				</a>
+			</section>{/if}
+ <!--{/loop}-->
+		</div>
+
+		<!-- 内容信息 end -->
+		{ELSE}
+	<div class="aui-search">
+		<div class="aui-search-box">
+			<h3 class="b-line">热门</h3>
+			<ul>
+			  {if isset($Array1)}	
+				  <!--{loop $Array1 $key $loopChild}-->	  
+				  
+				<li class="b-line"><em {if $key<3}style="color:{if $key==0}#FF5E53{/if}{if $key==1}#FF8D20{/if}{if $key==2}#3CC51E{/if}"{/if}>{php echo($key+1)}.</em><a href="details/$loopChild['id']">{if empty($loopChild['title'])}空标题{else}$loopChild['title']{/if}</a></li>
+						<!--{/loop}-->{/if}
+				</ul>
+		</div>
+	</div>
+{/if}
+	<footer class="aui-bar aui-bar-tab" id="footer" style="border-top:1px solid #ddd; background:#efefef">
+		<div class="aui-bar-tab-item" tapmode>
+			<a href="{$arrInfo[url]}/{$AppName}/index">
+				<i class="aui-iconfont aui-icon-paper"></i>
+				<div class="aui-bar-tab-label">头条</div>
+			</a>
+		</div>
+		<div class="aui-bar-tab-item  aui-active" tapmode>
+			<a href="{$arrInfo[url]}/{$AppName}/news">
+				<i class="aui-iconfont aui-icon-like"></i>
+				<div class="aui-bar-tab-label">新闻</div>
+			</a>
+		</div>
+	</footer>
+</body>
+</html>

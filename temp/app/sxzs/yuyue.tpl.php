@@ -1,0 +1,352 @@
+<?php defined('ZRoot') or die('Access Denied.'); ?><!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>实训助手</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/css/mui.min.css">
+				<link href="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/css/mui.picker.css" rel="stylesheet" />
+		<link href="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/css/mui.poppicker.css" rel="stylesheet" />
+		<style type="text/css">
+			    html, body{  
+            height: 100%;  
+            padding: 0;  
+            margin: 0;  
+        }  
+			.mui-content>.mui-table-view:first-child {
+				margin-top: -1px;
+			}
+		.mui-card {
+font-size: 14px;
+position: relative;
+overflow: hidden;
+margin: 10px;
+border-radius: 2px;
+background-color: #fff;
+background-clip: padding-box;
+box-shadow: 0 1px 2px rgba(0,0,0,.3);
+text-align: center;
+}
+			.mui-control-content {
+				background-color: white;
+
+
+    min-height:600px;
+			}
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+	.mui-card-content-inner2 {
+position: relative;
+padding: 1px;
+}
+		</style>
+	</head>
+
+	<body>
+	<header id="header" class="mui-bar mui-bar-transparent">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">预约</h1>
+		</header>
+	
+<nav class="mui-bar mui-bar-tab">
+			<a id='yuyue' class="mui-tab-item mui-active">
+				<span class="mui-icon mui-icon-star-filled"></span>
+				<span class="mui-tab-label">预约</span>
+			</a> 
+			<a id='ap' class="mui-tab-item">
+				<span class="mui-icon mui-icon-flag"></span>
+				<span class="mui-tab-label">安排</span>
+			</a>
+			<a id='wo' class="mui-tab-item">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">我</span>
+			</a>
+
+		</nav>
+
+
+		<div class="mui-content">
+
+			<div id="slider" class="mui-slider" >
+			  <div class="mui-slider-group">
+			    <!-- 第一张 -->
+			     <div class="mui-slider-item">
+			      <a href="#">
+			        <img src="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/img/shuijiao.jpg">
+			      </a>
+			    </div>
+			    <!-- 第二张 -->
+			    <div class="mui-slider-item">
+			      <a href="#">
+			        <img src="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/img/yuantiao.jpg">
+			      </a>
+			    </div>
+			  </div>
+			  <div class="mui-slider-indicator">
+			    <div class="mui-indicator mui-active"></div>
+			    <div class="mui-indicator"></div>
+			  </div>
+			</div>
+						<div class="mui-card">
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner2">
+										<form action="<?php echo $arrInfo['url'];?>/sxzs/s" method="post" class="mui-input-group"><div class="mui-input-row mui-search">
+    <input type="search" class="mui-input-clear" name="searchpost" placeholder="">
+</div></form>
+					</div>
+				</div>
+			</div>
+			<div class="mui-card">
+				<div class="mui-card-content">
+					<div class="mui-card-content-inner">
+						<button id='showxq' class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" type='button'>校区</button>
+					<button id='showlx' class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" type='button'>类型</button>
+					<button id='showlc' class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined" type='button'>楼层</button>
+					    <input id="xq"  type="hidden" value="">
+					      <input id="lx"  type="hidden" value="">
+					        <input id="lc"  type="hidden" value="">
+					</div>
+				</div>
+				<div class="mui-card-footer"> <br><button id="yyan" type="button" data-loading-icon="mui-spinner mui-spinner-custom" class="mui-btn mui-btn mui-btn-primary mui-btn-block ">查看</button></div>
+			</div>
+
+			</div>
+		<script src="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/js/mui.picker.js"></script>
+		<script src="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/js/mui.poppicker.js"></script>
+		<script>
+						(function($, doc) {
+				$.init();
+				
+				$.ready(function() {
+					/**
+					 * 获取对象属性的值
+					 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+					 * @param <?php echo Object;?> obj 对象
+					 * @param <?php echo String;?> param 属性名
+					 */
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					//普通示例
+					var xqPicker = new $.PopPicker();
+						var lxData = [];
+					xqPicker.setData([<?php if(!empty($xq)) { ?>
+						<?php foreach((array)$xq as $key=>$loopChild) {?>{
+						value: '<?php echo $key;?>',
+						text: '<?php echo $loopChild;?>'
+					},<?php }?>
+<?php } ?>					]);
+					var showUserPickerButton = doc.getElementById('showxq');
+					var userResult = doc.getElementById('showxq');
+					var wxq = doc.getElementById('xq');
+							var lcData = [];
+					showUserPickerButton.addEventListener('tap', function(event) {
+						xqPicker.show(function(items) {
+							userResult.innerText = items[0].text;
+							wxq.value=items[0].value;
+							
+						mui.ajax('<?php echo $arrInfo['url'];?>/<?php echo $AppName;?>/do/axajxq/'+items[0].value,{
+	data:{
+		zy:'970127005',
+	},
+	dataType:'json',
+	type:'post',
+	timeout:5000,
+	headers:{'Content-Type':'application/json'},	              
+	success:function(data){
+		//服务器返回响应，根据响应结果，分析是否登录成功；
+		lxData = data;
+		mui.closePopups();
+		mui.toast('成功同步数据',{ duration:'short', type:'div' }) 
+							var slxPicker = new $.PopPicker({
+						layer: 2
+					});
+					slxPicker.setData(lxData);
+					var showlxPickerButton = doc.getElementById('showlx');
+					var lxResult = doc.getElementById('showlx');
+						var wlx = doc.getElementById('lx');
+					showlxPickerButton.addEventListener('tap', function(event) {
+						slxPicker.show(function(items) {
+							lxResult.innerText = items[0].text + " | " + items[1].text;
+								wlx.value=items[1].value;
+							//返回 false 可以阻止选择框的关闭
+													mui.ajax('<?php echo $arrInfo['url'];?>/<?php echo $AppName;?>/do/axajde/'+items[1].value,{
+	data:{
+		zy:'970127005',
+	},
+	dataType:'json',
+	type:'post',
+	timeout:5000,
+	headers:{'Content-Type':'application/json'},	              
+	success:function(data){
+		//服务器返回响应，根据响应结果，分析是否登录成功；
+		lcData = data;
+		mui.closePopups();
+		mui.toast('成功同步数据',{ duration:'short', type:'div' }) 
+								var slcPicker = new $.PopPicker({
+						layer: 2
+					});
+					slcPicker.setData(lcData);
+					var showlcPickerButton = doc.getElementById('showlc');
+					var lcResult = doc.getElementById('showlc');
+					var wlc = doc.getElementById('lc');
+					showlcPickerButton.addEventListener('tap', function(event) {
+						slcPicker.show(function(items) {
+							lcResult.innerText = items[0].text + " | " + items[1].text;
+					wlc.value=items[1].value;
+					//mui.showLoading("正在加载..","div");
+					//mui.hideLoading(callback);/
+						//返回 false 可以阻止选择框的关闭
+			}, false);					
+	});				
+	
+				
+	},
+	error:function(xhr,type,errorThrown){
+		//异常处理；
+		mui.alert('数据读取失败', '错误', function() {
+	
+				});
+	}
+});
+			}, false);					
+	});
+				
+	},
+	error:function(xhr,type,errorThrown){
+		//异常处理；
+		mui.alert('数据读取失败', '错误', function() {
+	
+				});
+	}
+});
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					//-----------------------------------------
+				
+	
+				//级联示例
+	//-----------------------------------------
+			
+	
+				//级联示例
+
+
+	});		
+			})(mui, document);
+		
+				
+		
+document.getElementById('yuyue').addEventListener('tap', function() {
+mui.openWindow({
+    url: '/sxzs/yuyue', 
+    id:'yy'
+  });
+});
+	document.getElementById('wo').addEventListener('tap', function() {
+  mui.openWindow({
+    url: '/sxzs/wo', 
+    id:'wo'
+  });
+});
+	document.getElementById('ap').addEventListener('tap', function() {
+  mui.openWindow({
+    url: '/sxzs/index', 
+    id:'index'
+  });
+});
+
+mui(document.body).on('tap', '#yyan', function(e) {
+    mui(this).button('loading');
+    var zthis=this;
+    if(document.getElementById('xq').value.length==0||document.getElementById('lx').value.length==0||document.getElementById('lc').value.length==0){
+							setTimeout(function() {
+        mui(this).button('reset');
+    }.bind(this), 200);
+		mui.alert('您没有完成选择', '提示', function() {
+
+				});
+		}else
+		{
+			mui.showLoading("正在加载..","div");
+
+			var lc = document.getElementById("lc").value;
+			mui.openWindow({
+    url: '<?php echo $arrInfo['url'];?>/<?php echo $AppName;?>/yd/'+lc, 
+    id:'yy'
+  });
+		}
+    setTimeout(function() {
+        mui(this).button('reset');
+    }.bind(this), 2000);
+});
+//扩展mui.showLoading
+(function($, window) {
+    //显示加载框
+    $.showLoading = function(message,type) {
+        if ($.os.plus && type !== 'div') {
+            $.plusReady(function() {
+                plus.nativeUI.showWaiting(message);
+            });
+        } else {
+            var html = '';
+            html += '<i class="mui-spinner mui-spinner-white"></i>';
+            html += '<p class="text">' + (message || "数据加载中") + '</p>';
+
+            //遮罩层
+            var mask=document.getElementsByClassName("mui-show-loading-mask");
+            if(mask.length==0){
+                mask = document.createElement('div');
+                mask.classList.add("mui-show-loading-mask");
+                document.body.appendChild(mask);
+                mask.addEventListener("touchmove", function(e){e.stopPropagation();e.preventDefault();});
+            }else{
+                mask[0].classList.remove("mui-show-loading-mask-hidden");
+            }
+            //加载框
+            var toast=document.getElementsByClassName("mui-show-loading");
+            if(toast.length==0){
+                toast = document.createElement('div');
+                toast.classList.add("mui-show-loading");
+                toast.classList.add('loading-visible');
+                document.body.appendChild(toast);
+                toast.innerHTML = html;
+                toast.addEventListener("touchmove", function(e){e.stopPropagation();e.preventDefault();});
+            }else{
+                toast[0].innerHTML = html;
+                toast[0].classList.add("loading-visible");
+            }
+        }   
+    };
+
+    //隐藏加载框
+      $.hideLoading = function(callback) {
+        if ($.os.plus) {
+            $.plusReady(function() {
+                plus.nativeUI.closeWaiting();
+            });
+        } 
+        var mask=document.getElementsByClassName("mui-show-loading-mask");
+        var toast=document.getElementsByClassName("mui-show-loading");
+        if(mask.length>0){
+            mask[0].classList.add("mui-show-loading-mask-hidden");
+        }
+        if(toast.length>0){
+            toast[0].classList.remove("loading-visible");
+            callback && callback();
+        }
+      }
+})(mui, window);
+</script>
+		</script>
+	</body>
+
+</html>

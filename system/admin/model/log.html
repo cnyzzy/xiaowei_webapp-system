@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>操作记录-小薇平台管理后台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="{$arrInfo[url]}/system/admin/model/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="{$arrInfo[url]}/system/admin/model/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="XIAOWEI Admin" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/admin.css">
+    <link rel="stylesheet" href="{$arrInfo[url]}/system/admin/model/assets/css/app.css">
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/echarts.min.js"></script>
+</head>
+
+
+<body data-type="generalComponents">
+{template header}
+
+
+        <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title">
+                管理员操作记录
+            </div>
+            <ol class="am-breadcrumb">
+                <li><a href="/admin" class="am-icon-home">首页</a></li>
+                <li><a>系统管理</a></li>
+                <li class="am-active">操作记录</li>
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> 操作记录
+                    </div>
+               
+
+
+                </div>
+                <div class="tpl-block">
+                   
+
+                    <ul class="tpl-task-list tpl-task-remind">
+					<!--{loop $LogArray $key $loopChild}-->
+                                    <li>   
+									<div class="cosB">{PHP ECHO(smartDate($loopChild['time']))}</div>
+                                      {PHP $type=0;}
+                                        <div class="task-title">
+                                           {if $loopChild['type']=='64'||($loopChild['type']=='43'&&$loopChild['dotype']=='5')}{PHP $type=1;} <span class="label label-sm label-danger">重要</span>{/if}
+											{if $loopChild['type']=='61'||$loopChild['type']=='62'||$loopChild['type']=='31'}{PHP $type=2;} <span class="label label-sm label-warning">系统</span>{/if}
+											{if $loopChild['type']=='41'||($loopChild['type']=='43'&&$loopChild['dotype']!='5')||$loopChild['type']=='42'}{PHP $type=3;} <span class="label label-sm label-success">操作</span>{/if}
+											{if $loopChild['type']=='11'||$loopChild['type']=='12'}{PHP $type=4;} <span class="label label-sm label-default">记录</span>{/if}
+											 <div class="cosA">
+											<a href="{$arrInfo[url]}/admin/userd/{$loopChild['uid']}">{$loopChild['name']}</a>{if $type==4}{if $loopChild['type']=='11'}登入{/if}{if $loopChild['type']=='12'}登出{/if}IP:{$loopChild['ip']}{/if}
+											{if $type==3}在{if $loopChild['type']=='41'}绑定管理{/if}{if $loopChild['type']=='42'}绑定管理回收站{/if}{if $loopChild['type']=='43'}教务系统资料管理{/if}中，对编号为{$loopChild['toid']}的用户进行了一次{if $loopChild['dotype']=='2'}删除{/if}{if $loopChild['dotype']=='3'}修改{/if}{if $loopChild['dotype']=='4'}新建{/if}{if $loopChild['dotype']=='5'}查询{/if}{if $loopChild['dotype']=='6'}权限{/if}操作{/if}
+											{if $type==2}在{if $loopChild['type']=='61'}基本配置管理{/if}{if $loopChild['type']=='62'}APP管理{/if}{if $loopChild['type']=='31'}微信API配置管理{/if}中，以{if $loopChild['rightint']==9}超级管理员{/if}{if $loopChild['rightint']==8}平台管理员{/if}{if $loopChild['rightint']==7}管理员{/if}{if $loopChild['rightint']==6}应用管理员{/if}{if $loopChild['rightint']==5}应用维护员{/if}{if $loopChild['rightint']==4}审查账号{/if}($loopChild['rightint']级)身份进行了{if $loopChild['dotype']=='2'}删除{/if}{if $loopChild['dotype']=='3'}修改{/if}{if $loopChild['dotype']=='4'}新建{/if}{if $loopChild['dotype']=='5'}查询{/if}{if $loopChild['dotype']=='2'}权限{/if}操作{/if}
+											{if $type==1}在{if $loopChild['type']=='64'}权限管理{/if}{if $loopChild['type']=='43'&&$loopChild['dotype']=='5'}教务系统资料隐私管理{/if}中，对{if $loopChild['type']=='43'&&$loopChild['dotype']=='5'}编号为{$loopChild['toid']}的用户{ELSE}{$loopChild['toid']}{/if}进行了一次{if $loopChild['dotype']=='2'}删除{/if}{if $loopChild['dotype']=='3'}修改{/if}{if $loopChild['dotype']=='4'}新建{/if}{if $loopChild['dotype']=='5'}查询{/if}{if $loopChild['dotype']=='6'}权限{/if}操作{/if}
+
+											</span>    
+										
+                                        </div>
+                                           
+                                      
+                                    </li>
+<!--{/loop}-->
+                      
+                       
+                    </ul>
+                </div>
+
+            </div>
+
+ <div class="am-cf">
+
+                                       <div class="am-fr">
+                                        <ul class="am-pagination tpl-pagination">
+										共 $TotalNum 条记录
+										  {if $prePageNum}
+                  <li {if $NOW==1}class="am-disabled"{/if}><a href="$arrInfo[url]/admin/$Operate/1">«</a></li>
+				          {if $NOWLLLL>0} <li><a href="$arrInfo[url]/admin/$Operate/$NOWLLLL">$NOWLLLL</a></li>{/if}
+      {if $NOWLLL>0}<li><a href="$arrInfo[url]/admin/$Operate/$NOWLLL">$NOWLLL</a></li>{/if}
+        {if $NOWLL>0} <li><a href="$arrInfo[url]/admin/$Operate/$NOWLL">$NOWLL</a></li>{/if}
+      {if $NOWL>0}<li><a href="$arrInfo[url]/admin/$Operate/$NOWL">$NOWL</a></li>{/if}
+      <li class="am-active"><a href="$arrInfo[url]/admin/$Operate/$NOW" >$NOW</a></li>
+          {if $NOWR<=$prePageNum}<li><a href="$arrInfo[url]/admin/$Operate/$NOWR">$NOWR</a></li>{/if}
+        {if $NOWRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/$Operate/$NOWRR">$NOWRR</a></li>{/if}
+		{if $NOWRRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/$Operate/$NOWRRR">$NOWRRR</a></li>{/if}
+        {if $NOWRRRR<=$prePageNum}<li><a href="$arrInfo[url]/admin/$Operate/$NOWRRRR">$NOWRRRR</a></li>{/if}
+      <li {if $NOW==$prePageNum}class="am-disabled"{/if}><a href="$arrInfo[url]/admin/$Operate/$prePageNum">»</a></li>
+											{/if}
+                                        </ul>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+ <script src="{$arrInfo[url]}/system/admin/model/assets/js/jquery-2.1.1.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/amazeui.min.js"></script>
+    <script src="{$arrInfo[url]}/system/admin/model/assets/js/app.js"></script>
+	
+</body>
+</html>

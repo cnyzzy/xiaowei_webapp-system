@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{if $Arr['title']}{$Arr['title']}{/if}</title>
+<link href="{$arrInfo[url]}/app/{$AppName}/model/css/details.css" type="text/css" rel="stylesheet" />
+<link href="{$arrInfo[url]}/app/{$AppName}/model/js/layer-v3.0.3/layer/mobile/need/layer.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$arrInfo[url]}/app/{$AppName}/model/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="{$arrInfo[url]}/app/{$AppName}/model/js/phone.js" ></script>
+<script type="text/javascript" src="{$arrInfo[url]}/app/{$AppName}/model/js/layer-v3.0.3/layer/layer.js"></script>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/jquery-weui.min.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/mui.css"/>
+        <link rel="stylesheet" href="{$arrInfo[url]}/app/home/model/css/animate.css"/>
+
+		    <script src="{$arrInfo[url]}/app/home/model/lib/jquery-2.1.4.js"></script>
+        <script src="{$arrInfo[url]}/app/home/model/js/jquery-weui.js"></script>	
+</head>
+
+<body>
+<div class="whole">
+{if !empty($Arr['firstimg'])}
+	<div class="movie">
+    	<div class="back"><img src="{$arrInfo[url]}/app/{$AppName}/model/image/back.png" /></div>
+    	<img src="$Arr['firstimg']" />
+        <span>
+        	{if !empty($Arr['video'])}<img src="{$arrInfo[url]}/app/{$AppName}/model/image/start.png" />{/if}
+        </span>
+    </div>{/if}
+    <div class="detail">
+    	<div class="bol"><img src="{$arrInfo[url]}/app/{$AppName}/model/image/bg-bg.png" /></div>
+        <div class="det-con">
+        	<div class="common det-c">
+            		{if !empty($Arr['smallimg'])}<div class="jz-pic">
+                	<img src="$Arr['smallimg']" />
+                </div>{/if}
+                <div class="det-inf">
+                	<p class="det-titles">
+                    	<span>{if $Arr['title']}{$Arr['title']}{/if}</span>
+            <p class="eng">{if $Arr['owner']}{$Arr['owner']}{/if} 主办</p>
+                            <p class="tim">活动地点 <span>{if $Arr['place']}{$Arr['place']}{/if}</span></p>
+                            <p class="tim">活动时间 <span>{if $Arr['time']}{$Arr['time']}{/if}</span></p>
+						
+							 <p class="tim">总座位数 <span>{if $totalnum}{$totalnum}{/if}</span></p>
+                           {if $totalnum>0} <p class="tim">剩余座位 <span>{if $seatnum}{$seatnum}{/if}</span></p>{/if}
+                    </p>
+                    <ul class="stars">
+                    	<li><img src="{$arrInfo[url]}/app/{$AppName}/model/image/stars.png" /></li>
+                        <li><img src="{$arrInfo[url]}/app/{$AppName}/model/image/stars.png" /></li>
+                        <li><img src="{$arrInfo[url]}/app/{$AppName}/model/image/stars.png" /></li>
+                        <li><img src="{$arrInfo[url]}/app/{$AppName}/model/image/stars.png" /></li>
+                        <li><img src="{$arrInfo[url]}/app/{$AppName}/model/image/stars.png" /></li>
+                    </ul>
+                   
+                    
+                </div>
+            </div>
+            
+            <div class="common parti">
+            	<span>{if $Arr['content']}{$Arr['content']}{/if}</span>
+            </div>
+            {if !empty($Arr['cimg'])}
+			         <div class="common stage-photo">
+            	<h3>照片</h3>
+                <ul>
+{php $cimg=json_decode($Arr['cimg'],true);}<!--{loop $cimg $key $loopChild}-->	<li><img src="$loopChild" /></li>
+<!--{/loop}-->
+                </ul>
+            </div>
+										{/if}
+                           
+   
+            
+        </div>
+    </div>
+	{if $Arr['endtime']<time()} <a class="footer">结束订票</a>{else}
+	{if $seatnum&&$seatnum>0}  <a class="footer" href="{$arrInfo[url]}/{$AppName}/seat/{$id}">立即订票</a>{ELSE}<a class="footer">无票</a>{/if}{/if}
+
+</div>
+<script type="text/javascript">
+
+$(document).ready(function() {
+			 				{if $isstop==1}		
+			
+ 			 setTimeout(function() {
+         $.modal({
+  title: "提示",
+  text: "当前绑定的用户身份不能进行选票<br>您可以选择重新绑定或退出",
+  buttons: [
+    { text: "取消", className: "default",
+	onClick: function(){ 
+	  $.showLoading("即将跳回...","cancel");
+			 setTimeout(function() {
+            window.location.href="{$arrInfo[url]}";
+        }, 800)	
+	} },
+    { text: "重新绑定", 
+	onClick: function(){
+		  $.showLoading("即将跳转...","cancel");
+			 setTimeout(function() {
+            window.location.href="{$arrInfo[url]}/home/modify";
+        }, 800)	
+	} },
+  ]
+});
+        }, 2600)	
+
+		{/if}	
+	$(".movie").click(function(){
+		movie();
+	});
+	        	{if !empty($Arr['video'])}
+	function movie(){
+		layer.open({
+		  type: 2,
+		  title: false,
+		  area: ["630px", "360px"],
+		  shade: 0.8,
+		  closeBtn: 1,
+		  shadeClose: true,
+		  content: "$Arr['video']"
+		});	
+	}
+{/if}
+	$(".back").on("click",function(){
+		window.history.go(-1);
+	});
+	
+});
+</script>
+</body>
+</html>
