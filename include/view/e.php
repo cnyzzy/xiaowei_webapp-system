@@ -37,6 +37,7 @@ function Test(&$DB){
         $echoStr = @$_GET["echostr"];  
 		 $this->log('A'.$echoStr);     
         if ($this->checkSignature()) {  
+		ob_clean();
             echo $echoStr;        $this->log($echoStr);     
         }  
         exit();  
@@ -60,7 +61,7 @@ function Test(&$DB){
             return true;  
         
     }  
-  
+
     /** 
      * 接收消息，并自动发送响应信息 
      */  
@@ -68,6 +69,7 @@ function Test(&$DB){
           
         //验证签名  
         if ($this->checkSignature()){  
+		
             $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];  
             $this->log_request_info();  
       
