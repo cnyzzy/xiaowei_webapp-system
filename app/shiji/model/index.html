@@ -582,12 +582,24 @@ var iszanz='已点赞 ';
 if (!data.data[i]['iszan']){iszancode='0';} 			
 
 var color = colorarray[Math.floor(Math.random()*colorarray.length)];
-	
-            
-        $('#list').prepend('<div class="weui-panel__bd"><a style="color:#000" class="weui_cell"> <div id="no'+id+'" sid="'+id+'" iszan="'+iszancode+'" class="weui-media-box weui-media-box_text" style="border-top: 4.5px solid '+color+';"><h4 class="weui-media-box__title">'+content+'</h4><p class="weui-media-box__desc"></p><ul class="weui-media-box__info"><li class="weui-media-box__info__meta">来自</li><li class="weui-media-box__info__meta">'+from2+'</li><li class="weui-media-box__info__meta2 weui-media-box__info__meta_extra">'+iszanz+liked+'</li> </ul></div></a> </div>');
+	 
+        $('#list').prepend('<div style="display:none" id="div'+id+'" class="weui-panel__bd"><a style="color:#000" class="weui_cell"> <div style="display:none" id="no'+id+'" sid="'+id+'" iszan="'+iszancode+'" class="weui-media-box weui-media-box_text" style="border-top: 4.5px solid '+color+';"><h4 class="weui-media-box__title">'+content+'</h4><p class="weui-media-box__desc"></p><ul class="weui-media-box__info"><li class="weui-media-box__info__meta">来自</li><li class="weui-media-box__info__meta">'+from2+'</li><li class="weui-media-box__info__meta2 weui-media-box__info__meta_extra">'+iszanz+liked+'</li> </ul></div></a> </div>');
+
+	    $("#div"+id).delay(i*1000).slideDown(420,function(){
+
+		
+            })
+ 	$("#no"+id).delay(400+i*1000).slideDown(400,function(){
+
+		
+            })
+			
 			  
  }   
-  $('#tab1').pullToRefreshDone();       
+  	 setTimeout(function() {
+  $('#tab1').pullToRefreshDone(); 
+        }, 400) 
+      
     }}
 		   }, 
 			complete :function(XMLHttpRequest, textStatus){
@@ -669,6 +681,10 @@ $("#tab2").destroyInfinite();
             });
 
       });
+	   function sleep(n) { //n表示的毫秒数
+            var start = new Date().getTime();
+            while (true) if (new Date().getTime() - start > n) break;
+        }  
 $(document).ready(function(e) {
 
 //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
