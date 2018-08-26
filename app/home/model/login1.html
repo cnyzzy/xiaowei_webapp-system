@@ -1,7 +1,7 @@
  <script>
 			         function check(form) {
 
-          if(form.username.value.length!=8) {
+          if(form.username.value.length<7) {
                $.alert("学号不正确", "警告", function() {
 form.username.focus();
 });                

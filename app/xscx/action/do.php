@@ -7,13 +7,28 @@ function rewrite($filename, $data) {
   fclose ( $filenum );    
 }
 empty($params[0]) ? $LId = '1' : $LId = $params[0];
-IF($LId == 're'){
-	empty($_POST['name']) ? $name = '' : $name = mysql_real_escape_string (trim($_POST['name']));
-		empty($_POST['idid']) ? $idid = '' : $idid = mysql_real_escape_string (trim($_POST['idid']));
+IF($LId == 're2'){
+	empty($_POST['name']) ? $name = '8' : $name = mysql_real_escape_string (trim($_POST['name']));
+		empty($_POST['idid']) ? $idid = '8' : $idid = mysql_real_escape_string (trim($_POST['idid']));
 	//个人信息
 	if($idid!='8'&&$name!='8'){
 	
-	$sql3="SELECT  * FROM xssj1 where xm = '{$name}' and sfzh = '{$idid}'";	
+	$sql3="SELECT  * FROM xssj2018 where xm = '{$name}' and sfzh = '{$idid}'";	
+	$row = @$DB->once_fetch_array($sql3);
+	if(!EMPTY($row['id']))
+	{echo $row['id'];}else{
+		echo'0';
+	}
+	}else{
+	echo '0';}
+}
+IF($LId == 're'){
+	empty($_POST['name']) ? $name = '8' : $name = mysql_real_escape_string (trim($_POST['name']));
+		empty($_POST['idid']) ? $idid = '8' : $idid = mysql_real_escape_string (trim($_POST['idid']));
+	//个人信息
+	if($idid!='8'&&$name!='8'){
+	
+	$sql3="SELECT  * FROM xssj2018 where xm = '{$name}' and sfzh = '{$idid}'";	
 	$row = @$DB->once_fetch_array($sql3);
 	if(!EMPTY($row['id']))
 	{

@@ -29,9 +29,9 @@ session_destroy();
 IF($LId == 'num'){
 
 	empty($_POST['number']) ? $number = '': $number =  mysql_real_escape_string (trim($_POST['number']));
-	if(strlen($number)==8)
+	if(strlen($number)>7)
 	{
-		$sql3="SELECT  * FROM xssj1 where xh = '{$number}'";	
+		$sql3="SELECT  * FROM xssj2018 where xh = '{$number}'";	
 	$row = @$DB->once_fetch_array($sql3);
 	if(!EMPTY($row['id']))
 	{
@@ -60,8 +60,7 @@ $res = $_SESSION['res'];
 	{
 		//post验证
 		
-		//开始连接教务系统
-
+//开始连接教务系统
 IF(EMPTY($res)){$res = Writecode($idd);$_SESSION['res']=$res;}
 if(isset($res['status'])){
 $re="9";}
@@ -176,7 +175,7 @@ $res = $_SESSION['res'];
 	empty($_POST['pass']) ? empty($row2['pass']) ? $passwd = '' : $passwd = trim($row2['pass']) : $passwd = trim($_POST['pass']);
 
 	empty($_POST['yanzm']) ? $yanzm = '' : $yanzm = trim($_POST['yanzm']);
-if(strlen($username)==8&&strlen($yanzm)==4&&strlen($passwd)!=0)
+if(strlen($username)>7&&strlen($yanzm)==4&&strlen($passwd)!=0)
 
 	{
 		//post验证

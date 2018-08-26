@@ -55,7 +55,7 @@
 <?php } else { ?>
        $.modal({
   title: "提示",
-  text: "本页面专为新生修改默认密码所用<br>如果您想绑定老生身份请选择退出<br>当前新生数据仍为2017版本",
+  text: "本页面专为新生修改默认密码所用<br>如果您想绑定老生身份请选择退出",
   buttons: [
     { text: "退出", className: "default",
 	onClick: function(){ 
@@ -72,7 +72,49 @@ $.toast("欢迎使用");
 });	
 		<?php } ?>
 
-	
+	 $(".readcode").click(function() {
+ $.showLoading("识别中");
+ var that=$(this);
+		 	$.ajax({
+		type:"POST",
+		url:"<?php echo $arrInfo['url'];?>/readcode",
+		dataType: "json", 
+		async:true,		
+		complete:function(XMLHttpRequest, textStatus){
+
+		},
+		success:function(result){
+   	$.hideLoading();
+	if(result.type=='no'){
+
+	$.toast(result.msg, "cancel");
+
+	}
+		if(result.type=='error'){
+
+	$.toast(result.msg, "forbidden");
+
+	}
+
+	if(result.type=='ok'){
+
+that.next().children(".weui_input").val(result.msg);
+
+$.toast("识别成功");
+
+	}
+		},
+		error:function(result){
+ $.hideLoading();
+	$.toast("网络故障", "forbidden");
+				 setTimeout(function() {
+       
+        }, 1000)
+	}
+
+		
+	});
+ });
 
  
 						});
@@ -495,7 +537,7 @@ $("#s11").show();
     </div>
   </div>
   <div class="weui_cell weui_vcode">
-    <div class="weui_cell_hd"><label class="weui_label">验证码</label></div>
+    <div class="weui_cell_hd readcode"><label class="weui_label">验证码</label></div>
     <div class="weui_cell_bd weui_cell_primary">
 <input class="weui_input" id="yzmm" type="text" placeholder="请输入验证码">    </div>
     <div class="weui_cell_ft">

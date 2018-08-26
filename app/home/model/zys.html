@@ -98,6 +98,21 @@
     <div class="weui_cell_ft"><b>@$Child['xy']</b></div>
   </a> 
 <!--{/loop}-->{/if}
+{if !empty($row18)}
+	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
+      <p><b>18资料</b></p>
+    </div>
+    <div class="weui_cell_ft">
+      <b></b>
+    </div></div></div>
+	<!--{loop $row18 $key $Child}-->
+  <a class="weui_cell" href="{$arrInfo[url]}/home/zyd/18/{$Child['id']}">
+    <div class="weui_cell_bd weui_cell_primary"style="max-width:75%;">
+      <p style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">@$Child['xm']</p>
+    </div>
+    <div class="weui_cell_ft"><b>@$Child['xy']</b></div>
+  </a> 
+<!--{/loop}-->{/if}
 {if !empty($row3)}
 	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
       <p><b>总资料库</b></p>
@@ -115,13 +130,43 @@
 <!--{/loop}-->{/if}
 {if !empty($row4)}
 	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
-      <p><b>绑定资料库</b></p>
+      <p><b>微信绑定资料库</b></p>
     </div>
     <div class="weui_cell_ft">
       <b></b>
     </div></div></div>
 	<!--{loop $row4 $key $Child}-->
   <a class="weui_cell" href="{$arrInfo[url]}/home/zyd/4/{$Child['id']}">
+    <div class="weui_cell_bd weui_cell_primary"style="max-width:75%;">
+      <p style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">@$Child['name']</p>
+    </div>
+    <div class="weui_cell_ft"><b>@$Child['number']</b></div>
+  </a> 
+<!--{/loop}-->{/if}
+{if !empty($row4qq)}
+	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
+      <p><b>QQ绑定资料库</b></p>
+    </div>
+    <div class="weui_cell_ft">
+      <b></b>
+    </div></div></div>
+	<!--{loop $row4qq $key $Child}-->
+  <a class="weui_cell" href="{$arrInfo[url]}/home/zyd/42/{$Child['id']}">
+    <div class="weui_cell_bd weui_cell_primary"style="max-width:75%;">
+      <p style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">@$Child['name']</p>
+    </div>
+    <div class="weui_cell_ft"><b>@$Child['number']</b></div>
+  </a> 
+<!--{/loop}-->{/if}
+{if !empty($row4wb)}
+	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
+      <p><b>微博绑定资料库</b></p>
+    </div>
+    <div class="weui_cell_ft">
+      <b></b>
+    </div></div></div>
+	<!--{loop $row4wb $key $Child}-->
+  <a class="weui_cell" href="{$arrInfo[url]}/home/zyd/43/{$Child['id']}">
     <div class="weui_cell_bd weui_cell_primary"style="max-width:75%;">
       <p style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">@$Child['name']</p>
     </div>

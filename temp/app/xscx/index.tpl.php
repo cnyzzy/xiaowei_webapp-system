@@ -65,7 +65,7 @@ $.showLoading();
 		type:"POST",
 		url:"<?php echo $arrInfo['url'];?>/xscx/do/re",
 		data:"&name="+$("#name").val()+"&idid="+$("#idid").val(),
-		async:true,		
+			
 			dataType: "json", 
 		complete:function(XMLHttpRequest, textStatus){
 
@@ -112,7 +112,12 @@ $("#re").show();
 						});
 
 </script>	
-	
+	<style>
+	.weui_cell_ft {
+    text-align: center;
+    color: #888;
+}
+</style>
 </head>
 <body>
 	<h1><B>新生信息查询</B></h1>
@@ -143,7 +148,7 @@ $("#re").show();
   </div>
     <div class="weui_cell">
     <div class="weui_cell_bd weui_cell_primary">
-      <p>年级</p>
+      <p>校区</p>
     </div>
     <div id="rxq" class="weui_cell_ft" style="width: 55%; word-wrap: break-word;">
 未知    </div>
@@ -171,7 +176,7 @@ $("#re").show();
     <div class="weui_cell_bd weui_cell_primary" style="width: 55%; word-wrap: break-word;">
       <p>学号</p>
     </div>
-    <div id='rxh' class="weui_cell_ft">
+    <div id='rxh' class="weui_cell_ft" style="width: 55%; word-wrap: break-word;">
 未知    </div>
   </div>
   				<a style="border-radius: 20px;" class="weui_btn weui_btn_primary"  href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzAxMDU5NzAxMw==&from=timeline&isappinstalled=0#wechat_redirect">关注盐师官方微信公众号</a>				
@@ -180,7 +185,7 @@ $("#re").show();
 		</div>
 		<div class="signup-agileinfo">
 			<h3>介绍</h3>
-			<p>    本页面由"盐城师范学院"官方公众号创建，为新生提供学号、学院、班级等信息的查询服务。<br>    当前数据为2017年新生数据。</p>
+			<p>    本页面由"盐城师范学院"官方公众号创建，为新生提供学号、学院、班级等信息的查询服务。<br>    当前数据为2018年新生数据。</p>
 			<div class="more">
 				<a class="book popup-with-zoom-anim button-isi zoomIn animated" data-wow-delay=".5s" href="#small-dialog">遇到问题</a>				
 			</div>
@@ -197,9 +202,9 @@ $("#re").show();
 			<h3>1.查询不了</h3>
 			<p>请检查姓名和身份证号是否有误，请勿忽略身份证号末尾x</p><br>
 			<h3>2.查询数据不显示或超时</h3>
-			<p>若提示查询成功却不显示，请更换手机再次重试。提示超时，请稍后再查询。多次重试无效请查看第4条。</p><br>
+			<p>提示超时，请稍后再查询。<br>如果出现点击查询后无故刷新或提示查询成功却不显示，请更换手机再次重试<br>无效请使用<a  href="<?php echo $arrInfo['url'];?>/xscx/index2x">【跳转版】</a> <br>该问题当前出现在极少数vivo手机，目前仅发现一例<BR>多次重试无效请查看第4条。</p><br>
 			<h3>3.查询数据有误</h3>
-			<p>数据来源于教务处，部分专转本同学可能数据不全，请联系我们。</p><br>
+			<p>数据来源于教务处和招生处。部分同学可能由于数据整合或统计问题造成遗漏，请联系我们。</p><br>
 			<h3>4.联系方式</h3>
 			<p>微信公众号：盐城师范学院<br>微博：盐城师范学院<br>开发人员QQ：970127005</p>
 	</div>

@@ -17,6 +17,15 @@ break;
 case 4:
 $titlename="wxid";
 break;
+case 42:
+$titlename="qqid";
+break;
+case 43:
+$titlename="wbid";
+break;
+case 18:
+$titlename="18xs";
+break;
 case 5:
 $titlename="ghzl";
 break;

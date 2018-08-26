@@ -50,7 +50,7 @@ if($CHO=='1'&&$idd!='0')
 	empty($_POST['passwd']) ? $passwd = '' : $passwd = trim($_POST['passwd']);
 	empty($_POST['yanzm']) ? $yanzm = '' : $yanzm = trim($_POST['yanzm']);
 	
-	if(strlen($username)==8&&strlen($yanzm)==4&&strlen($passwd)!=0)
+	if(strlen($username)>7&&strlen($yanzm)==4&&strlen($passwd)!=0)
 	{
 		//post验证
 		

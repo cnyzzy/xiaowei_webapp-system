@@ -19,21 +19,21 @@ IF($LId == 'tmcx'){
 require(ZApp.'/' . $AppName . "/pinyin.php");
 $py= pinyin( $postn);
 
-$sq3 = "SELECT xm,id,xy FROM  17xs WHERE xm = '".$postn."' or py = '".$py."' order by rand() ASC LIMIT 5";
+$sq3 = "SELECT xm,id,xy FROM  18xs WHERE xm = '".$postn."' or py = '".$py."' order by rand() ASC LIMIT 5";
 $arr =$DB->fetch_all_array($sq3);
-$sq3 = "SELECT xm,id,xy FROM  17xs WHERE xm like '%".$postn."%' order by rand() ASC LIMIT 10";
+$sq3 = "SELECT xm,id,xy FROM  18xs WHERE xm like '%".$postn."%' order by rand() ASC LIMIT 10";
 $esult2 =$DB->fetch_all_array($sq3);
 if(!empty($arr)&&!empty($esult2))$arr=array_merge($arr,$esult2);
 if(empty($arr)&&!empty($esult2))$arr=$esult2;
  $sqlbc='';
 $nametwo=splitName($postn);
-if(isset($nametwo[1]))$sq3 = "SELECT xm,id,xy FROM  17xs WHERE xm like '%".$nametwo[1]."' order by rand() ASC LIMIT 12";
+if(isset($nametwo[1]))$sq3 = "SELECT xm,id,xy FROM  18xs WHERE xm like '%".$nametwo[1]."' order by rand() ASC LIMIT 12";
 $esult2 =$DB->fetch_all_array($sq3);
 if(!empty($arr)&&!empty($esult2))$arr=array_merge($arr,$esult2);
 if(empty($arr)&&!empty($esult2))$arr=$esult2;
 		  	 if(empty($arr)||count($arr)<15){
 			 if(isset($nametwo[1]))
-			 {$sq3 = "SELECT xm,id,xy FROM  17xs WHERE  py like '%".pinyin($nametwo[1])."%' order by rand() ASC LIMIT 12";
+			 {$sq3 = "SELECT xm,id,xy FROM  18xs WHERE  py like '%".pinyin($nametwo[1])."%' order by rand() ASC LIMIT 12";
 		  $result4 =$DB->fetch_all_array($sq3);
 			 }
 		if(!empty($arr)&&!empty($result4))$arr=array_merge($arr,$result4);
@@ -43,7 +43,7 @@ if(empty($arr)&&!empty($result4))$arr=$result4;
 			 $sqlbc='';
 
 			 if(isset($nametwo[1])) $sqlbc="or xm like '%".$nametwo[1]."%' ";
-			 if(isset($nametwo[0]))$sq3 = "SELECT xm,id,xy FROM  17xs WHERE xm like '".$nametwo[0]."%' " .$sqlbc." order by rand() ASC LIMIT 10";
+			 if(isset($nametwo[0]))$sq3 = "SELECT xm,id,xy FROM  18xs WHERE xm like '".$nametwo[0]."%' " .$sqlbc." order by rand() ASC LIMIT 10";
 		 $esult2 =$DB->fetch_all_array($sq3);
 		 if(!empty($arr)&&!empty($esult2))$arr=array_merge($arr,$esult2);
 if(empty($arr)&&!empty($esult2))$arr=$esult2;
@@ -53,9 +53,9 @@ if(empty($arr)&&!empty($esult2))$arr=$esult2;
 			 $sqlbc='';
 
 			 if(isset($nametwo[0])&&isset($nametwo[1]))
-			 {$sq3 = "SELECT xm,id,xy FROM  17xs WHERE  py like '%".pinyin($nametwo[0])."%".pinyin($nametwo[1])."%' or py like '%".pinyin($nametwo[1])."%'  and xm not like '".$nametwo[0]."%' and xm not like '%".$nametwo[1]."' order by rand() ASC LIMIT 15";
+			 {$sq3 = "SELECT xm,id,xy FROM  18xs WHERE  py like '%".pinyin($nametwo[0])."%".pinyin($nametwo[1])."%' or py like '%".pinyin($nametwo[1])."%'  and xm not like '".$nametwo[0]."%' and xm not like '%".$nametwo[1]."' order by rand() ASC LIMIT 15";
 			 }else{
-				 $sq3 = "SELECT xm,id,xy FROM  17xs WHERE  py like '%".pinyin($postn)."%' and xm not like '%".$postn."%' order by rand() ASC LIMIT 15";
+				 $sq3 = "SELECT xm,id,xy FROM  18xs WHERE  py like '%".pinyin($postn)."%' and xm not like '%".$postn."%' order by rand() ASC LIMIT 15";
 
 				 
 			 }
@@ -78,7 +78,7 @@ $arr=array_reverse(unique($arr));
 }
 elseIF($LId == 'txcx'){
 
-		$sq3 = "SELECT xm,id,dqmc FROM  17xs WHERE dqmc like '%".$postn."%' or zxmc like '%".$postn."%' order by rand() ASC LIMIT 20";
+		$sq3 = "SELECT xm,id,dqmc FROM  18xs WHERE dqmc like '%".$postn."%' or zxmc like '%".$postn."%' order by rand() ASC LIMIT 20";
 $result2 =$DB->fetch_all_array($sq3);
 		 if(empty($result2)||count($result2)<5){
 			 $Apostn=$postn;
@@ -91,7 +91,7 @@ while ($strnum){
  $newpost=implode("%",$array); 
 
 			 if(isset( $newpost))
-			 {$sq3 = "SELECT xm,id,dqmc FROM  17xs WHERE  dqmc like '%".$newpost."%' or zxmc like '%".$newpost."%' order by rand() ASC LIMIT 20";
+			 {$sq3 = "SELECT xm,id,dqmc FROM  18xs WHERE  dqmc like '%".$newpost."%' or zxmc like '%".$newpost."%' order by rand() ASC LIMIT 20";
 			 $result3 =$DB->fetch_all_array($sq3);}
 		 }
 
@@ -115,11 +115,11 @@ elseIF($LId == 'cscx'){
 printjson("error",'数据非法');
 }
 $sr=date("Y/n/j",strtotime($postn));
-		$sq3 = "SELECT xm,id,csrq FROM  17xs WHERE csrq = '".$sr."' or csrq like '".date("Y",strtotime($postn))."/".date("n",strtotime($postn))."/".date("j",strtotime($postn))."' order by rand() ASC LIMIT 20";
+		$sq3 = "SELECT xm,id,csrq FROM  18xs WHERE csrq = '".$sr."' or csrq like '".date("Y",strtotime($postn))."/".date("n",strtotime($postn))."/".date("j",strtotime($postn))."' order by rand() ASC LIMIT 20";
 $result2 =$DB->fetch_all_array($sq3);
 		 if(empty($result2)||count($result2)<5){
 
-$sq3 = "SELECT xm,id,csrq FROM  17xs WHERE csrq like '%/".date("n",strtotime($postn))."/".date("j",strtotime($postn))."' order by rand() ASC LIMIT 20";
+$sq3 = "SELECT xm,id,csrq FROM  18xs WHERE csrq like '%/".date("n",strtotime($postn))."/".date("j",strtotime($postn))."' order by rand() ASC LIMIT 20";
 			 $result3 =$DB->fetch_all_array($sq3);
 		 }
 
@@ -146,18 +146,18 @@ ELSEIF($LId == 'detaild'){
 switch ($type)
 {
 case 1:
-$sq3 = "SELECT xm,xy,xb,sf FROM  17xs WHERE id = '".$postn."' ";
+$sq3 = "SELECT xm,xy,xb,sf FROM  18xs WHERE id = '".$postn."' ";
 break;
 case 2:
-$sq3 = "SELECT xm,xy,xb,sf,zxmc,dqmc FROM  17xs WHERE id = '".$postn."' ";
+$sq3 = "SELECT xm,xy,xb,sf,zxmc,dqmc FROM  18xs WHERE id = '".$postn."' ";
 break;
 case 3:
 
-$sq3 = "SELECT xm,xy,xb,sf,csrq FROM  17xs WHERE id = '".$postn."' ";
+$sq3 = "SELECT xm,xy,xb,sf,csrq FROM  18xs WHERE id = '".$postn."' ";
 break;
 
 default://无数据
-$sq3 = "SELECT xm,xy,xb,sf FROM  17xs WHERE id = '".$postn."' ";
+$sq3 = "SELECT xm,xy,xb,sf FROM  18xs WHERE id = '".$postn."' ";
 break;
 }
 

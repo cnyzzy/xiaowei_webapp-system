@@ -16,11 +16,29 @@ if(!empty($postn)){
 if(!empty($postn)){
 		$sql21="SELECT  * FROM 17xs where xh like '%{$postn}%' or xm like '%{$postn}%' or bj like '%{$postn}%' or zxmc like '%{$postn}%' or dqmc like '%{$postn}%'  or sfz like '%{$postn}%' order by id desc ";
 	$row2 = @$DB->fetch_all_array($sql21);
+	
+}
+if(!empty($postn)){
+		$sql21="SELECT  * FROM 18xs where xh like '%{$postn}%' or xm like '%{$postn}%' or bj like '%{$postn}%' or zxmc like '%{$postn}%' or dqmc like '%{$postn}%'  or sfz like '%{$postn}%' or pc like '%{$postn}%' order by id desc ";
+	$row18 = @$DB->fetch_all_array($sql21);
+	
 }
 if(!empty($postn)){
 		$sql4="SELECT  * FROM wxid where number like '%{$postn}%' or nickname like '%{$postn}%' or name like '%{$postn}%'  order by id desc";
 
 	$row4 = @$DB->fetch_all_array($sql4);
+
+}
+if(!empty($postn)){
+		$sql4="SELECT  * FROM qqid where number like '%{$postn}%' or nickname like '%{$postn}%' or name like '%{$postn}%'  order by id desc";
+
+	$row4qq = @$DB->fetch_all_array($sql4);
+
+}
+if(!empty($postn)){
+		$sql4="SELECT  * FROM wbid where number like '%{$postn}%' or nickname like '%{$postn}%' or name like '%{$postn}%'  order by id desc";
+
+	$row4wb = @$DB->fetch_all_array($sql4);
 
 }
 if(!empty($postn)){

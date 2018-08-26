@@ -1,9 +1,10 @@
-<?php defined('ZRoot') or die('Access Denied.'); ?><!DOCTYPE html>
+<?php defined('ZRoot') or die('Access Denied.'); ?><?php $arrInfo['cdnurl']="http://wx.echo1.top";?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>盐城师范学院新生信息查询::YCTU-1958</title>
-	<link rel="stylesheet" href="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/css/style.css">
-	<link href="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/css/popup-box.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="<?php echo $arrInfo['cdnurl'];?>/app/<?php echo $AppName;?>/model/css/style.css">
+	<link href="<?php echo $arrInfo['cdnurl'];?>/app/<?php echo $AppName;?>/model/css/popup-box.css" rel="stylesheet" type="text/css" media="all" />
 	<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 -->
@@ -12,20 +13,20 @@
 		<meta name="keywords" content="Sign In And Sign Up Forms  Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-        <link rel="stylesheet" href="<?php echo $arrInfo['url'];?>/app/home/model/css/weui.min.css"/>
-        <link rel="stylesheet" href="<?php echo $arrInfo['url'];?>/app/home/model/css/jquery-weui.min.css"/>
-	</script><script src="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/js/jquery.min.js"></script>
-			<script src="<?php echo $arrInfo['url'];?>/app/home/model/lib/jquery-2.1.4.js"></script>
-<script src="<?php echo $arrInfo['url'];?>/app/home/model/js/jquery-weui.js"></script>
-<script src="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/js/jquery.magnific-popup.js" type="text/javascript"></script>
-<script type="text/javascript" src="<?php echo $arrInfo['url'];?>/app/<?php echo $AppName;?>/model/js/modernizr.custom.53451.js"></script> 
+        <link rel="stylesheet" href="<?php echo $arrInfo['cdnurl'];?>/app/home/model/css/weui.min.css"/>
+        <link rel="stylesheet" href="<?php echo $arrInfo['cdnurl'];?>/app/home/model/css/jquery-weui.min.css"/>
+	</script><script src="<?php echo $arrInfo['cdnurl'];?>/app/<?php echo $AppName;?>/model/js/jquery.min.js"></script>
+			<script src="<?php echo $arrInfo['cdnurl'];?>/app/home/model/lib/jquery-2.1.4.js"></script>
+<script src="<?php echo $arrInfo['cdnurl'];?>/app/home/model/js/jquery-weui.js"></script>
+<script src="<?php echo $arrInfo['cdnurl'];?>/app/<?php echo $AppName;?>/model/js/jquery.magnific-popup.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo $arrInfo['cdnurl'];?>/app/<?php echo $AppName;?>/model/js/modernizr.custom.53451.js"></script> 
  <script>
 						$(document).ready(function() {
 	
 							<?php if(empty($row)) { ?>
 
 $.alert("查询不到信息", function() {
-     window.location.href = '<?php echo $arrInfo['url'];?>/xscx';
+     window.location.href = '<?php echo $arrInfo['url'];?>/xscx/index2x';
 });
 
 
@@ -35,27 +36,32 @@ $.alert("查询不到信息", function() {
 		
 </head>
 <body>
-	<h1><B>新生信息查询</B></h1>
+	<style>
+	.weui_cell_ft {
+    text-align: center;
+    color: #888;
+}
+</style>
+	<h1><B>新生信息查询-跳转版</B></h1>
 	<div class="w3layouts">
 		<div class="signin-agile">
 			<h2>查询
 </h2>
 
-
- <div class="weui_cells">
+		 <div id="re" class="weui_cells" >
   <div class="weui_cell">
     <div class="weui_cell_bd weui_cell_primary">
       <p>姓名</p>
     </div>
-    <div class="weui_cell_ft">
+    <div id='rxm' class="weui_cell_ft" style="width: 55%; word-wrap: break-word;">
       <?php if(!empty($row['xm'])) { ?><?php echo $row['xm'];?><?php } else { ?>未知<?php } ?>
     </div>
   </div>
     <div class="weui_cell">
     <div class="weui_cell_bd weui_cell_primary">
-      <p>年级</p>
+      <p>校区</p>
     </div>
-    <div class="weui_cell_ft">
+    <div id="rxq" class="weui_cell_ft" style="width: 55%; word-wrap: break-word;">
        <?php if(!empty($row['xq'])) { ?><?php echo $row['xq'];?><?php } else { ?>未知<?php } ?>
     </div>
   </div>
@@ -63,7 +69,7 @@ $.alert("查询不到信息", function() {
     <div class="weui_cell_bd weui_cell_primary">
       <p>所在学院</p>
     </div>
-    <div class="weui_cell_ft">
+    <div  id='rxy' class="weui_cell_ft" style="width: 55%; word-wrap: break-word;">
        <?php if(!empty($row['szxy'])) { ?><?php echo $row['szxy'];?><?php } else { ?>未知<?php } ?>
     </div>
   </div>
@@ -71,24 +77,26 @@ $.alert("查询不到信息", function() {
     <div class="weui_cell_bd weui_cell_primary">
       <p>所在专业</p>
     </div>
-    <div class="weui_cell_ft">
+    <div id='rzy' class="weui_cell_ft" style="width: 55%; word-wrap: break-word;">
            <?php if(!empty($row['lqzy'])) { ?><?php echo $row['lqzy'];?><?php } else { ?>未知<?php } ?>
-    </div>
+   </div>
   </div>  <div class="weui_cell">
     <div class="weui_cell_bd weui_cell_primary">
       <p>所在班级</p>
     </div>
-    <div class="weui_cell_ft">
+    <div id='rbj' class="weui_cell_ft" style="width: 55%; word-wrap: break-word;">
       <?php if(!empty($row['xzb'])) { ?><?php echo $row['xzb'];?><?php } else { ?>尚未分班<?php } ?>
     </div>
   </div>  <div class="weui_cell">
-    <div class="weui_cell_bd weui_cell_primary">
+    <div class="weui_cell_bd weui_cell_primary" style="width: 55%; word-wrap: break-word;">
       <p>学号</p>
     </div>
-    <div class="weui_cell_ft">
+    <div id='rxh' class="weui_cell_ft" style="width: 55%; word-wrap: break-word;">
        <?php if(!empty($row['xh'])) { ?><?php echo $row['xh'];?><?php } else { ?>尚未分班<?php } ?>
-    </div>
+   </div>
   </div>
+  				<a style="border-radius: 20px;" class="weui_btn weui_btn_primary"  href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzAxMDU5NzAxMw==&from=timeline&isappinstalled=0#wechat_redirect">关注盐师官方微信公众号</a>				
+
 </div>
 				<form action="#" method="post">
 	<a class="button-isi zoomIn animated" href="<?php echo $arrInfo['url'];?>/xscx">遇到问题?</a><br>	
