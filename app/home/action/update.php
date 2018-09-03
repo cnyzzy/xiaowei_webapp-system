@@ -21,7 +21,7 @@ $res = $_SESSION['res'];
 	empty($row2['number']) ? $username = '' : $username = trim($row2['number']);
 	empty($row2['pass']) ? $passwd = '' : $passwd = trim($row2['pass']);
 	empty($_POST['yanzm']) ? $yanzm = '' : $yanzm = trim($_POST['yanzm']);
-	if(strlen($username)==8&&strlen($yanzm)==4&&strlen($passwd)!=0)
+	if(strlen($username)>7&&strlen($yanzm)==4&&strlen($passwd)!=0)
 	{
 		//post验证
 		

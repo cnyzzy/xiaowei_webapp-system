@@ -72,7 +72,7 @@ $QINFO=phpCAS::getAttributes();
 $xm=	$QINFO['userName'];
 $type=0;
 $username=$QINFO['uid'];
-IF(strlen($QINFO['uid'])==8){
+IF(strlen($QINFO['uid'])==8||strlen($QINFO['uid'])==10){
 $type=1;	
 
  $sql = "SELECT * FROM {$bdname} WHERE openid ='{$_SESSION['wx']['openid']}' and isok=1";

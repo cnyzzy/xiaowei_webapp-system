@@ -1,10 +1,12 @@
 <?php
 $number=$_SESSION['zid']['number'];
 
-
+$iskcbdown=0;
 if(is_file(ZSystem.'/data/app/timetables/'.KCBDATE.'/'.$number.'.php')){
 				$arrKCB = SetRead('/system/data/app/timetables/'.KCBDATE.'/'.$number.'.php');
 			}
+			if(is_file(ZSystem.'/data/app/timetables/'.KCBDATE.'/print/'.$number.'.php')){
+$iskcbdown=1;			}
 if(is_file(ZSystem.'/data/app/timetables/'.KCBDATE.'/'.$number.'1.php')){
 	$sql2 = "SELECT * FROM jwinfo WHERE number ='{$number}' and isok=1";
 		$result2 = $DB->query($sql2);

@@ -55,7 +55,7 @@
 <?php } else { ?>
        $.modal({
   title: "提示",
-  text: "本页面专为新生修改默认密码所用<br>如果您想绑定老生身份请选择退出",
+  text: "本页面为新生修改默认密码所用<br>如果您想绑定老生身份请选择退出<br>默认密码为身份证号",
   buttons: [
     { text: "退出", className: "default",
 	onClick: function(){ 
@@ -219,7 +219,7 @@ $("#Npass").focus();
 		 	$.ajax({
 		type:"POST",
 		url:"<?php echo $arrInfo['url'];?>/xsch/do/change",
-		data:"&pass="+$("#Npass").val()+"&pass2="+$("#Npass2").val()+"&rname="+$("#uname").val()+"&rpass="+$("#pass").val(),
+		data:"&pass="+$("#Npass").val()+"&pass2="+$("#Npass2").val()+"&rname="+$("#uname").val()+"&rpass="+$("#pass").val()+"&number="+$("#cname").val(),
 		dataType: "json", 
 		async:true,		
 		complete:function(XMLHttpRequest, textStatus){
@@ -244,6 +244,7 @@ $("#s3").show();
 
 	if(result.type=='ok'){
 	$.toast(result.msg);
+
 
 	$("#newpass").val($("#Npass").val());
 				 setTimeout(function() {
@@ -516,7 +517,7 @@ $("#s11").show();
   <div class="weui_panel_bd">
     <div class="weui_media_box weui_media_text">
       <h4 class="weui_media_title">身份验证</h4>
-      <p class="weui_media_desc"  style="overflow: inherit;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: inherit;-webkit-line-clamp: 3; word-wrap: break-word;" >此步骤将验证您的默认密码<br><B>请输入您当前的教务密码</B><br>一般为身份证后8位</p>
+      <p class="weui_media_desc"  style="overflow: inherit;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: inherit;-webkit-line-clamp: 3; word-wrap: break-word;" >此步骤将验证您的默认密码<br><B>您当前的默认教务密码一般为身份证号</B><br></p>
     </div>
     <div class="weui_media_box weui_media_text">
       <h4 class="weui_media_title"></h4>
@@ -533,7 +534,7 @@ $("#s11").show();
 		  <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">密码</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" id="pass"  maxlength="16" type="text" placeholder="请输入密码" ">
+      <input class="weui_input" id="pass"  maxlength="19" type="text" placeholder="请输入密码" ">
     </div>
   </div>
   <div class="weui_cell weui_vcode">
@@ -593,13 +594,13 @@ $("#s11").show();
 		  <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">新密码</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" id="Npass"  maxlength="16" type="password" placeholder="请输入密码" >
+      <input class="weui_input" id="Npass"  maxlength="18" type="password" placeholder="请输入密码" >
     </div>
   </div>
 	  <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">确认密码</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" id="Npass2" maxlength="16" type="password" placeholder="请输入密码" >
+      <input class="weui_input" id="Npass2" maxlength="18" type="password" placeholder="请输入密码" >
     </div>
   </div>
  <br>
@@ -633,22 +634,11 @@ $("#s11").show();
   </div>
 </div>
          <div class="weui_cells weui_cells_form">
-  <div class="weui_cell">
-    <div class="weui_cell_hd"><label class="weui_label">账户</label></div>
-    <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" id="name" type="text" placeholder="请输入账号" disabled="disabled" value="<?php if(!empty($_SESSION['zid']['number'])) { ?><?php echo $_SESSION['zid']['number'];?><?php } ?>">
-    </div>
-  </div>
-    <div class="weui_cell">
-    <div class="weui_cell_hd"><label class="weui_label">姓名</label></div>
-    <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" id="uname" type="text" placeholder="" disabled="disabled" value="<?php if(!empty($_SESSION['zid']['name'])) { ?><?php echo $_SESSION['zid']['name'];?><?php } ?>">
-    </div>
-  </div>
+
 		  <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">新密码</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" id="newpass"  maxlength="16" type="text" placeholder="请输入密码" disabled="disabled" >
+      <input class="weui_input" id="newpass"  maxlength="18" type="text" placeholder="请输入密码" disabled="disabled" >
     </div>
   </div>
 

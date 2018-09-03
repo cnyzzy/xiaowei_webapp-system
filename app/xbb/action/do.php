@@ -56,6 +56,9 @@ $jp2="药学院";
   case 16:
 $jp2="音乐学院";
   break;
+    case 17:
+$jp2="预科学院";
+  break;
 default:
 $jp2="";
 
@@ -74,7 +77,7 @@ $sarr[$key2]['rbi']=round($Child['num']/($result33[$key]['num']+$Child['num']), 
  }
 
 
-		 if(count($sarr,0)>4){
+		 if(count($sarr,0)>0){
 			  SSetWrite($sarr,"xy".$xy.".php");
 			printjson("ok",'查询成功');
 		}else{

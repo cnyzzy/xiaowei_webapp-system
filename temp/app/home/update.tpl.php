@@ -133,27 +133,33 @@
 		
 		$.hideLoading();
 		if( re== '1'){$.toast("验证成功");document.getElementById("GOGOGO").style.display = "block";
-			}else if( re== '0'){$.toast("无数据", "cancel");
-			}else if( re== '2'){$.toast("用户名或密码错误", "cancel");
-			}else if( re== '3'){$.toast("密码错误", "cancel");
-			}else if( re== '4'){$.toast("验证码错误", "cancel");
-			}else if( re== '5'){$.toast("系统忙", "cancel");
-			}else if( re== '6'){$.toast("未知错误", "cancel");
-			}else if( re== '7'){$.toast("理论不存在的错误", "cancel");
-			}else if( re== '8'){$.toast("记录有误", "cancel");
-			}else if( re== '9'){$.toast("取不到认证码", "cancel");
-			}else if( re== '10'){$.toast("未进行教学质量评价", "cancel");
+			}else if( re== '0'){$.alert("无数据", "验证失败");
+			}else if( re== '2'){$.alert("用户名或密码错误", "验证失败");
+			}else if( re== '3'){$.alert("密码错误", "验证失败");
+			}else if( re== '4'){$.alert("验证码错误", "验证失败");
+			}else if( re== '5'){$.alert("系统忙", "验证失败");
+			}else if( re== '6'){$.alert("未知错误", "验证失败");
+			}else if( re== '7'){$.alert("理论不存在的错误", "验证失败");
+			}else if( re== '8'){$.alert("记录有误", "验证失败");
+			}else if( re== '9'){$.alert("取不到认证码", "验证失败");
+			}else if( re== '10'){$.alert("未进行教学质量评价", "验证失败");
 			}
 			else{$.toast("未知态", "forbidden");}
+			       if(re!= '1'){ 
+ document.getElementById("GOGOGO2").style.display = "block";
+
+      }
         }, 
          error:function (result) {   
 			$.toast("发生错误", "forbidden");
          }, 
   });
   					  setTimeout(function() {
-       if(re!= '1'){ $.alert("验证未通过", function() {
+       if(re!= '1'){ 
+	   $.toast("验证未通过", "cancel");
+	   
  document.getElementById("GOGOGO2").style.display = "block";
-});
+
       }  }, 4000);
 
 		}

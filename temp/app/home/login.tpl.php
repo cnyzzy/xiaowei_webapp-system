@@ -36,13 +36,50 @@
 $(document).ready(function(){  
 
  $.alert("感谢使用小薇平台。<br>在使用前您需要绑定身份。", "公告", function() {
- $.alert("请确认已经在教务系统中完成所有课程的评价，否则将无法绑定身份和同步数据。<br>如果忘记教务密码请联系所在二级学院的教务秘书老师", "公告");
+        $.modal({
+  title: "新生提示",
+  text: "如果您是新生 请修改默认密码<br>默认密码为身份证号<br>此后您可以使用全部功能<br>已修改密码的用户请直接绑定",
+  buttons: [
+    { text: "我知道了", className: "default",
+	onClick: function(){ 
+        $.modal({
+  title: "评课公告",
+  text: "请确认已经完成所有课程的评价<br>否则将无法绑定身份和同步数据<br>如果您未完成请进行评课",
+  buttons: [
+    { text: "我知道了", className: "default",
+	onClick: function(){ 
+		$.alert("如果忘记教务密码请联系所在二级学院的教务秘书老师", "提示");
+
+ }	
+	},
+    { text: "评课", 
+	onClick: function(){
+		$.showLoading("正在加载");
+					 setTimeout(function() {
+            window.location.href="<?php echo $arrInfo['url'];?>/pingk/i";
+
+        }, 1000)
+	} },
+  ]
 });
+ }	
+	},
+    { text: "修改默认密码", 
+	onClick: function(){
+		$.showLoading("正在加载");
+					 setTimeout(function() {
+            window.location.href="<?php echo $arrInfo['url'];?>/xsch/index";
+
+        }, 1000)
+	} },
+  ]
+});	});	
+	
+ 
+ 
 
  });
-
- </script>
-<?php } ?>
+ </script><?php } ?>
     </head>
     <body>
 	

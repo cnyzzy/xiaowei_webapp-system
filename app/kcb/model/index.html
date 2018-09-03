@@ -77,7 +77,38 @@
          }, 
   });}
 							 
-     
+    	function downkcb(){
+		{if $iskcbdown==1}	$.confirm({
+  title: '提示',
+  text: '请长按图片保存课表',
+  onOK: function () {
+$.showLoading("请稍等");
+	 setTimeout(function() {
+		
+            window.location.href="{$arrInfo[url]}/kcb/print";
+        }, 800)	
+  },
+  onCancel: function () {
+
+  }
+});
+	{else}
+$.confirm({
+  title: '提示',
+  text: '请更新数据',
+  onOK: function () {
+$.showLoading("请稍等");
+
+	 setTimeout(function() {
+		
+            window.location.href="{$arrInfo[url]}/home/update";
+        }, 800)	
+  },
+  onCancel: function () {
+
+  }
+});
+{/if}	} 
          </script>
 		 <script type="text/javascript">
 function _w_table_rowspan(_w_table_id,_w_table_colnum){
@@ -234,7 +265,7 @@ $(document).ready(function(){
 				
             </ul>           <ul class="xunjia-box">
 			
-           
+            <a href='javascript:downkcb();' class="weui_btn weui_btn_plain_default">一键保存::教务课表</a>
 			<table id="timeTable" class="content" style="table-layout:fixed;">
 			
 				<tr>

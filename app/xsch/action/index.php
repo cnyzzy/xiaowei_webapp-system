@@ -1,9 +1,9 @@
 <?php
 define('RROOT',ZRoot.'/system/data/app/home/login/');
-	if(empty($_SESSION['zid']['number'])){
+	if(empty($_SESSION['wx'])){
 		$Errormsg=array (
   'error_type' => '提示',
-  'msg' => '您还没有绑定，请绑定后再次操作',
+  'msg' => '您没有客户端授权',
 ); 
 ErrorMsg($Errormsg);
 	}	

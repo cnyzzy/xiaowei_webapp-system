@@ -342,13 +342,25 @@ function kcinfo($user,$res,&$DB){
      curl_setopt($curl2, CURLOPT_URL, "http://".URL."/(".$res[1].")/xskbcx.aspx?xh=".$user);//登陆后要从哪个页面获取信息
 $result= curl_exec($curl2);
 	 preg_match_all('/<span id="Label6">([^<>]+)/', $result, $xm);   //正则出的数据存到$xm数组中
-	 if(EMPTY($xm[1][0])){RETURN "2";exit;}
+
+	if(EMPTY($xm[1][0])){RETURN "2";exit;}
 $name=substr(mb_convert_encoding($xm[1][0], "UTF-8", "GBK"),9); 
 
      curl_close($curl2);
-	 $arrayk=analyse(iconv('GB2312','UTF-8',$result));
+
+	 $arrayk=analyse(mb_convert_encoding($result, "UTF-8", "GBK"));
 	SsSetWrite( $arrayk,$user. '.php');
+	 preg_match_all('/<form[\w\W]*?>([\w\W]*?)<\/form>/',mb_convert_encoding($result, "UTF-8", "GBK"),$out);
+  $pattern           = '/input type="hidden" name="__VIEWSTATE" value="(.*?)"/is';
+     preg_match_all($pattern, $result, $matches);
+     $XX1            = $matches[1][0];
+
+  
+     @$ptable = $out[0][0];
+	 $printtable=str_replace($XX1,"",$ptable);	
 	
+	 	SsSetWrite(  $printtable,'print/'.$user. '.php');
+
 	RETURN $arrayk;
 
 }
@@ -506,11 +518,12 @@ $result2= curl_exec($curl3);
  
 $arraytable1=get_td_array(mytrim2($table));
 $arraytable2=get_td_array(mytrim2($table1));
-$arraytable3=get_td_array(mytrim2($table2));	
+$arraytable3=get_td_array(mytrim2($table2));
+
 	SssSetWrite( $arraytable1,'table1/'.$user. '.php');
 	SssSetWrite( $arraytable2,'table2/'.$user. '.php');
 	SssSetWrite( $arraytable3,'table3/'.$user. '.php');
-	
+
 	RETURN $arraytable1;
 		 }
 }
@@ -558,6 +571,8 @@ if(!is_dir(ZSystem.'/data/app/timetables/'.$aarr['year'].$aarr['team'])) mkdir(Z
 if(!is_dir(ZSystem.'/data/app/timetables/'.$aarr['year'].$aarr['team'].'/room') )mkdir(ZSystem.'/data/app/timetables/'.$aarr['year'].$aarr['team'].'/room');
 if(!is_dir(ZSystem.'/data/app/timetables/'.$aarr['year'].$aarr['team'].'/teacher') )mkdir(ZSystem.'/data/app/timetables/'.$aarr['year'].$aarr['team'].'/teacher');
 if(!is_dir(ZSystem.'/data/app/timetables/'.$aarr['year'].$aarr['team'].'/c') )mkdir(ZSystem.'/data/app/timetables/'.$aarr['year'].$aarr['team'].'/c');
+if(!is_dir(ZSystem.'/data/app/timetables/'.$aarr['year'].$aarr['team'].'/print') )mkdir(ZSystem.'/data/app/timetables/'.$aarr['year'].$aarr['team'].'/print');
+
 		if(preg_match('/<table id=\"Table1\" class=\"blacktab\"(.*?)>(.*?)<\/table>/ims', $content, $block)){
 			$kebiao = $block[2];
 			

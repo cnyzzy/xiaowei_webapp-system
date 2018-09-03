@@ -8,15 +8,23 @@ $SelfNum = $Home->SelfNum($_SESSION['zid']['number']);}
 
 if($AppAction=='zzjb'||$Operate == 'zijbdo'){
 	if(is_weixin()){
-	if(empty($_SESSION['wx'])||empty($_SESSION['wx']['openid'])||empty($_SESSION['zid'])){
+	if(empty($_SESSION['wx'])||empty($_SESSION['wx']['openid'])){
  $url = $arrInfo['url']."/back/";
  $_SESSION['backurl']='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	header("Location:".$url.$_SESSION['backurl']); 
 exit;
 }
 	}
+	if(is_wb()){
+	if(empty($_SESSION['wx'])||empty($_SESSION['wx']['openid'])){
+ $url = $arrInfo['url']."/wbback/";
+ $_SESSION['backurl']='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	header("Location:".$url.$_SESSION['backurl']); 
+exit;
+}
+	}
 		if(is_qq()||is_tim()){
-	if(empty($_SESSION['wx'])||empty($_SESSION['wx']['openid'])||empty($_SESSION['zid'])){
+	if(empty($_SESSION['wx'])||empty($_SESSION['wx']['openid'])){
  $url = $arrInfo['url']."/qqback/";
  $_SESSION['backurl']='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	header("Location:".$url.$_SESSION['backurl']); 

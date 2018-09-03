@@ -73,7 +73,7 @@
             function init() {  
                 //绘制饼图  
                 //比例数据和颜色  
-                var data_arr = [{if @$sarr['2017']['rbi']}{$sarr['2017']['rbi']}{else}{if $sarr['rbi']}{$sarr['rbi']}{/if}{/if}, {if @$sarr['2017']['rbi']}{php echo(1-$sarr['2017']['rbi'])}{else}{if $sarr['rbi']}{php echo(1-$sarr['rbi'])}{/if}{/if}];  
+                var data_arr = [{if @$sarr['2018']['rbi']}{$sarr['2018']['rbi']}{else}{if $sarr['rbi']}{$sarr['rbi']}{/if}{/if}, {if @$sarr['2018']['rbi']}{php echo(1-$sarr['2018']['rbi'])}{else}{if $sarr['rbi']}{php echo(1-$sarr['rbi'])}{/if}{/if}];  
                 var color_arr = ["#009913","#00AABB"];  
                 var text_arr = ["男生", "女生"];  
   
@@ -252,7 +252,7 @@
   <div class="weui_cell">
     <div class="weui_cell_hd"><label class="weui_label">学院</label></div>
     <div class="weui_cell_bd weui_cell_primary">
-      <input class="weui_input" type="text" id='xycx' placeholder="请输入对应学院">
+      <input class="weui_input" type="text" id='xycx' placeholder="请选择二级学院">
     </div>
   </div>
  </div>
@@ -530,6 +530,11 @@ function zscx1() {
                                      {
       title: "音乐学院",
       value: "16",
+    },
+ 	 
+                                     {
+      title: "预科学院",
+      value: "17",
     }
   
   ]

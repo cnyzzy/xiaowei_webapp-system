@@ -9,7 +9,7 @@ if($AppAction!='login'&&$AppAction!='qlogin'&&$AppAction!='wbback'){
 	$_SESSION['zid']['openid']=$openid;
 			$_SESSION['zid']['number']='no'.$openid;
 			$_SESSION['zid']['type']='3';
-			$_SESSION['zid']['name']=$_SESSION['zid']['name'];
+			$_SESSION['zid']['name']=$_SESSION['wx']['nickname'];
 			$_SESSION['zid']['img']=$_SESSION['wx']['img']; 	
 		
 	}

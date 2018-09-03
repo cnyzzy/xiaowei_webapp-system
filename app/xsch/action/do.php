@@ -1,6 +1,6 @@
 <?php
 define('RROOT',ZRoot.'/system/data/app/home/login/');
-	if(empty($_SESSION['zid']['number'])){
+	if(empty($_SESSION['wx'])){
 
 printjson("error",'状态非法');
 	}	
@@ -56,6 +56,8 @@ $res = $_SESSION['res'];
 		empty($_POST['rpass']) ? $rpasswd = '': $rpasswd = trim($_POST['rpass']);
 	empty($_POST['pass']) ? $passwd = '': $passwd = trim($_POST['pass']);
 	empty($_POST['pass2']) ? $passwd2 = '': $passwd2 = trim($_POST['pass2']);
+			empty($_POST['number']) ? $username = '' : $username = trim($_POST['number']);
+
 	if(strlen($passwd)>5&&strlen($passwd)<17&&$passwd!=$number&&$passwd == $passwd2&&!empty($rpasswd))
 	{
 		//post验证
@@ -207,10 +209,15 @@ $_SESSION['res']=$res;
 	 
       $r=curl_request($targetUrl,$loginParams,$targetUrl);
 	  $r= iconv('gbk', 'utf-8', trim($r));
+
 	  $re=9;
 	  if(EMPTY($r))$re=0;
 
 if(mb_strpos($r,"/fk_main.html", 0, 'utf-8')!==FALSE)$re=1;
+if(mb_strpos($r,"输入原密码", 0, 'utf-8')!==FALSE)$re=1;
+if(mb_strpos($r,"checkPasswdRate", 0, 'utf-8')!==FALSE)$re=1;
+
+
 	     if(mb_strpos($r,"document.getElementById('TextBox2').focus()", 0, 'utf-8')!==false)$re=4;
 	   if(mb_strpos($r,"window.opener=null;window.close()", 0, 'utf-8')!==false)$re=5;
 if(mb_strpos($r,"__doPostBack('likTc','')", 0, 'utf-8')!==FALSE)$re=1;

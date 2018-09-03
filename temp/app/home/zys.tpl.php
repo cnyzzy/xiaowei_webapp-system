@@ -98,6 +98,21 @@
     <div class="weui_cell_ft"><b><?php echo @$Child['xy'];?></b></div>
   </a> 
 <?php }?><?php } ?>
+<?php if(!empty($row18)) { ?>
+	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
+      <p><b>18资料</b></p>
+    </div>
+    <div class="weui_cell_ft">
+      <b></b>
+    </div></div></div>
+	<?php foreach((array)$row18 as $key=>$Child) {?>
+  <a class="weui_cell" href="<?php echo $arrInfo['url'];?>/home/zyd/18/<?php echo $Child['id'];?>">
+    <div class="weui_cell_bd weui_cell_primary"style="max-width:75%;">
+      <p style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><?php echo @$Child['xm'];?></p>
+    </div>
+    <div class="weui_cell_ft"><b><?php echo @$Child['xy'];?></b></div>
+  </a> 
+<?php }?><?php } ?>
 <?php if(!empty($row3)) { ?>
 	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
       <p><b>总资料库</b></p>
@@ -115,13 +130,43 @@
 <?php }?><?php } ?>
 <?php if(!empty($row4)) { ?>
 	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
-      <p><b>绑定资料库</b></p>
+      <p><b>微信绑定资料库</b></p>
     </div>
     <div class="weui_cell_ft">
       <b></b>
     </div></div></div>
 	<?php foreach((array)$row4 as $key=>$Child) {?>
   <a class="weui_cell" href="<?php echo $arrInfo['url'];?>/home/zyd/4/<?php echo $Child['id'];?>">
+    <div class="weui_cell_bd weui_cell_primary"style="max-width:75%;">
+      <p style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><?php echo @$Child['name'];?></p>
+    </div>
+    <div class="weui_cell_ft"><b><?php echo @$Child['number'];?></b></div>
+  </a> 
+<?php }?><?php } ?>
+<?php if(!empty($row4qq)) { ?>
+	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
+      <p><b>QQ绑定资料库</b></p>
+    </div>
+    <div class="weui_cell_ft">
+      <b></b>
+    </div></div></div>
+	<?php foreach((array)$row4qq as $key=>$Child) {?>
+  <a class="weui_cell" href="<?php echo $arrInfo['url'];?>/home/zyd/42/<?php echo $Child['id'];?>">
+    <div class="weui_cell_bd weui_cell_primary"style="max-width:75%;">
+      <p style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><?php echo @$Child['name'];?></p>
+    </div>
+    <div class="weui_cell_ft"><b><?php echo @$Child['number'];?></b></div>
+  </a> 
+<?php }?><?php } ?>
+<?php if(!empty($row4wb)) { ?>
+	<div class="weui_cell"><div class="weui_cell"><div class="weui_cell_bd weui_cell_primary">
+      <p><b>微博绑定资料库</b></p>
+    </div>
+    <div class="weui_cell_ft">
+      <b></b>
+    </div></div></div>
+	<?php foreach((array)$row4wb as $key=>$Child) {?>
+  <a class="weui_cell" href="<?php echo $arrInfo['url'];?>/home/zyd/43/<?php echo $Child['id'];?>">
     <div class="weui_cell_bd weui_cell_primary"style="max-width:75%;">
       <p style="width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><?php echo @$Child['name'];?></p>
     </div>
